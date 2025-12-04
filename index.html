@@ -12,7 +12,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&family=Roboto+Mono:wght@400;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -21,6 +21,7 @@
             --accent-red: #ff3333;
             --accent-yellow: #ffaa00;
             --accent-green: #00ff41;
+            --accent-blue: #0066ff;
             --text-main: #ffffff;
             --text-sub: #888888;
         }
@@ -39,6 +40,7 @@
         /* Typography */
         .font-mono { font-family: 'Roboto Mono', monospace; }
         .font-display { font-family: 'Black Ops One', cursive; }
+        .font-cyber { font-family: 'Orbitron', sans-serif; }
 
         /* Glitch Effect Class */
         .glitch-text {
@@ -120,13 +122,61 @@
             top: 0; left: 0; width: 4px; height: 100%;
             background: var(--accent-cyan);
         }
-        
-        /* Utility */
-        .text-gradient-cyan {
-            background: linear-gradient(90deg, #fff, var(--accent-cyan));
-            -webkit-background-clip: text;
-            color: transparent;
+
+        /* Logo Generators (CSS Art) */
+        .logo-rta-container {
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #002222 0%, #000 100%);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
         }
+        .logo-rta-text {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900; font-size: 60px; line-height: 0.8;
+            color: #000;
+            -webkit-text-stroke: 2px var(--accent-cyan);
+            text-shadow: 0 0 20px var(--accent-cyan);
+            z-index: 10;
+            transform: skewX(-10deg);
+        }
+        .logo-rta-sub {
+            font-family: 'Black Ops One', cursive;
+            font-size: 24px; color: var(--accent-cyan);
+            letter-spacing: 4px; margin-top: 5px;
+            text-shadow: 0 0 10px var(--accent-cyan);
+        }
+        .speed-line {
+            position: absolute; background: var(--accent-cyan);
+            opacity: 0.3; transform: skewX(-45deg);
+        }
+
+        .logo-timerace-container {
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #001133 0%, #000 100%);
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+        }
+        .timer-circle {
+            width: 100px; height: 100px;
+            border-radius: 50%;
+            border: 4px solid #333;
+            border-top-color: var(--accent-blue);
+            border-right-color: var(--accent-blue);
+            box-shadow: 0 0 20px var(--accent-blue);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            animation: spin-pulse 3s infinite linear;
+        }
+        @keyframes spin-pulse {
+            0% { transform: rotate(0deg); box-shadow: 0 0 20px var(--accent-blue); }
+            50% { box-shadow: 0 0 40px var(--accent-blue); }
+            100% { transform: rotate(360deg); box-shadow: 0 0 20px var(--accent-blue); }
+        }
+        .timer-text {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold; font-size: 32px; color: #fff;
+            animation: counter-spin 3s infinite linear; /* keep text upright */
+        }
+        @keyframes counter-spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(-360deg); } }
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
@@ -143,8 +193,7 @@
         <!-- Background Effects -->
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-black to-black"></div>
 
-        <!-- 【変更点1】背景の透明な早押しボタン画像 -->
-        <!-- hero-buzzer.png という名前で画像を保存してください。opacity-20で透明度を調整しています -->
+        <!-- 背景画像 (hero-buzzer.png) -->
         <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
             <img src="hero-buzzer.png" alt="" class="w-[800px] max-w-none opacity-20 blur-sm mix-blend-screen">
         </div>
@@ -163,13 +212,13 @@
                 競技クイズのための<span class="text-gradient-cyan border-b-2 border-cyan-500">トレーニング機材</span>だ。
             </p>
 
-            <!-- 【変更点2】ストアボタンを画像に変更 -->
+            <!-- ストアボタン (画像を使用) -->
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4 pt-8">
-                <!-- App Store ボタン画像 (btn-appstore.png) -->
+                <!-- App Store (btn-appstore.png) -->
                 <a href="https://apps.apple.com/jp/app/id6753719073" target="_blank" class="hover:opacity-80 transition-opacity">
                     <img src="btn-appstore.png" alt="App Storeからダウンロード" class="h-16 w-auto">
                 </a>
-                <!-- Google Play ボタン画像 (btn-googleplay.png) -->
+                <!-- Google Play (btn-googleplay.png) -->
                 <a href="https://play.google.com/store/apps/details?id=com.attentionseekingmonsters.SNSApp" target="_blank" class="hover:opacity-80 transition-opacity">
                     <img src="btn-googleplay.png" alt="Google Playで手に入れよう" class="h-16 w-auto">
                 </a>
@@ -234,10 +283,14 @@
             <div class="grid md:grid-cols-3 gap-6 mt-12">
                 <!-- Mode 1: 30 Questions RTA -->
                 <div class="cyber-card rounded-lg border-l-4 border-l-cyan-500 flex flex-col">
-                    <!-- 【変更点3】モードイメージ画像 (mode-rta.jpg) -->
-                    <div class="h-40 overflow-hidden relative bg-cyan-900/20">
-                        <img src="mode-rta.jpg" alt="RTA Mode" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity hover:scale-105 transform duration-500">
-                        <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-[#0f0f14] to-transparent"></div>
+                    <!-- CSS Generated Logo: 30 RTA -->
+                    <div class="h-40 relative">
+                        <div class="logo-rta-container">
+                            <div class="speed-line" style="top: 10%; left: -20%; width: 150%; height: 2px;"></div>
+                            <div class="speed-line" style="top: 80%; left: -20%; width: 150%; height: 5px;"></div>
+                            <div class="logo-rta-text">30</div>
+                            <div class="logo-rta-sub">RTA</div>
+                        </div>
                     </div>
                     <div class="p-8 flex-grow">
                         <div class="flex justify-between items-start mb-4">
@@ -255,23 +308,21 @@
                     </div>
                 </div>
 
-                <!-- Mode 2: LOCK OUT RTA -->
+                <!-- Mode 2: LOCK OUT RTA (公認ロゴ使用) -->
                 <div class="cyber-card rounded-lg border-l-4 border-l-red-500 flex flex-col relative overflow-hidden">
-                    <!-- 【変更点4】LOCK OUT公認アピールエリア -->
                     <div class="bg-red-950/80 border-b border-red-900 p-4 text-center relative z-10">
-                        <!-- quizlive-logo.png があればここに表示されます -->
-                        <img src="quizlive-logo.png" alt="Quiz LIVE Channel" class="h-6 mx-auto mb-2 opacity-90">
                         <p class="text-xs text-red-200 font-bold">
                             <span class="text-white">「Quiz LIVEチャンネル」</span>公認<br>
                             公式ルール採用モード
                         </p>
                     </div>
 
+                    <!-- 【重要】lockout-logo.jpg をメインロゴとして表示 -->
+                    <div class="h-32 flex items-center justify-center relative z-10 mt-4 px-4">
+                        <img src="lockout-logo.jpg" alt="LOCK OUT" class="max-h-full max-w-full object-contain drop-shadow-[0_0_10px_rgba(255,51,51,0.5)]">
+                    </div>
+
                     <div class="p-8 flex-grow relative z-10">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-bold font-display text-white">LOCK OUT RTA</h3>
-                            <span class="bg-red-500/20 text-red-400 text-xs px-2 py-1 font-mono rounded">HARDCORE</span>
-                        </div>
                         <p class="text-gray-400 text-sm mb-6">
                             30問正解タイムアタック。ただし、<span class="text-white font-bold">1問でも誤答したら即終了（サドンデス）。</span>「スルーする勇気」が試される。
                         </p>
@@ -287,14 +338,18 @@
 
                 <!-- Mode 3: 5 MIN TIME RACE -->
                 <div class="cyber-card rounded-lg border-l-4 border-l-blue-500 flex flex-col">
-                    <!-- 【変更点3】モードイメージ画像 (mode-timerace.jpg) -->
-                    <div class="h-40 overflow-hidden relative bg-blue-900/20">
-                        <img src="mode-timerace.jpg" alt="Time Race Mode" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity hover:scale-105 transform duration-500">
-                        <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-[#0f0f14] to-transparent"></div>
+                    <!-- CSS Generated Logo: 5 MIN RACE -->
+                    <div class="h-40 relative">
+                        <div class="logo-timerace-container">
+                            <div class="timer-circle">
+                                <span class="timer-text">5</span>
+                            </div>
+                            <div class="absolute bottom-2 right-4 font-display text-blue-400 text-sm">MIN TIME RACE</div>
+                        </div>
                     </div>
                     <div class="p-8 flex-grow">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-bold font-display text-white">5 MIN RACE</h3>
+                            <h3 class="text-xl font-bold font-display text-white">5 MIN TIME RACE</h3>
                             <span class="bg-blue-500/20 text-blue-400 text-xs px-2 py-1 font-mono rounded">ENDURANCE</span>
                         </div>
                         <p class="text-gray-400 text-sm mb-6">
@@ -309,7 +364,7 @@
                 </div>
             </div>
 
-            <!-- REVIEW MODE (Separate Section) -->
+            <!-- REVIEW MODE (Screenshot) -->
             <div class="mt-12 cyber-card rounded-lg border-l-4 border-l-yellow-500 max-w-4xl mx-auto overflow-hidden">
                 <div class="grid md:grid-cols-2">
                     <div class="p-8 flex flex-col justify-center">
@@ -325,7 +380,7 @@
                             STATUS: ENHANCED (SEPARATE FROM RTA)
                         </div>
                     </div>
-                    <!-- 【変更点5】復習モードのスクリーンショット (screen-review.jpg) -->
+                    <!-- 復習モード スクリーンショット (screen-review.jpg) -->
                     <div class="relative h-64 md:h-auto bg-black/50 border-t md:border-t-0 md:border-l border-gray-800">
                         <img src="screen-review.jpg" alt="Review Mode Screen" class="w-full h-full object-cover opacity-90">
                          <div class="absolute inset-0 bg-gradient-to-r from-[#0f0f14] via-transparent to-transparent pointer-events-none hidden md:block"></div>
