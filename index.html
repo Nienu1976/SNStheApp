@@ -6,6 +6,15 @@
     <title>SNStheApp - 競技クイズトレーニングジム</title>
     <meta name="description" content="ゲームではない。トレーニングジムだ。早押しクイズ練習アプリ「SNStheApp」。選球眼と制動を極限まで磨く、孤独なトレーニングを。">
     
+    <!-- Google Analytics 4 (GA4) Tracking Code -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCW9DDCCML"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-VCW9DDCCML');
+    </script>
+    
     <!-- Tailwind CSS (Design Framework) -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -257,7 +266,7 @@
                             <span class="text-cyan-400">>></span>
                             <div>
                                 <strong class="text-white block mb-1">REALISTIC LAG</strong>
-                                実際の早押し機同様、ボタンを押してから音声が止まるまでの<span class="text-orange-400">リアルな問い読みストップ</span>を完全再現。「読ませ押し」の練習が可能。
+                                実際の早押し機同様、ボタンを押してから音声が止まるまでの<span class="text-orange-400">ラグ</span>を完全再現。「読ませ押し」の練習が可能。
                             </div>
                         </li>
                         <li class="flex items-start gap-3">
@@ -278,13 +287,13 @@
         <div class="max-w-6xl mx-auto">
             <h2 class="section-title text-center block mb-12" data-title="HOW TO USE">HOW TO USE</h2>
             
-            <div class="grid md:grid-cols-3 gap-12 text-center mb-12">
+            <div class="grid md:grid-cols-3 gap-12 text-center">
                 
                 <!-- Step 1: PUSH -->
                 <div class="flex flex-col items-center">
                     <div class="relative w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center text-2xl font-bold text-cyan-400 border border-cyan-500 mb-6 shadow-[0_0_15px_rgba(0,243,255,0.3)]">1</div>
                     <h3 class="text-xl font-bold text-white mb-2">PUSH</h3>
-                    <p class="text-sm text-gray-400 mb-6 h-12">正解がわかった瞬間に押す。読ませ押しのテクニックをこれで磨け<br>わからなければスルー。</p>
+                    <p class="text-sm text-gray-400 mb-6 h-12">正解がわかった瞬間に押す。<br>わからなければスルー。</p>
                     
                     <!-- Image 1 -->
                     <div class="w-full max-w-xs border-2 border-gray-800 rounded-xl overflow-hidden shadow-lg shadow-cyan-900/20">
@@ -296,7 +305,7 @@
                 <div class="flex flex-col items-center">
                     <div class="relative w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center text-2xl font-bold text-white border border-gray-600 mb-6">2</div>
                     <h3 class="text-xl font-bold text-white mb-2">SPEAK</h3>
-                    <p class="text-sm text-gray-400 mb-6 h-12">５カウント以内に<br>声に出して解答する。</p>
+                    <p class="text-sm text-gray-400 mb-6 h-12">タイムラグを聞き分け、<br>声に出して解答する。</p>
                     
                     <!-- Image 2 -->
                     <div class="w-full max-w-xs border-2 border-gray-800 rounded-xl overflow-hidden shadow-lg shadow-gray-900/20">
@@ -317,82 +326,13 @@
                 </div>
 
             </div>
-
-    </section>
-
-    <!-- ============================================================================
-         PART 1: BASIC TRAINING (通常モード / 基礎練習)
-         ============================================================================ -->
-    <section class="py-20 px-6 border-t border-gray-800">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="section-title text-center block text-4xl mb-4" data-title="BASIC TRAINING">BASIC TRAINING</h2>
-            <p class="text-center text-gray-400 mb-12">
-                日々の積み重ねが、0.1秒を変える。<br>
-                あらゆるプレイヤーの基礎を作る、3つの通常モード。
-            </p>
-            
-            <div class="grid md:grid-cols-3 gap-6">
-                <!-- Mode A: NORMAL -->
-                <div class="cyber-card p-8 rounded-lg border-l-4 border-l-green-500 flex flex-col hover:bg-green-900/10 transition-colors">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="text-xl font-bold font-display text-white">NORMAL MODE</h3>
-                        <span class="bg-green-500/20 text-green-400 text-xs px-2 py-1 font-mono rounded">BASIC</span>
-                    </div>
-                    <p class="text-gray-400 text-sm mb-6 leading-relaxed flex-grow">
-                        20問1セットの基本練習。<br>
-                        問題数や出題範囲は自由に設定可能。<br>
-                        自分のペースで、納得いくまで押し込む。
-                    </p>
-                    <div class="text-xs font-mono text-green-500 border-t border-gray-800 pt-4 mt-auto">
-                        TYPE: STANDARD SET
-                    </div>
-                </div>
-
-                <!-- Mode B: FIRST LOOK -->
-                <div class="cyber-card p-8 rounded-lg border-l-4 border-l-purple-500 flex flex-col hover:bg-purple-900/10 transition-colors">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="text-xl font-bold font-display text-white">FIRST LOOK</h3>
-                        <span class="bg-purple-500/20 text-purple-400 text-xs px-2 py-1 font-mono rounded">UNKNOWN</span>
-                    </div>
-                    <p class="text-gray-400 text-sm mb-6 leading-relaxed flex-grow">
-                        「初見モード」。<br>
-                        今まで一度も出題されていない問題のみが出現。<br>
-                        記憶に頼らない、純粋な反応速度を試す。
-                    </p>
-                    <div class="text-xs font-mono text-purple-500 border-t border-gray-800 pt-4 mt-auto">
-                        TYPE: UNPLAYED ONLY
-                    </div>
-                </div>
-
-                <!-- Mode C: GENRE FOCUS -->
-                <div class="cyber-card p-8 rounded-lg border-l-4 border-l-orange-500 flex flex-col hover:bg-orange-900/10 transition-colors">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="text-xl font-bold font-display text-white">GENRE FOCUS</h3>
-                        <span class="bg-orange-500/20 text-orange-400 text-xs px-2 py-1 font-mono rounded">WEAKNESS</span>
-                    </div>
-                    <p class="text-gray-400 text-sm mb-6 leading-relaxed flex-grow">
-                        「ジャンル特化モード」。<br>
-                        苦手なジャンルだけを集中攻撃。<br>
-                        弱点を克服し、死角のないプレイヤーへ。
-                    </p>
-                    <div class="text-xs font-mono text-orange-500 border-t border-gray-800 pt-4 mt-auto">
-                        TYPE: SPECIALIZED
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- ============================================================================
-         PART 2: CHALLENGE MODES (RTA / 実戦形式)
-         ============================================================================ -->
-    <section class="py-20 px-6 bg-gray-900/30">
+    <!-- MODES -->
+    <section class="py-20 px-6">
         <div class="max-w-6xl mx-auto">
-            <h2 class="section-title text-center block text-4xl mb-4" data-title="CHALLENGE MODES">CHALLENGE MODES</h2>
-            <p class="text-center text-gray-400 mb-12">
-                実戦の緊張感、極限の集中力。<br>
-                己の限界を測るタイムアタック。
-            </p>
+            <h2 class="section-title text-center block" data-title="TRAINING MODES">TRAINING MODES</h2>
             
             <div class="grid md:grid-cols-3 gap-6 mt-12">
                 <!-- Mode 1: 30 CORRECTS RTA -->
@@ -539,6 +479,19 @@
                 </div>
             </div>
 
+            <!-- X Timeline Embed (Grok's Solution Integrated) -->
+            <div class="mb-8 w-full flex justify-center">
+                <div class="bg-gray-900 border border-gray-700 p-2 rounded-lg text-center w-full max-w-2xl h-[600px] overflow-hidden">
+                    <a class="twitter-timeline" 
+                       data-theme="dark" 
+                       data-height="600"
+                       href="https://twitter.com/i/lists/1996807189445668901">
+                       Latest Updates from SNStheApp
+                    </a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+            </div>
+
             <div class="grid md:grid-cols-2 gap-8 mb-8">
                 <!-- DEADLINE DISPLAY -->
                 <div class="flex flex-col justify-center items-center bg-gray-900/50 p-4 rounded border border-gray-700">
@@ -572,7 +525,7 @@
                     良問、まだまだ募集中。
                 </p>
                 <p class="text-sm text-gray-400 mb-6 leading-relaxed">
-                    Vol.1の収録に向け、現在250問以上の良問が集まっています。<br>
+                    Vol.1の収録に向け、現在300問以上の良問が集まっています。<br>
                     特に上記ジャンルを強化したく、<br>
                     バランス調整のため、あなたの力を貸してください。
                 </p>
