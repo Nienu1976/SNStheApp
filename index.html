@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNStheApp - 競技クイズトレーニングジム</title>
+    <title>SNStheApp - 競技クイズトレーニング機材</title>
     <meta name="description" content="ゲームではない。トレーニング機材だ。早押しクイズ練習アプリ「SNStheApp」。選球眼と制動を極限まで磨く、孤独なトレーニングを。">
     
     <!-- Tailwind CSS (Design Framework) -->
@@ -278,7 +278,7 @@
         <div class="max-w-6xl mx-auto">
             <h2 class="section-title text-center block mb-12" data-title="HOW TO USE">HOW TO USE</h2>
             
-            <div class="grid md:grid-cols-3 gap-12 text-center">
+            <div class="grid md:grid-cols-3 gap-12 text-center mb-12">
                 
                 <!-- Step 1: PUSH -->
                 <div class="flex flex-col items-center">
@@ -317,13 +317,89 @@
                 </div>
 
             </div>
+
+            <!-- プレイ画面 (Actual Gameplay) -->
+            <div class="relative w-full max-w-sm mx-auto border-4 border-gray-800 rounded-2xl overflow-hidden shadow-2xl shadow-cyan-900/50">
+                <img src="screen-play.jpg" alt="Game Play Screen" class="w-full h-auto">
+                <div class="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none"></div>
+            </div>
+            <p class="text-center text-xs text-gray-500 mt-4 font-mono">ACTUAL GAMEPLAY SCREEN</p>
         </div>
     </section>
 
-    <!-- MODES -->
-    <section class="py-20 px-6">
+    <!-- ============================================================================
+         PART 1: BASIC TRAINING (通常モード / 基礎練習)
+         ============================================================================ -->
+    <section class="py-20 px-6 border-t border-gray-800">
         <div class="max-w-6xl mx-auto">
-            <h2 class="section-title text-center block" data-title="TRAINING MODES">TRAINING MODES</h2>
+            <h2 class="section-title text-center block text-4xl mb-4" data-title="BASIC TRAINING">BASIC TRAINING</h2>
+            <p class="text-center text-gray-400 mb-12">
+                日々の積み重ねが、0.1秒を変える。<br>
+                あらゆるプレイヤーの基礎を作る、3つの通常モード。
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Mode A: NORMAL -->
+                <div class="cyber-card p-8 rounded-lg border-l-4 border-l-green-500 flex flex-col hover:bg-green-900/10 transition-colors">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold font-display text-white">NORMAL MODE</h3>
+                        <span class="bg-green-500/20 text-green-400 text-xs px-2 py-1 font-mono rounded">BASIC</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed flex-grow">
+                        20問1セットの基本練習。<br>
+                        問題数や出題範囲は自由に設定可能。<br>
+                        自分のペースで、納得いくまで押し込む。
+                    </p>
+                    <div class="text-xs font-mono text-green-500 border-t border-gray-800 pt-4 mt-auto">
+                        TYPE: STANDARD SET
+                    </div>
+                </div>
+
+                <!-- Mode B: FIRST LOOK -->
+                <div class="cyber-card p-8 rounded-lg border-l-4 border-l-purple-500 flex flex-col hover:bg-purple-900/10 transition-colors">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold font-display text-white">FIRST LOOK</h3>
+                        <span class="bg-purple-500/20 text-purple-400 text-xs px-2 py-1 font-mono rounded">UNKNOWN</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed flex-grow">
+                        「初見モード」。<br>
+                        今まで一度も出題されていない問題のみが出現。<br>
+                        記憶に頼らない、純粋な反応速度を試す。
+                    </p>
+                    <div class="text-xs font-mono text-purple-500 border-t border-gray-800 pt-4 mt-auto">
+                        TYPE: UNPLAYED ONLY
+                    </div>
+                </div>
+
+                <!-- Mode C: GENRE FOCUS -->
+                <div class="cyber-card p-8 rounded-lg border-l-4 border-l-orange-500 flex flex-col hover:bg-orange-900/10 transition-colors">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold font-display text-white">GENRE FOCUS</h3>
+                        <span class="bg-orange-500/20 text-orange-400 text-xs px-2 py-1 font-mono rounded">WEAKNESS</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed flex-grow">
+                        「ジャンル特化モード」。<br>
+                        苦手なジャンルだけを集中攻撃。<br>
+                        弱点を克服し、死角のないプレイヤーへ。
+                    </p>
+                    <div class="text-xs font-mono text-orange-500 border-t border-gray-800 pt-4 mt-auto">
+                        TYPE: SPECIALIZED
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================================
+         PART 2: CHALLENGE MODES (RTA / 実戦形式)
+         ============================================================================ -->
+    <section class="py-20 px-6 bg-gray-900/30">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-center block text-4xl mb-4" data-title="CHALLENGE MODES">CHALLENGE MODES</h2>
+            <p class="text-center text-gray-400 mb-12">
+                実戦の緊張感、極限の集中力。<br>
+                己の限界を測るタイムアタック。
+            </p>
             
             <div class="grid md:grid-cols-3 gap-6 mt-12">
                 <!-- Mode 1: 30 CORRECTS RTA -->
@@ -503,7 +579,7 @@
                     良問、まだまだ募集中。
                 </p>
                 <p class="text-sm text-gray-400 mb-6 leading-relaxed">
-                    Vol.1の収録に向け、現在350問以上の良問が集まっています。<br>
+                    Vol.1の収録に向け、現在250問以上の良問が集まっています。<br>
                     特に上記ジャンルを強化したく、<br>
                     バランス調整のため、あなたの力を貸してください。
                 </p>
@@ -534,7 +610,7 @@
         </div>
 
         <p class="text-[10px] text-gray-700 font-mono">
-            © 2025 Isamu Ishii / 承認欲求モンスターズ<br>
+            © 2025 Isamu Ishii / SNStheApp Project.<br>
             All rights reserved.
         </p>
     </footer>
