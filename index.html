@@ -212,13 +212,11 @@
                 競技クイズのための<span class="text-gradient-cyan border-b-2 border-cyan-500">トレーニング機材</span>だ。
             </p>
 
-            <!-- ストアボタン (画像を使用) -->
+            <!-- ストアボタン -->
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4 pt-8">
-                <!-- App Store (btn-appstore.png) -->
                 <a href="https://apps.apple.com/jp/app/id6753719073" target="_blank" class="hover:opacity-80 transition-opacity">
                     <img src="btn-appstore.png" alt="App Storeからダウンロード" class="h-16 w-auto">
                 </a>
-                <!-- Google Play (btn-googleplay.png) -->
                 <a href="https://play.google.com/store/apps/details?id=com.attentionseekingmonsters.SNSApp" target="_blank" class="hover:opacity-80 transition-opacity">
                     <img src="btn-googleplay.png" alt="Google Playで手に入れよう" class="h-16 w-auto">
                 </a>
@@ -266,11 +264,58 @@
                             <span class="text-cyan-400">>></span>
                             <div>
                                 <strong class="text-white block mb-1">MANUAL JUDGEMENT</strong>
-                                自動判定なし。解答は表示されるため、正誤は<span class="text-red-400">プレイヤー自身</span>で自己採点を行う。
+                                自動判定なし。正解は画面に表示される。自身の解答と照らし合わせ、<span class="text-red-400">手動</span>で判定を行う。
                             </div>
                         </li>
                     </ul>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW TO USE -->
+    <section class="py-20 px-6 bg-[#08080a] border-y border-gray-900">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-center block mb-12" data-title="HOW TO USE">HOW TO USE</h2>
+            
+            <div class="grid md:grid-cols-3 gap-12 text-center">
+                
+                <!-- Step 1: PUSH -->
+                <div class="flex flex-col items-center">
+                    <div class="relative w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center text-2xl font-bold text-cyan-400 border border-cyan-500 mb-6 shadow-[0_0_15px_rgba(0,243,255,0.3)]">1</div>
+                    <h3 class="text-xl font-bold text-white mb-2">PUSH</h3>
+                    <p class="text-sm text-gray-400 mb-6 h-12">正解がわかった瞬間に押す。<br>わからなければスルー。</p>
+                    
+                    <!-- Image 1 -->
+                    <div class="w-full max-w-xs border-2 border-gray-800 rounded-xl overflow-hidden shadow-lg shadow-cyan-900/20">
+                        <img src="step-push.jpg" alt="Step 1: Push" class="w-full h-auto">
+                    </div>
+                </div>
+
+                <!-- Step 2: SPEAK -->
+                <div class="flex flex-col items-center">
+                    <div class="relative w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center text-2xl font-bold text-white border border-gray-600 mb-6">2</div>
+                    <h3 class="text-xl font-bold text-white mb-2">SPEAK</h3>
+                    <p class="text-sm text-gray-400 mb-6 h-12">0.4秒のラグを聞き分け、<br>声に出して解答する。</p>
+                    
+                    <!-- Image 2 -->
+                    <div class="w-full max-w-xs border-2 border-gray-800 rounded-xl overflow-hidden shadow-lg shadow-gray-900/20">
+                        <img src="step-speak.jpg" alt="Step 2: Speak" class="w-full h-auto">
+                    </div>
+                </div>
+
+                <!-- Step 3: JUDGE -->
+                <div class="flex flex-col items-center">
+                    <div class="relative w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center text-2xl font-bold text-red-500 border border-red-500 mb-6 shadow-[0_0_15px_rgba(255,51,51,0.3)]">3</div>
+                    <h3 class="text-xl font-bold text-white mb-2">JUDGE</h3>
+                    <p class="text-sm text-gray-400 mb-6 h-12">解答は表示されるので、<br>解答を見て自己採点。</p>
+                    
+                    <!-- Image 3 -->
+                    <div class="w-full max-w-xs border-2 border-gray-800 rounded-xl overflow-hidden shadow-lg shadow-red-900/20">
+                        <img src="step-judge.jpg" alt="Step 3: Judge" class="w-full h-auto">
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -281,7 +326,7 @@
             <h2 class="section-title text-center block" data-title="TRAINING MODES">TRAINING MODES</h2>
             
             <div class="grid md:grid-cols-3 gap-6 mt-12">
-                <!-- Mode 1: 30 Questions RTA -->
+                <!-- Mode 1: 30 CORRECTS RTA -->
                 <div class="cyber-card rounded-lg border-l-4 border-l-cyan-500 flex flex-col">
                     <!-- CSS Generated Logo: 30 RTA -->
                     <div class="h-40 relative">
@@ -294,7 +339,7 @@
                     </div>
                     <div class="p-8 flex-grow">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-bold font-display text-white">30 QUESTIONS RTA</h3>
+                            <h3 class="text-xl font-bold font-display text-white">30 CORRECTS RTA</h3>
                             <span class="bg-cyan-500/20 text-cyan-400 text-xs px-2 py-1 font-mono rounded">SPEED</span>
                         </div>
                         <p class="text-gray-400 text-sm mb-6">
@@ -308,16 +353,18 @@
                     </div>
                 </div>
 
-                <!-- Mode 2: LOCK OUT RTA (公認ロゴ使用) -->
+                <!-- Mode 2: LOCK OUT RTA -->
                 <div class="cyber-card rounded-lg border-l-4 border-l-red-500 flex flex-col relative overflow-hidden">
+                    <!-- LOCK OUT 公認ロゴエリア -->
                     <div class="bg-red-950/80 border-b border-red-900 p-4 text-center relative z-10">
+                        <img src="quizlive-logo.png" alt="Quiz LIVE Channel" class="h-8 mx-auto mb-2 opacity-90 object-contain">
                         <p class="text-xs text-red-200 font-bold">
-                            <span class="text-white">「クイズLIVEチャンネル」</span>公認<br>
-    
+                            <span class="text-white">「Quiz LIVEチャンネル」</span>公認<br>
+                            公式ルール採用モード
                         </p>
                     </div>
 
-                    <!-- 【重要】lockout-logo.jpg をメインロゴとして表示 -->
+                    <!-- LOCK OUT ロゴ画像 -->
                     <div class="h-32 flex items-center justify-center relative z-10 mt-4 px-4">
                         <img src="lockout-logo.jpg" alt="LOCK OUT" class="max-h-full max-w-full object-contain drop-shadow-[0_0_10px_rgba(255,51,51,0.5)]">
                     </div>
@@ -338,13 +385,13 @@
 
                 <!-- Mode 3: 5 MIN TIME RACE -->
                 <div class="cyber-card rounded-lg border-l-4 border-l-blue-500 flex flex-col">
-                    <!-- CSS Generated Logo: 5 MIN RACE -->
+                    <!-- CSS Generated Logo: 5 MIN TIME RACE -->
                     <div class="h-40 relative">
                         <div class="logo-timerace-container">
                             <div class="timer-circle">
                                 <span class="timer-text">5</span>
                             </div>
-                            <div class="absolute bottom-2 right-4 font-display text-blue-400 text-sm">MIN TIME RACE</div>
+                            <div class="absolute bottom-2 right-4 font-display text-blue-400 text-sm">TIME RACE</div>
                         </div>
                     </div>
                     <div class="p-8 flex-grow">
@@ -364,7 +411,7 @@
                 </div>
             </div>
 
-            <!-- REVIEW MODE (Screenshot) -->
+            <!-- REVIEW MODE -->
             <div class="mt-12 cyber-card rounded-lg border-l-4 border-l-yellow-500 max-w-4xl mx-auto overflow-hidden">
                 <div class="grid md:grid-cols-2">
                     <div class="p-8 flex flex-col justify-center">
@@ -380,11 +427,10 @@
                             STATUS: ENHANCED (SEPARATE FROM RTA)
                         </div>
                     </div>
-                    <!-- 復習モード スクリーンショット (screen-review.jpg) -->
+                    <!-- 復習モード スクリーンショット -->
                     <div class="relative h-64 md:h-auto bg-black/50 border-t md:border-t-0 md:border-l border-gray-800">
                         <img src="screen-review.jpg" alt="Review Mode Screen" class="w-full h-full object-cover opacity-90">
                          <div class="absolute inset-0 bg-gradient-to-r from-[#0f0f14] via-transparent to-transparent pointer-events-none hidden md:block"></div>
-                         <!-- スクショの上に「開発中画面」等の注釈を入れる場合 -->
                          <div class="absolute bottom-2 right-2 text-[10px] text-gray-500 font-mono bg-black/70 px-2 py-1 rounded">
                              ACTUAL APP SCREEN
                          </div>
@@ -395,36 +441,7 @@
         </div>
     </section>
 
-    <!-- HOW TO USE -->
-    <section class="py-20 px-6 bg-[#08080a] border-y border-gray-900">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="section-title text-center block mb-12" data-title="HOW TO USE">HOW TO USE</h2>
-            
-            <div class="grid md:grid-cols-3 gap-8 text-center">
-                <div class="relative">
-                    <div class="w-16 h-16 mx-auto bg-gray-800 rounded-full flex items-center justify-center text-2xl font-bold text-cyan-400 border border-cyan-500 mb-4 shadow-[0_0_15px_rgba(0,243,255,0.3)]">1</div>
-                    <h3 class="text-xl font-bold text-white mb-2">PUSH</h3>
-                    <p class="text-sm text-gray-400">正解がわかった瞬間に押す。<br>わからなければスルー。</p>
-                </div>
-                <div class="relative">
-                    <div class="w-16 h-16 mx-auto bg-gray-800 rounded-full flex items-center justify-center text-2xl font-bold text-white border border-gray-600 mb-4">2</div>
-                    <h3 class="text-xl font-bold text-white mb-2">SPEAK</h3>
-                    <p class="text-sm text-gray-400">0.4秒のラグを聞き分け、<br>声に出して解答する。</p>
-                    <!-- Connector Line (Desktop) -->
-                    <div class="hidden md:block absolute top-8 -left-1/2 w-full h-0.5 bg-gray-800 -z-10"></div>
-                </div>
-                <div class="relative">
-                    <div class="w-16 h-16 mx-auto bg-gray-800 rounded-full flex items-center justify-center text-2xl font-bold text-red-500 border border-red-500 mb-4 shadow-[0_0_15px_rgba(255,51,51,0.3)]">3</div>
-                    <h3 class="text-xl font-bold text-white mb-2">JUDGE</h3>
-                    <p class="text-sm text-gray-400">正解は画面に表示される。<br>自身の解答と照らし合わせ、<br>手動で判定を行う。</p>
-                    <!-- Connector Line (Desktop) -->
-                    <div class="hidden md:block absolute top-8 -left-1/2 w-full h-0.5 bg-gray-800 -z-10"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ALERT BANNER (ONE CUSHION) -->
+    <!-- ALERT BANNER -->
     <div class="bg-cyan-600 text-black overflow-hidden py-3 font-bold font-mono tracking-widest border-y-4 border-black relative z-20">
         <div class="whitespace-nowrap animate-marquee flex gap-20">
             <span>★ CAMPAIGN ACTIVE: VOL.1 RECRUITMENT OPEN</span>
