@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXPANSION PACKS - SNStheApp</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@700;900&family=Roboto+Mono:wght@700&family=Orbitron:wght@900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #050505;
+            --accent-cyan: #00f3ff;
+            --accent-purple: #bc13fe;
+            --accent-yellow: #ffaa00;
+            --accent-white: #ffffff;
+        }
+
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Roboto Mono', monospace;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 50% 0%, #1a1a2e 0%, #000 80%),
+                repeating-linear-gradient(0deg, transparent, transparent 1px, #111 1px, #111 2px);
+            padding-bottom: 80px;
+        }
+
+        /* コンテナ */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 共通：リリースバッジ */
+        .release-badge {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            color: #000;
+            padding: 6px 16px;
+            letter-spacing: 2px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+            align-self: flex-start;
+        }
+        .badge-cyan { background: var(--accent-cyan); box-shadow: 0 0 20px var(--accent-cyan); }
+        .badge-purple { background: var(--accent-purple); color: #fff; box-shadow: 0 0 20px var(--accent-purple); }
+        .badge-yellow { background: var(--accent-yellow); box-shadow: 0 0 20px var(--accent-yellow); }
+
+        /* セクション区切り */
+        .section-divider {
+            border-top: 1px solid #333;
+            margin: 80px 0;
+            position: relative;
+        }
+        .section-divider::after {
+            content: '';
+            position: absolute;
+            top: -1px; left: 50%; transform: translateX(-50%);
+            width: 100px; height: 3px;
+            background: #555;
+        }
+
+        /* レイアウトグリッド（左画像・右テキスト） */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 60px;
+            }
+        }
+
+        /* 画像エリア */
+        .image-area {
+            position: relative;
+            border: 2px solid #333;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        .image-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .image-area:hover { border-color: #666; }
+        .image-area:hover img { transform: scale(1.05); }
+
+        /* タイトル */
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 48px;
+            line-height: 0.9;
+            margin-bottom: 10px;
+            background: linear-gradient(180deg, #fff, #888);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+        }
+        
+        @media (min-width: 768px) { h1 { font-size: 60px; } }
+
+        h2 {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 18px;
+            color: #fff;
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #333;
+            display: inline-block;
+        }
+
+        /* 説明文 */
+        .desc-text {
+            font-size: 14px;
+            color: #ccc;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        /* スペックリスト */
+        .specs-list {
+            margin-bottom: 30px;
+            font-size: 12px;
+            color: #888;
+            line-height: 2;
+            border-left: 2px solid #333;
+            padding-left: 15px;
+        }
+        .spec-highlight { color: #fff; font-weight: bold; margin-left: 5px; }
+
+        /* 購入ボタン */
+        .action-area {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .btn-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            width: 100%;
+            padding: 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: 'Noto Sans JP', sans-serif;
+            transition: all 0.3s;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #ccc;
+        }
+        .btn-link:hover {
+            background: #333;
+            color: #fff;
+            border-color: #fff;
+        }
+        .btn-main { font-size: 16px; }
+
+        /* 戻るリンク */
+        .back-link {
+            margin-top: 60px;
+            text-align: center;
+        }
+        .back-link a {
+            font-size: 14px;
+            color: var(--accent-cyan);
+            text-decoration: none;
+            border: 1px solid var(--accent-cyan);
+            padding: 10px 30px;
+            transition: all 0.3s;
+        }
+        .back-link a:hover { background: var(--accent-cyan); color: #000; }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- ヘッダー -->
+        <div style="text-align: center; padding: 60px 0;">
+            <p class="text-xs text-gray-500 tracking-[0.5em] mb-4">SNStheApp OFFICIAL STORE</p>
+            <h1 style="font-size: 32px; background: none; -webkit-text-fill-color: initial; color: #fff;">EXPANSION PACKS</h1>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- ITEM 1: THE COLLECTIVE (User Generated) -->
+        <!-- ========================================== -->
+        <div class="content-grid" id="collective">
+            <div class="image-area" style="box-shadow: 0 0 50px rgba(188, 19, 254, 0.2); border-color: var(--accent-purple);">
+                <img src="expansion_visual.jpg" alt="THE COLLECTIVE">
+            </div>
+            <div class="info-area">
+                <span class="release-badge badge-purple">COMING JAN 2026</span>
+                <h1 style="text-shadow: 0 0 30px rgba(188, 19, 254, 0.6);">THE<br>COLLECTIVE</h1>
+                <h2 style="border-color: var(--accent-purple);">ユーザー投稿問題選集 Vol.1</h2>
+                
+                <p class="desc-text">
+                    全国のプレイヤーから寄せられた「良問」を結晶化。<br>
+                    最高難度の知識と、多岐にわたるジャンルを収録した拡張パック。<br>
+                    集合知が織りなす、予測不能なトレーニングを。
+                </p>
+
+                <div class="specs-list" style="border-color: var(--accent-purple);">
+                    <p>収録数:<span class="spec-highlight">350問以上 (予定)</span></p>
+                    <p>ジャンル:<span class="spec-highlight">オールジャンル (理系・芸術含む)</span></p>
+                    <p>特典:<span class="spec-highlight">売上の一部を還元 (想定)</span></p>
+                </div>
+
+                <div class="action-area">
+                    <a href="#" class="btn-link" style="background: linear-gradient(90deg, #6a0dad, #9d4edd); color: white; border: none;">
+                        <span class="btn-main">詳細・予約 (準備中)</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- ========================================== -->
+        <!-- ITEM 2: SNS the3rd -->
+        <!-- ========================================== -->
+        <div class="content-grid" id="sns3">
+            <div class="image-area">
+                <!-- 画像ファイル名: pack_sns3.jpg -->
+                <img src="pack_sns3.jpg" alt="SNS the3rd">
+            </div>
+            <div class="info-area">
+                <span class="release-badge badge-cyan">AVAILABLE NOW</span>
+                <h1>SNS<br>the3rd</h1>
+                <h2 style="border-color: var(--accent-cyan);">公式記録集 (2025)</h2>
+                
+                <p class="desc-text">
+                    2025年8月3日開催『SNSthe3rd』公式記録集。<br>
+                    易しい〜やや易しいレベルで揃えた、実戦的な900問。<br>
+                    初心者向けのフリバから、上級者の白熱した押し合いまで耐えうる、<br>
+                    最新のトレンドを反映した問題群。
+                </p>
+
+                <div class="specs-list" style="border-color: var(--accent-cyan);">
+                    <p>収録数:<span class="spec-highlight">約900問</span></p>
+                    <p>内訳:<span class="spec-highlight">ペーパー60問 / 敗者復活120問 / 本戦550問 / 未使用140問</span></p>
+                    <p>セット内容:<span class="spec-highlight">映像 / 記録集 / 問題Excelファイル</span></p>
+                </div>
+
+                <div class="action-area">
+                    <a href="#" target="_blank" class="btn-link">
+                        <span class="btn-main">BOOTH で購入</span>
+                    </a>
+                    <a href="#" target="_blank" class="btn-link">
+                        <span class="btn-main">クイズ宅配便 で購入</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- ========================================== -->
+        <!-- ITEM 3: SNS the2nd -->
+        <!-- ========================================== -->
+        <div class="content-grid" id="sns2">
+            <div class="image-area">
+                <!-- 画像ファイル名: pack_sns2.jpg -->
+                <img src="pack_sns2.jpg" alt="SNS the2nd">
+            </div>
+            <div class="info-area">
+                <span class="release-badge badge-yellow">AVAILABLE NOW</span>
+                <h1>SNS<br>the2nd</h1>
+                <h2 style="border-color: var(--accent-yellow);">公式記録集 (2024)</h2>
+                
+                <p class="desc-text">
+                    2024年8月4日開催。静岡学生・社会人フレッシャーズによる<br>
+                    基本問題No.1決定戦『SNS the2nd』使用問題。<br>
+                    「基本問題」を愛するすべてのプレイヤーに捧げる、<br>
+                    シンプルかつ奥深い一冊。
+                </p>
+
+                <div class="specs-list" style="border-color: var(--accent-yellow);">
+                    <p>収録内容:<span class="spec-highlight">使用問題 / 未使用問題 / 記録</span></p>
+                    <p>難易度:<span class="spec-highlight">基本 (初心者最適)</span></p>
+                    <p>購入特典:<span class="spec-highlight">大会動画URL</span></p>
+                </div>
+
+                <div class="action-area">
+                    <a href="#" target="_blank" class="btn-link">
+                        <span class="btn-main">BOOTH で購入</span>
+                    </a>
+                    <a href="#" target="_blank" class="btn-link">
+                        <span class="btn-main">クイズ宅配便 で購入</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- ========================================== -->
+        <!-- ITEM 4: SNS the1st -->
+        <!-- ========================================== -->
+        <div class="content-grid" id="sns1">
+            <div class="image-area">
+                <!-- 画像ファイル名: pack_sns1.jpg -->
+                <img src="pack_sns1.jpg" alt="SNS the1st">
+            </div>
+            <div class="info-area">
+                <span class="release-badge badge-yellow">AVAILABLE NOW</span>
+                <h1>SNS<br>the1st</h1>
+                <h2 style="border-color: var(--accent-yellow);">公式記録集 (2023)</h2>
+                
+                <p class="desc-text">
+                    原点にして頂点。<br>
+                    2023年7月開催、記念すべき第一回大会の全記録。<br>
+                    圧倒的ボリュームの全1125問を収録。<br>
+                    予選2ndROUNDは特に易しめの構成で、初心者の学習に最適。
+                </p>
+
+                <div class="specs-list" style="border-color: var(--accent-yellow);">
+                    <p>収録数:<span class="spec-highlight">全1,125問</span></p>
+                    <p>特徴:<span class="spec-highlight">基礎固めに最適なボリューム</span></p>
+                    <p>購入特典:<span class="spec-highlight">大会動画URL & QRコード</span></p>
+                </div>
+
+                <div class="action-area">
+                    <a href="#" target="_blank" class="btn-link">
+                        <span class="btn-main">BOOTH で購入</span>
+                    </a>
+                    <a href="#" target="_blank" class="btn-link">
+                        <span class="btn-main">クイズ宅配便 で購入</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="back-link">
+            <a href="index.html">← RETURN TO OFFICIAL SITE</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
