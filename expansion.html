@@ -30,7 +30,7 @@
 
         .container {
             width: 100%;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -40,7 +40,7 @@
             text-align: center;
             padding: 60px 0 40px;
             border-bottom: 1px solid #333;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
         .page-title {
             font-family: 'Orbitron', sans-serif;
@@ -56,23 +56,39 @@
             letter-spacing: 1px;
         }
 
-        /* 商品カード（グリッドレイアウト） */
-        .product-card {
+        /* グリッドレイアウト（PCで2列表示にしてコンパクト化） */
+        .pack-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            margin-bottom: 60px;
-            padding-bottom: 60px;
-            border-bottom: 1px solid #222;
-            align-items: start;
+            grid-template-columns: 1fr; /* スマホは1列 */
+            gap: 30px;
         }
 
-        /* PC以上で2カラム（左画像・右テキスト） */
-        @media (min-width: 768px) {
-            .product-card {
-                grid-template-columns: 350px 1fr; /* 画像幅固定・残りテキスト */
-                gap: 50px;
+        @media (min-width: 1024px) {
+            .pack-grid {
+                grid-template-columns: 1fr 1fr; /* PCは2列 */
+                gap: 40px;
             }
+        }
+
+        /* 商品カード */
+        .product-card {
+            background: #0a0a0c;
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        @media (min-width: 640px) {
+            .product-card {
+                flex-direction: row; /* 少し広い画面なら横並び */
+                align-items: start;
+                gap: 20px;
+            }
+        }
+        .product-card:hover {
+            border-color: #444;
         }
 
         /* 画像エリア */
@@ -85,6 +101,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-bottom: 20px;
+            flex-shrink: 0;
+        }
+        @media (min-width: 640px) {
+            .pack-image {
+                width: 140px; /* 横並び時の画像幅固定 */
+                margin-bottom: 0;
+            }
         }
         .pack-image img {
             width: 100%;
@@ -97,80 +121,85 @@
         }
 
         /* テキストエリア */
+        .pack-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
         .badge {
             font-family: 'Orbitron', sans-serif;
-            font-size: 12px;
-            padding: 4px 12px;
+            font-size: 10px;
+            padding: 3px 10px;
             font-weight: bold;
             display: inline-block;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             color: #000;
+            border-radius: 2px;
         }
-        .badge-purple { background: var(--accent-purple); color: #fff; box-shadow: 0 0 15px var(--accent-purple); }
-        .badge-cyan { background: var(--accent-cyan); box-shadow: 0 0 15px var(--accent-cyan); }
-        .badge-yellow { background: var(--accent-yellow); box-shadow: 0 0 15px var(--accent-yellow); }
+        .badge-purple { background: var(--accent-purple); color: #fff; }
+        .badge-cyan { background: var(--accent-cyan); }
+        .badge-yellow { background: var(--accent-yellow); }
 
         .pack-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 32px;
+            font-size: 20px;
             line-height: 1.1;
             margin-bottom: 5px;
             color: #fff;
         }
         .pack-sub {
-            font-size: 16px;
+            font-size: 12px;
             font-weight: bold;
             color: #ccc;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             display: block;
-            border-left: 4px solid #555;
-            padding-left: 10px;
+            border-left: 3px solid #555;
+            padding-left: 8px;
         }
 
         .description {
-            font-size: 14px;
+            font-size: 11px;
             color: #aaa;
-            line-height: 1.8;
-            margin-bottom: 30px;
-            white-space: pre-wrap; /* 改行を反映 */
+            line-height: 1.6;
+            margin-bottom: 15px;
+            flex-grow: 1; /* ボタンを下に押しやる */
+            white-space: pre-wrap;
         }
 
         /* スペック表 */
         .spec-table {
             width: 100%;
-            font-size: 13px;
+            font-size: 10px;
             color: #888;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
             border-top: 1px solid #333;
         }
         .spec-table td {
-            padding: 8px 0;
+            padding: 4px 0;
             border-bottom: 1px solid #222;
         }
-        .spec-label { width: 80px; font-family: 'Roboto Mono', monospace; }
+        .spec-label { width: 60px; font-family: 'Roboto Mono', monospace; }
         .spec-val { color: #ddd; font-weight: bold; }
 
         /* ボタン */
         .btn-group {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
+            margin-top: auto;
         }
-        @media (min-width: 640px) {
-            .btn-group { flex-direction: row; }
-        }
-
         .btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 12px 20px;
-            font-size: 14px;
+            padding: 8px;
+            font-size: 11px;
             font-weight: bold;
             text-decoration: none;
             border-radius: 4px;
             transition: all 0.2s;
-            flex: 1;
             text-align: center;
         }
         
@@ -188,7 +217,6 @@
         }
         .btn-qtaku:hover { background: #162942; border-color: #fff; }
 
-        /* 戻るリンク */
         .back-link {
             text-align: center;
             margin-top: 40px;
@@ -212,130 +240,120 @@
         <p class="page-sub">OFFICIAL QUESTION DATA & RECORDS</p>
     </div>
 
-    <!-- ============================================== -->
-    <!-- 1. THE COLLECTIVE (New) -->
-    <!-- ============================================== -->
-    <div class="product-card">
-        <div class="pack-image" style="border-color: var(--accent-purple); box-shadow: 0 0 30px rgba(188,19,254,0.1);">
-            <img src="expansion_visual.jpg" alt="THE COLLECTIVE">
-        </div>
-        <div class="pack-info">
-            <span class="badge badge-purple">COMING JAN 2026</span>
-            <h2 class="pack-title">THE COLLECTIVE <span style="font-size: 20px; color: var(--accent-cyan);">Vol.1</span></h2>
-            <span class="pack-sub" style="border-color: var(--accent-purple);">ユーザー投稿問題選集</span>
+    <!-- グリッドラッパー -->
+    <div class="pack-grid">
 
-            <p class="description">全国のプレイヤーから寄せられた「良問」を結晶化。
-最高難度の知識と、多岐にわたるジャンルを収録した拡張パック。
-集合知が織りなす、予測不能なトレーニングを。
-※売上の一部はクリエイターへ還元予定。</p>
+        <!-- 1. THE COLLECTIVE -->
+        <div class="product-card">
+            <div class="pack-image" style="border-color: var(--accent-purple);">
+                <img src="expansion_visual.jpg" alt="THE COLLECTIVE">
+            </div>
+            <div class="pack-content">
+                <div>
+                    <span class="badge badge-purple">COMING JAN 2026</span>
+                    <h2 class="pack-title">THE COLLECTIVE</h2>
+                    <span class="pack-sub" style="border-color: var(--accent-purple);">ユーザー投稿問題選集 Vol.1</span>
+                    
+                    <p class="description">全国のプレイヤーから寄せられた「良問」を結晶化。最高難度の知識と、多岐にわたるジャンルを収録した拡張パック。</p>
 
-            <table class="spec-table">
-                <tr><td class="spec-label">SOURCE</td><td class="spec-val">User Submission</td></tr>
-                <tr><td class="spec-label">TOTAL</td><td class="spec-val">350+ Questions (Planned)</td></tr>
-                <tr><td class="spec-label">GENRE</td><td class="spec-val">All Mix (Arts, Sports, Science...)</td></tr>
-            </table>
-
-            <div class="btn-group">
-                <a href="#" class="btn" style="background: #333; color: #888; cursor: not-allowed;">
-                    準備中 (Coming Soon)
-                </a>
+                    <table class="spec-table">
+                        <tr><td class="spec-label">TOTAL</td><td class="spec-val">350+ Questions (Planned)</td></tr>
+                        <tr><td class="spec-label">GENRE</td><td class="spec-val">All Mix</td></tr>
+                    </table>
+                </div>
+                
+                <div class="btn-group">
+                    <a href="#" class="btn" style="background: #333; color: #888; cursor: not-allowed;">
+                        準備中 (Coming Soon)
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- ============================================== -->
-    <!-- 2. SNS the3rd -->
-    <!-- ============================================== -->
-    <div class="product-card">
-        <div class="pack-image">
-            <img src="pack_sns3.jpg" alt="SNS the3rd">
-        </div>
-        <div class="pack-info">
-            <span class="badge badge-new">LATEST</span>
-            <h2 class="pack-title">SNS the3rd</h2>
-            <span class="pack-sub" style="border-color: var(--accent-cyan);">公式記録集 (2025)</span>
+        <!-- 2. SNS the3rd -->
+        <div class="product-card">
+            <div class="pack-image">
+                <img src="pack_sns3.jpg" alt="SNS the3rd">
+            </div>
+            <div class="pack-content">
+                <div>
+                    <span class="badge badge-cyan">LATEST</span>
+                    <h2 class="pack-title">SNS the3rd</h2>
+                    <span class="pack-sub" style="border-color: var(--accent-cyan);">公式記録集 (2025)</span>
 
-            <p class="description">2025年8月3日（日）に開催された『SNSthe3rd』の公式記録集です。
-映像のみ、記録集のみ、映像・記録集・問題エクセルファイルのセットの３種類をご用意しています。
+                    <p class="description">2025年8月開催『SNSthe3rd』公式記録集。
+易しい〜やや易しいレベルの実戦的900問。初心者フリバから上級者の押し合いまで対応。</p>
 
-ペーパークイズ60問、1stRound-2 敗者復活（易しい問題）120問、2ndRound以降およそ550問、未使用問題140問程度とおよそ900問ほどを収録しています。
-難易度としては易しい〜やや易しいレベルで揃えていますので、初心者向けのフリバにも、上級者の白熱した押し合いにも耐えられる問題群です。</p>
+                    <table class="spec-table">
+                        <tr><td class="spec-label">TOTAL</td><td class="spec-val">Approx. 900 Questions</td></tr>
+                        <tr><td class="spec-label">CONTENT</td><td class="spec-val">Video / PDF / Excel</td></tr>
+                    </table>
+                </div>
 
-            <table class="spec-table">
-                <tr><td class="spec-label">DATE</td><td class="spec-val">2025.08.03</td></tr>
-                <tr><td class="spec-label">TOTAL</td><td class="spec-val">Approx. 900 Questions</td></tr>
-                <tr><td class="spec-label">CONTENT</td><td class="spec-val">Video / PDF / Excel Data</td></tr>
-            </table>
-
-            <div class="btn-group">
-                <a href="https://iinekure.booth.pm/items/7276099" target="_blank" class="btn btn-booth">BOOTH で購入</a>
-                <a href="https://q-tak.com/?p=20191" target="_blank" class="btn btn-qtaku">クイズ宅配便 で購入</a>
+                <div class="btn-group">
+                    <a href="https://iinekure.booth.pm/items/7276099" target="_blank" class="btn btn-booth">BOOTH で購入</a>
+                    <a href="https://q-tak.com/?p=20191" target="_blank" class="btn btn-qtaku">クイズ宅配便 で購入</a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- ============================================== -->
-    <!-- 3. SNS the2nd -->
-    <!-- ============================================== -->
-    <div class="product-card">
-        <div class="pack-image">
-            <img src="pack_sns2.jpg" alt="SNS the2nd">
-        </div>
-        <div class="pack-info">
-            <span class="badge badge-yellow">AVAILABLE NOW</span>
-            <h2 class="pack-title">SNS the2nd</h2>
-            <span class="pack-sub" style="border-color: var(--accent-yellow);">公式記録集 (2024)</span>
+        <!-- 3. SNS the2nd -->
+        <div class="product-card">
+            <div class="pack-image">
+                <img src="pack_sns2.jpg" alt="SNS the2nd">
+            </div>
+            <div class="pack-content">
+                <div>
+                    <span class="badge badge-yellow">AVAILABLE NOW</span>
+                    <h2 class="pack-title">SNS the2nd</h2>
+                    <span class="pack-sub" style="border-color: var(--accent-yellow);">公式記録集 (2024)</span>
 
-            <p class="description">2024年8月4日に静岡県静岡市駿河区の大里生涯学習センターにて開催された、静岡学生・社会人フレッシャーズによる基本問題ナンバー１決定戦『SNS the2nd』で使用した問題、ならびに未使用問題と記録を収録しています。
+                    <p class="description">2024年開催『SNS the2nd』使用問題。
+基本問題No.1決定戦の記録。「基本」を愛するすべてのプレイヤーへ。</p>
 
-初心者の方や基本問題がお好きという皆様には最適の問題集です。
-また、購入特典として、大会当日の模様を収録、編集した動画のURLがございます。</p>
+                    <table class="spec-table">
+                        <tr><td class="spec-label">LEVEL</td><td class="spec-val">Basic (Beginner Friendly)</td></tr>
+                        <tr><td class="spec-label">BONUS</td><td class="spec-val">Tournament Movie URL</td></tr>
+                    </table>
+                </div>
 
-            <table class="spec-table">
-                <tr><td class="spec-label">DATE</td><td class="spec-val">2024.08.04</td></tr>
-                <tr><td class="spec-label">LEVEL</td><td class="spec-val">Basic (Beginner Friendly)</td></tr>
-                <tr><td class="spec-label">BONUS</td><td class="spec-val">Tournament Movie URL</td></tr>
-            </table>
-
-            <div class="btn-group">
-                <a href="https://iinekure.booth.pm/items/6045824" target="_blank" class="btn btn-booth">BOOTH で購入</a>
-                <!-- Q宅リンクなし -->
+                <div class="btn-group">
+                    <a href="https://iinekure.booth.pm/items/6045824" target="_blank" class="btn btn-booth">BOOTH で購入</a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- ============================================== -->
-    <!-- 4. SNS the1st -->
-    <!-- ============================================== -->
-    <div class="product-card" style="border-bottom: none;">
-        <div class="pack-image">
-            <img src="pack_sns1.jpg" alt="SNS the1st">
-        </div>
-        <div class="pack-info">
-            <span class="badge badge-yellow">AVAILABLE NOW</span>
-            <h2 class="pack-title">SNS the1st</h2>
-            <span class="pack-sub" style="border-color: var(--accent-yellow);">公式記録集 (2023)</span>
+        <!-- 4. SNS the1st -->
+        <div class="product-card">
+            <div class="pack-image">
+                <img src="pack_sns1.jpg" alt="SNS the1st">
+            </div>
+            <div class="pack-content">
+                <div>
+                    <span class="badge badge-yellow">AVAILABLE NOW</span>
+                    <h2 class="pack-title">SNS the1st</h2>
+                    <span class="pack-sub" style="border-color: var(--accent-yellow);">公式記録集 (2023)</span>
 
-            <p class="description">2023年7月30日に静岡県静岡市葵区のアイセル21にて開催された、静岡学生・社会人フレッシャーズによる基本問題ナンバー１決定戦『SNS the 1st』で使用した問題、ならびに未使用問題、全1125問と記録を収録しています。
+                    <p class="description">2023年開催、記念すべき第一回大会。
+圧倒的ボリュームの全1,125問。予選は特に易しめで学習に最適。</p>
 
-予選2ndROUNDはさらに易しめの問題を並べましたので、初心者にもオススメです。ぜひ、フリバや基本問題の学習に役立ていただければ幸いです。
-購入特典として、当日の様子を編集したYouTubeの動画をご覧いただけるURLとQRコードが掲載されています。</p>
+                    <table class="spec-table">
+                        <tr><td class="spec-label">TOTAL</td><td class="spec-val">1,125 Questions</td></tr>
+                        <tr><td class="spec-label">BONUS</td><td class="spec-val">Movie URL / QR Code</td></tr>
+                    </table>
+                </div>
 
-            <table class="spec-table">
-                <tr><td class="spec-label">DATE</td><td class="spec-val">2023.07.30</td></tr>
-                <tr><td class="spec-label">TOTAL</td><td class="spec-val">1,125 Questions</td></tr>
-                <tr><td class="spec-label">BONUS</td><td class="spec-val">Movie URL / QR Code</td></tr>
-            </table>
-
-            <div class="btn-group">
-                <a href="https://iinekure.booth.pm/items/4993528" target="_blank" class="btn btn-booth">BOOTH で購入</a>
-                <a href="https://q-tak.com/?p=15774" target="_blank" class="btn btn-qtaku">クイズ宅配便 で購入</a>
+                <div class="btn-group">
+                    <a href="https://iinekure.booth.pm/items/4993528" target="_blank" class="btn btn-booth">BOOTH で購入</a>
+                    <a href="https://q-tak.com/?p=15774" target="_blank" class="btn btn-qtaku">クイズ宅配便 で購入</a>
+                </div>
             </div>
         </div>
+
     </div>
 
-    <div class="footer-nav" style="text-align: center; padding-top: 40px; border-top: 1px solid #333;">
-        <a href="index.html" class="back-link">← RETURN TO OFFICIAL SITE</a>
+    <div class="back-link">
+        <a href="index.html">← RETURN TO OFFICIAL SITE</a>
     </div>
 
 </div>
