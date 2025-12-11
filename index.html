@@ -13,6 +13,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&family=Roboto+Mono:wght@400;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    
+    <!-- Google Analytics 4 (GA4) Tracking Code -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCW9DDCCML"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-VCW9DDCCML');
+    </script>
 
     <style>
         :root {
@@ -22,7 +31,8 @@
             --accent-yellow: #ffaa00;
             --accent-green: #00ff41;
             --accent-blue: #0066ff;
-            --accent-purple: #bc13fe; /* 追加: コラボ用パープル */
+            --accent-purple: #bc13fe; 
+            --accent-lime: #ccff00;
             --text-main: #ffffff;
             --text-sub: #888888;
         }
@@ -190,6 +200,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
+            padding-bottom: 20px;
         }
         .pack-card {
             background: #1e1e2e;
@@ -203,18 +214,17 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            height: 100%;
+            text-decoration: none;
         }
         .pack-card:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px) scale(1.02);
             box-shadow: 0 0 30px rgba(0, 243, 255, 0.4);
             z-index: 10;
         }
-        /* 画像をカードいっぱいに表示 */
         .pack-card-img-container {
             width: 100%;
             height: 0;
-            padding-bottom: 141.4%; /* A4比率 (1:1.414) に近づける */
+            padding-bottom: 141.4%; /* A4比率 */
             position: relative;
             background: #000;
         }
@@ -224,30 +234,30 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* 画像を枠いっぱいにトリミングして表示 */
+            object-fit: cover;
         }
         .pack-card-label {
-            padding: 10px;
+            padding: 15px 10px;
             font-size: 14px;
             font-weight: bold;
             color: var(--accent-white);
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.9);
             border-top: 1px solid var(--accent-cyan);
             z-index: 2;
-            position: relative;
             margin-top: auto;
         }
-        /* 特別なパックのスタイル */
+        /* THE COLLECTIVE用 特別スタイル */
         .pack-collective {
             border-color: var(--accent-purple);
             box-shadow: 0 0 20px rgba(188, 19, 254, 0.3);
         }
         .pack-collective:hover {
-            box-shadow: 0 0 40px rgba(188, 19, 254, 0.5);
+            box-shadow: 0 0 40px rgba(188, 19, 254, 0.6);
         }
         .pack-collective .pack-card-label {
             border-top-color: var(--accent-purple);
             color: #e0aaff;
+            background: linear-gradient(to top, rgba(188, 19, 254, 0.2), rgba(0,0,0,0.9));
         }
 
     </style>
@@ -275,7 +285,7 @@
             
             <p class="text-xl md:text-2xl font-bold text-gray-300 max-w-2xl mx-auto leading-relaxed">
                 ゲームではない。<br>
-                競技クイズのための<span class="text-gradient-cyan border-b-2 border-cyan-500">トレーニングギア</span>だ。
+                競技クイズのための<span class="text-gradient-cyan border-b-2 border-cyan-500">トレーニング・ギア</span>だ。
             </p>
 
             <!-- ストアボタン -->
@@ -507,12 +517,10 @@
                 </div>
             </div>
 
-
-
         </div>
     </section>
 
-    <!-- 【追加】EXPANSION PACKS セクション (アンカーリンクのターゲット) -->
+    <!-- EXPANSION PACKS セクション (アンカーリンクのターゲット) -->
     <section id="expansion-packs" class="py-20 px-6 bg-gray-900 border-t border-gray-800">
         <div class="max-w-6xl mx-auto">
             <h2 class="section-title text-center block mb-12" data-title="EXPANSION PACKS">EXPANSION PACKS</h2>
@@ -523,6 +531,16 @@
 
             <!-- パック表紙のグリッド -->
             <div class="pack-grid">
+
+                <!-- 0. STARTER PACK (New!) -->
+                <div class="pack-card" style="border-color: var(--accent-lime); box-shadow: 0 0 15px rgba(204, 255, 0, 0.3);">
+                    <div class="pack-card-img-container">
+                        <img src="pack_starter.jpg" alt="STARTER PACK">
+                        <!-- バッジ -->
+                        <div class="absolute top-2 left-2 bg-[#ccff00] text-black text-[10px] font-bold px-2 py-1 rounded shadow-lg border border-white">NEW</div>
+                    </div>
+                    <div class="pack-card-label" style="border-top-color: var(--accent-lime);">STARTER PACK</div>
+                </div>
                 
                 <!-- 1. SNSthe1st -->
                 <div class="pack-card">
@@ -543,7 +561,7 @@
                 <!-- 3. SNSthe3rd -->
                 <div class="pack-card">
                      <div class="pack-card-img-container">
-                        <img src="pack_sns3.jpg" alt="SNSthe3rd Pack">
+                        <img src="SNSthe3rd.jpg" alt="SNSthe3rd Pack">
                     </div>
                     <div class="pack-card-label">SNSthe3rd 問題パック</div>
                 </div>
@@ -558,8 +576,8 @@
                 </a>
 
             </div>
-        </div>
-                                <!-- 【修正】EXPANSION PACKS へのリンクボタン (REVIEW MODEの下に配置) -->
+
+            <!-- 【修正】EXPANSION PACKS へのリンクボタン (セクション最下部に配置) -->
             <div class="mt-16 w-full text-center">
                 <a href="expansion.html" class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold py-4 px-10 rounded-lg transition-all shadow-lg shadow-purple-900/50 hover:-translate-y-1 hover:shadow-purple-900/80 border border-purple-400">
                     <span class="text-2xl">★</span>
@@ -567,7 +585,8 @@
                     <span class="text-2xl">★</span>
                 </a>
             </div>
-            
+
+        </div>
     </section>
 
     <!-- ALERT BANNER -->
@@ -596,7 +615,6 @@
                 </div>
             </div>
 
-
             <div class="grid md:grid-cols-2 gap-8 mb-8">
                 <!-- DEADLINE DISPLAY -->
                 <div class="flex flex-col justify-center items-center bg-gray-900/50 p-4 rounded border border-gray-700">
@@ -610,7 +628,7 @@
                     <div class="absolute -top-3 left-4 bg-black px-2 text-cyan-500 text-xs font-bold border border-cyan-500/30">WANTED GENRES</div>
                     <ul class="space-y-3 text-sm text-gray-300 mt-2">
                         <li class="flex justify-between items-center border-b border-gray-800 pb-2">
-                            <span>芸術 (Art)</span>
+                            <span>理系 (Science)</span>
                             <span class="bg-orange-600 text-white text-[10px] px-2 py-0.5 rounded font-bold">WANTED</span>
                         </li>
                         <li class="flex justify-between items-center border-b border-gray-800 pb-2">
@@ -618,7 +636,7 @@
                             <span class="text-cyan-400 text-[10px] font-mono">SEEKING</span>
                         </li>
                         <li class="flex justify-between items-center">
-                            <span>歴史 (History)</span>
+                            <span>芸術 (Art)</span>
                             <span class="text-cyan-400 text-[10px] font-mono">SEEKING</span>
                         </li>
                     </ul>
