@@ -14,6 +14,7 @@
             --accent-cyan: #00f3ff;
             --accent-purple: #bc13fe;
             --accent-yellow: #ffaa00;
+            --accent-lime: #ccff00; /* 追加: スターター用 */
             --accent-white: #ffffff;
         }
 
@@ -56,7 +57,7 @@
             letter-spacing: 1px;
         }
 
-        /* グリッドレイアウト（PCで2列表示にしてコンパクト化） */
+        /* グリッドレイアウト */
         .pack-grid {
             display: grid;
             grid-template-columns: 1fr; /* スマホは1列 */
@@ -89,6 +90,7 @@
         }
         .product-card:hover {
             border-color: #444;
+            transform: translateY(-2px);
         }
 
         /* 画像エリア */
@@ -141,6 +143,7 @@
         .badge-purple { background: var(--accent-purple); color: #fff; }
         .badge-cyan { background: var(--accent-cyan); }
         .badge-yellow { background: var(--accent-yellow); }
+        .badge-lime { background: var(--accent-lime); }
 
         .pack-title {
             font-family: 'Orbitron', sans-serif;
@@ -216,6 +219,13 @@
             border: 1px solid #457b9d;
         }
         .btn-qtaku:hover { background: #162942; border-color: #fff; }
+        
+        .btn-lime {
+            background: var(--accent-lime);
+            color: #000;
+            border: 1px solid var(--accent-lime);
+        }
+        .btn-lime:hover { background: #b3e600; }
 
         .back-link {
             text-align: center;
@@ -243,8 +253,36 @@
     <!-- グリッドラッパー -->
     <div class="pack-grid">
 
+        <!-- 0. STARTER PACK (New!) -->
+        <div class="product-card" style="border-color: var(--accent-lime);">
+            <div class="pack-image" style="border-color: var(--accent-lime);">
+                <img src="pack_starter.jpg" alt="STARTER PACK">
+            </div>
+            <div class="pack-content">
+                <div>
+                    <span class="badge badge-lime">NEW ARRIVAL</span>
+                    <h2 class="pack-title">STARTER PACK</h2>
+                    <span class="pack-sub" style="border-color: var(--accent-lime);">はじめてのクイズ</span>
+                    
+                    <p class="description">クイズを始めたばかりの方へ。
+基本中の基本、本当に簡単な問題を中心に構成された入門パック。まずはここから始めよう。</p>
+
+                    <table class="spec-table">
+                        <tr><td class="spec-label">LEVEL</td><td class="spec-val">Beginner (Level 1)</td></tr>
+                        <tr><td class="spec-label">GENRE</td><td class="spec-val">Basic Mix</td></tr>
+                    </table>
+                </div>
+                
+                <div class="btn-group">
+                    <a href="#" class="btn btn-lime">
+                        アプリ内ショップで購入可能
+                    </a>
+                </div>
+            </div>
+        </div>
+
         <!-- 1. THE COLLECTIVE -->
-        <div class="product-card">
+        <div class="product-card" style="border-color: var(--accent-purple);">
             <div class="pack-image" style="border-color: var(--accent-purple);">
                 <img src="expansion_visual.jpg.png" alt="THE COLLECTIVE">
             </div>
@@ -254,7 +292,7 @@
                     <h2 class="pack-title">THE COLLECTIVE</h2>
                     <span class="pack-sub" style="border-color: var(--accent-purple);">ユーザー投稿問題選集 Vol.1</span>
                     
-                    <p class="description">全国のプレイヤーから寄せられた「良問」を結晶化。最高難度の知識と、多岐にわたるジャンルを収録した拡張パック。</p>
+                    <p class="description">全国のプレイヤーから寄せられた「良問」を結晶化。様々な難度の知識と、多岐にわたるジャンルを収録した拡張パック。</p>
 
                     <table class="spec-table">
                         <tr><td class="spec-label">TOTAL</td><td class="spec-val">350+ Questions (Planned)</td></tr>
