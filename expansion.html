@@ -14,8 +14,9 @@
             --accent-cyan: #00f3ff;
             --accent-purple: #bc13fe;
             --accent-yellow: #ffaa00;
-            --accent-lime: #ccff00; /* 追加: スターター用 */
+            --accent-lime: #ccff00; 
             --accent-white: #ffffff;
+            --accent-gold: #ffd700;
         }
 
         body {
@@ -60,13 +61,13 @@
         /* グリッドレイアウト */
         .pack-grid {
             display: grid;
-            grid-template-columns: 1fr; /* スマホは1列 */
+            grid-template-columns: 1fr;
             gap: 30px;
         }
 
         @media (min-width: 1024px) {
             .pack-grid {
-                grid-template-columns: 1fr 1fr; /* PCは2列 */
+                grid-template-columns: 1fr 1fr;
                 gap: 40px;
             }
         }
@@ -83,7 +84,7 @@
         }
         @media (min-width: 640px) {
             .product-card {
-                flex-direction: row; /* 少し広い画面なら横並び */
+                flex-direction: row;
                 align-items: start;
                 gap: 20px;
             }
@@ -96,7 +97,7 @@
         /* 画像エリア */
         .pack-image {
             width: 100%;
-            aspect-ratio: 3/4; /* 縦長 */
+            aspect-ratio: 3/4;
             background: #000;
             border: 1px solid #333;
             overflow: hidden;
@@ -108,7 +109,7 @@
         }
         @media (min-width: 640px) {
             .pack-image {
-                width: 140px; /* 横並び時の画像幅固定 */
+                width: 140px;
                 margin-bottom: 0;
             }
         }
@@ -117,9 +118,6 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s;
-        }
-        .pack-image:hover img {
-            transform: scale(1.03);
         }
 
         /* テキストエリア */
@@ -144,6 +142,7 @@
         .badge-cyan { background: var(--accent-cyan); }
         .badge-yellow { background: var(--accent-yellow); }
         .badge-lime { background: var(--accent-lime); }
+        .badge-gold { background: var(--accent-gold); }
 
         .pack-title {
             font-family: 'Orbitron', sans-serif;
@@ -167,7 +166,7 @@
             color: #aaa;
             line-height: 1.6;
             margin-bottom: 15px;
-            flex-grow: 1; /* ボタンを下に押しやる */
+            flex-grow: 1;
             white-space: pre-wrap;
         }
 
@@ -206,25 +205,13 @@
             text-align: center;
         }
         
-        .btn-booth {
-            background: #fc4d50;
-            color: white;
-            border: 1px solid #fc4d50;
-        }
+        .btn-booth { background: #fc4d50; color: white; border: 1px solid #fc4d50; }
         .btn-booth:hover { background: #d43f42; }
 
-        .btn-qtaku {
-            background: #1d3557;
-            color: white;
-            border: 1px solid #457b9d;
-        }
+        .btn-qtaku { background: #1d3557; color: white; border: 1px solid #457b9d; }
         .btn-qtaku:hover { background: #162942; border-color: #fff; }
         
-        .btn-lime {
-            background: var(--accent-lime);
-            color: #000;
-            border: 1px solid var(--accent-lime);
-        }
+        .btn-lime { background: var(--accent-lime); color: #000; border: 1px solid var(--accent-lime); }
         .btn-lime:hover { background: #b3e600; }
 
         .back-link {
@@ -250,10 +237,9 @@
         <p class="page-sub">OFFICIAL QUESTION DATA & RECORDS</p>
     </div>
 
-    <!-- グリッドラッパー -->
     <div class="pack-grid">
 
-        <!-- 0. STARTER PACK (New!) -->
+        <!-- 0. STARTER PACK (Updated Links) -->
         <div class="product-card" style="border-color: var(--accent-lime);">
             <div class="pack-image" style="border-color: var(--accent-lime);">
                 <img src="pack_starter.jpg" alt="STARTER PACK">
@@ -274,35 +260,36 @@
                 </div>
                 
                 <div class="btn-group">
-                    <a href="#" class="btn btn-lime">
-                        アプリ内ショップで購入可能
-                    </a>
+                    <a href="https://booth.pm/ja/items/7777732" target="_blank" class="btn btn-booth">BOOTH で購入</a>
+                    <a href="https://q-tak.com/?p=21124" target="_blank" class="btn btn-qtaku">クイズ宅配便 で購入</a>
+                    <div class="text-[9px] text-gray-500 text-center mt-1">※アプリ内ショップでも購入可能です</div>
                 </div>
             </div>
         </div>
 
-        <!-- 1. THE COLLECTIVE -->
-        <div class="product-card" style="border-color: var(--accent-purple);">
+        <!-- 1. THE COLLECTIVE (Final Data Update) -->
+        <div class="product-card" style="border-color: var(--accent-purple); box-shadow: 0 0 20px rgba(188, 19, 254, 0.2);">
             <div class="pack-image" style="border-color: var(--accent-purple);">
                 <img src="expansion_visual.jpg.png" alt="THE COLLECTIVE">
             </div>
             <div class="pack-content">
                 <div>
-                    <span class="badge badge-purple">COMING JAN 2026</span>
+                    <span class="badge badge-purple">MISSION COMPLETE / COMING SOON</span>
                     <h2 class="pack-title">THE COLLECTIVE</h2>
                     <span class="pack-sub" style="border-color: var(--accent-purple);">ユーザー投稿問題選集 Vol.1</span>
                     
-                    <p class="description">全国のプレイヤーから寄せられた「良問」を結晶化。様々な難度の知識と、多岐にわたるジャンルを収録した拡張パック。</p>
+                    <p class="description">全国から寄せられた650問から、厳選された「280問」を収録。
+コミュニティの熱量が詰まった、遊びやすくも奥深い拡張パック。難易度は易しい〜普通。</p>
 
                     <table class="spec-table">
-                        <tr><td class="spec-label">TOTAL</td><td class="spec-val">350+ Questions (Planned)</td></tr>
-                        <tr><td class="spec-label">GENRE</td><td class="spec-val">All Mix</td></tr>
+                        <tr><td class="spec-label">TOTAL</td><td class="spec-val">280 Questions (Selected from 650)</td></tr>
+                        <tr><td class="spec-label">LEVEL</td><td class="spec-val">Easy to Normal</td></tr>
                     </table>
                 </div>
                 
                 <div class="btn-group">
-                    <a href="#" class="btn" style="background: #333; color: #888; cursor: not-allowed;">
-                        準備中 (Coming Soon)
+                    <a href="#" class="btn" style="background: #1a1a1a; color: #555; cursor: not-allowed; border: 1px solid #333;">
+                        現在制作中 (実装までお待ちください)
                     </a>
                 </div>
             </div>
@@ -315,12 +302,12 @@
             </div>
             <div class="pack-content">
                 <div>
-                    <span class="badge badge-cyan">LATEST</span>
+                    <span class="badge badge-cyan">LATEST RECORD</span>
                     <h2 class="pack-title">SNS the3rd</h2>
                     <span class="pack-sub" style="border-color: var(--accent-cyan);">公式記録集 (2025)</span>
 
                     <p class="description">2025年8月開催『SNSthe3rd』公式記録集。
-易しい〜やや易しいレベルの実戦的900問。初心者フリバから上級者の押し合いまで対応。</p>
+実戦的900問。初心者フリバから上級者の押し合いまで幅広く対応。</p>
 
                     <table class="spec-table">
                         <tr><td class="spec-label">TOTAL</td><td class="spec-val">Approx. 900 Questions</td></tr>
@@ -373,7 +360,7 @@
                     <span class="pack-sub" style="border-color: var(--accent-yellow);">公式記録集 (2023)</span>
 
                     <p class="description">2023年開催、記念すべき第一回大会。
-圧倒的ボリュームの全1,125問。予選は特に易しめで学習に最適。</p>
+全1,125問。学習に最適な圧倒的ボリュームを収録。</p>
 
                     <table class="spec-table">
                         <tr><td class="spec-label">TOTAL</td><td class="spec-val">1,125 Questions</td></tr>
