@@ -99,6 +99,16 @@
             position: relative;
             display: inline-block;
         }
+        .section-title::after {
+            content: attr(data-title);
+            position: absolute;
+            top: 0; left: 0;
+            color: transparent;
+            -webkit-text-stroke: 0;
+            background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0) 100%);
+            -webkit-background-clip: text;
+            opacity: 0.5;
+        }
 
         .cyber-card {
             background: rgba(15, 15, 20, 0.8);
@@ -116,6 +126,39 @@
             position: absolute;
             top: 0; left: 0; width: 4px; height: 100%;
             background: var(--accent-cyan);
+        }
+
+        /* Mode Logos */
+        .logo-rta-container {
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #002222 0%, #000 100%);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+        }
+        .logo-rta-text {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900; font-size: 60px; line-height: 0.8;
+            color: #000; -webkit-text-stroke: 2px var(--accent-cyan);
+            text-shadow: 0 0 20px var(--accent-cyan);
+            transform: skewX(-10deg);
+        }
+        .logo-timerace-container {
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #001133 0%, #000 100%);
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+        }
+        .timer-circle {
+            width: 100px; height: 100px; border-radius: 50%; border: 4px solid #333;
+            border-top-color: var(--accent-blue); border-right-color: var(--accent-blue);
+            box-shadow: 0 0 20px var(--accent-blue);
+            display: flex; align-items: center; justify-content: center;
+            animation: spin-pulse 3s infinite linear;
+        }
+        @keyframes spin-pulse {
+            0% { transform: rotate(0deg); box-shadow: 0 0 20px var(--accent-blue); }
+            50% { box-shadow: 0 0 40px var(--accent-blue); }
+            100% { transform: rotate(360deg); box-shadow: 0 0 20px var(--accent-blue); }
         }
 
         /* Packs Grid */
@@ -226,8 +269,112 @@
         </div>
     </section>
 
+    <!-- HOW TO USE (復元) -->
+    <section class="py-20 px-6 bg-[#08080a] border-y border-gray-900">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-center block mb-12" data-title="HOW TO USE">HOW TO USE</h2>
+            
+            <div class="grid md:grid-cols-3 gap-12 text-center">
+                
+                <!-- Step 1: PUSH -->
+                <div class="flex flex-col items-center">
+                    <div class="relative w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center text-2xl font-bold text-cyan-400 border border-cyan-500 mb-6 shadow-[0_0_15px_rgba(0,243,255,0.3)]">1</div>
+                    <h3 class="text-xl font-bold text-white mb-2 font-cyber">PUSH</h3>
+                    <p class="text-sm text-gray-400 mb-6 h-12">正解がわかった瞬間に押す。<br>わからなければスルー。</p>
+                    <div class="w-full max-w-xs border-2 border-gray-800 rounded-xl overflow-hidden shadow-lg shadow-cyan-900/20">
+                        <img src="step-push.jpg" alt="Step 1: Push" class="w-full h-auto">
+                    </div>
+                </div>
+
+                <!-- Step 2: ANSWER -->
+                <div class="flex flex-col items-center">
+                    <div class="relative w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center text-2xl font-bold text-white border border-gray-600 mb-6">2</div>
+                    <h3 class="text-xl font-bold text-white mb-2 font-cyber">SPEAK</h3>
+                    <p class="text-sm text-gray-400 mb-6 h-12">押した後のタイムラグから問題文聞き分けて答えよう。</p>
+                    <div class="w-full max-w-xs border-2 border-gray-800 rounded-xl overflow-hidden shadow-lg shadow-gray-900/20">
+                        <img src="step-speak.jpg" alt="Step 2: Speak" class="w-full h-auto">
+                    </div>
+                </div>
+
+                <!-- Step 3: JUDGE -->
+                <div class="flex flex-col items-center">
+                    <div class="relative w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center text-2xl font-bold text-red-500 border border-red-500 mb-6 shadow-[0_0_15px_rgba(255,51,51,0.3)]">3</div>
+                    <h3 class="text-xl font-bold text-white mb-2 font-cyber">JUDGE</h3>
+                    <p class="text-sm text-gray-400 mb-6 h-12">解答は表示されるので、<br>解答を見て自己採点。</p>
+                    <div class="w-full max-w-xs border-2 border-gray-800 rounded-xl overflow-hidden shadow-lg shadow-red-900/20">
+                        <img src="step-judge.jpg" alt="Step 3: Judge" class="w-full h-auto">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- MODES -->
+    <section class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-center block" data-title="TRAINING MODES">TRAINING MODES</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6 mt-12">
+                <!-- Mode 1 -->
+                <div class="cyber-card rounded-lg border-l-4 border-l-cyan-500 flex flex-col">
+                    <div class="h-40 relative logo-rta-container">
+                        <div class="logo-rta-text">30</div>
+                        <div class="font-display text-cyan-400 text-sm mt-2">RTA</div>
+                    </div>
+                    <div class="p-8 flex-grow">
+                        <h3 class="text-xl font-bold font-display text-white mb-4">30 CORRECTS RTA</h3>
+                        <p class="text-gray-400 text-sm">30問正解するまでのタイムを競う。純粋なスピードと知識量の勝負。</p>
+                    </div>
+                </div>
+
+                <!-- Mode 2 -->
+                <div class="cyber-card rounded-lg border-l-4 border-l-red-500 flex flex-col">
+                    <div class="bg-red-950/80 border-b border-red-900 p-4 text-center">
+                        <h4 class="font-display text-lg text-red-500">QUIZ LIVE CHANNEL</h4>
+                        <p class="text-[10px] text-red-200 font-bold">公認 / OFFICIALLY RECOGNIZED</p>
+                    </div>
+                    <div class="h-32 flex items-center justify-center p-4">
+                        <img src="lockout-logo.jpg" alt="LOCK OUT" class="max-h-full object-contain">
+                    </div>
+                    <div class="p-8 flex-grow">
+                        <p class="text-gray-400 text-sm">1問でも誤答したら即終了（サドンデス）。「スルーする勇気」が試される。</p>
+                    </div>
+                </div>
+
+                <!-- Mode 3 -->
+                <div class="cyber-card rounded-lg border-l-4 border-l-blue-500 flex flex-col">
+                    <div class="h-40 relative logo-timerace-container">
+                        <div class="timer-circle"><span class="font-bold text-2xl text-white">5</span></div>
+                    </div>
+                    <div class="p-8 flex-grow">
+                        <h3 class="text-xl font-bold font-display text-white mb-4">5 MIN TIME RACE</h3>
+                        <p class="text-gray-400 text-sm">制限時間5分間で何問正解できるかを競う。持久力と安定感のスコアアタック。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REVIEW MODE -->
+            <div class="mt-12 cyber-card rounded-lg border-l-4 border-l-yellow-500 max-w-4xl mx-auto overflow-hidden">
+                <div class="grid md:grid-cols-2">
+                    <div class="p-8 flex flex-col justify-center">
+                        <h3 class="text-2xl font-bold font-display text-white mb-4">REVIEW MODE [RENEWED]</h3>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                            まぐれ当たりは許さない。間違えた問題を自動でリスト化。<br>
+                            <strong class="text-white text-lg">「3回連続正解」</strong>するまで消えない、完全定着のための特訓。
+                        </p>
+                        <div class="text-xs font-mono text-yellow-500 border-t border-gray-800 pt-4">STATUS: FULLY RENEWED</div>
+                    </div>
+                    <div class="relative h-64 md:h-auto bg-black">
+                        <img src="screen-review.jpg" alt="Review Mode" class="w-full h-full object-cover opacity-80">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- EXPANSION PACKS -->
-    <section id="expansion-packs" class="py-20 px-6 bg-gray-900">
+    <section id="expansion-packs" class="py-20 px-6 bg-gray-900 border-t border-gray-800">
         <div class="max-w-6xl mx-auto">
             <h2 class="section-title text-center block mb-12" data-title="EXPANSION PACKS">EXPANSION PACKS</h2>
             <div class="pack-grid">
