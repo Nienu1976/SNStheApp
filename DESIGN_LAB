@@ -1,0 +1,366 @@
+import React, { useState, useEffect } from 'react';
+import { Box, Image as ImageIcon, X, ShieldCheck, FileText, BarChart3, ChevronRight, Type } from 'lucide-react';
+
+const App = () => {
+  // 設定状態：文字情報もここで管理します
+  const [config, setConfig] = useState({
+    themeColor: '#3b82f6',
+    accentColor: '#f59e0b',
+    zoom: 0.5,
+    isRecMode: false,
+    
+    // --- テキスト設定 ---
+    docId: 'BP-200-A4',
+    version: 'VER 2.0 // ENTRY LEVEL',
+    category: 'LEARNING MATERIAL',
+    titleMain: 'BASIC',
+    titleSub: 'PACK',
+    countNumber: '200',
+    countDesc: 'Essential Questions',
+    difficulty: 'NOVICE',
+    target: 'BEGINNERS & STUDENTS',
+    format: 'TEXT / MULTIPLE CHOICE',
+    barcodeText: '000-200-BASIC'
+  });
+
+  // フォント読み込み（日本語対応フォント Noto Sans JP を追加）
+  useEffect(() => {
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700;900&display=swap';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+  }, []);
+
+  const handleChange = (key, value) => {
+    setConfig(prev => ({ ...prev, [key]: value }));
+  };
+
+  const applyPreset = (type) => {
+    switch(type) {
+      case 'standard': setConfig(prev => ({ ...prev, themeColor: '#3b82f6', accentColor: '#f59e0b' })); break;
+      case 'eco': setConfig(prev => ({ ...prev, themeColor: '#10b981', accentColor: '#34d399' })); break;
+      case 'pop': setConfig(prev => ({ ...prev, themeColor: '#f97316', accentColor: '#facc15' })); break;
+      case 'mono': setConfig(prev => ({ ...prev, themeColor: '#475569', accentColor: '#94a3b8' })); break;
+      default: break;
+    }
+  };
+
+  /**
+   * Basic Pack A4デザインコンポーネント
+   * フォント指定に 'Noto Sans JP' を追加して日本語対応
+   */
+  const BasicPackA4Card = () => {
+    const { themeColor, accentColor, docId, version, category, titleMain, titleSub, countNumber, countDesc, difficulty, target, format, barcodeText } = config;
+
+    const styleVars = {
+      '--theme': themeColor,
+      '--accent': accentColor,
+      fontFamily: "'Orbitron', 'Noto Sans JP', sans-serif", // 日本語フォールバック
+    };
+
+    return (
+      <div 
+        className="relative w-[595px] h-[842px] bg-[#f8fafc] overflow-hidden shadow-2xl text-slate-800 flex flex-col"
+        style={styleVars}
+      >
+        {/* --- 1. 背景テクスチャ --- */}
+        <div className="absolute inset-0 pointer-events-none">
+           <div className="absolute inset-0 bg-gradient-to-br from-white via-slate-50 to-slate-100"></div>
+           <div 
+             className="absolute inset-0 opacity-[0.03]" 
+             style={{
+               backgroundImage: `linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)`,
+               backgroundSize: '40px 40px'
+             }}
+           ></div>
+           {/* 背景の透かし文字（メインタイトルと連動） */}
+           <div className="absolute -bottom-20 -right-20 text-[200px] font-black font-[Orbitron] text-slate-200/50 rotate-[-15deg] select-none whitespace-nowrap opacity-30">
+             {titleMain}
+           </div>
+        </div>
+
+        {/* --- 2. ヘッダーエリア --- */}
+        <div className="relative z-10 h-16 border-b border-slate-200 flex justify-between items-center px-8 bg-white/50 backdrop-blur-sm">
+            <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-[var(--theme)] rounded-full"></div>
+                <span className="text-[10px] font-mono tracking-[0.2em] text-slate-400 uppercase">{docId}</span>
+            </div>
+            <div className="text-[10px] font-mono tracking-widest text-slate-400 uppercase">
+                {version}
+            </div>
+        </div>
+
+        {/* --- 3. メインビジュアルエリア --- */}
+        <div className="relative z-10 flex-1 px-12 py-10 flex flex-col">
+            
+            {/* カテゴリタグ */}
+            <div className="flex items-center gap-3 mb-8">
+                <div className="bg-[var(--theme)] text-white text-sm font-bold px-4 py-1 rounded-sm font-[Orbitron] tracking-wider uppercase">
+                    {category}
+                </div>
+                <div className="h-[1px] flex-1 bg-[var(--theme)] opacity-30"></div>
+            </div>
+
+            {/* タイトルロゴ */}
+            <div className="mb-12">
+                <h1 className="text-8xl font-black text-slate-800 tracking-tighter font-[Orbitron] leading-[0.9] break-words">
+                    {titleMain}<br/>
+                    <span className="text-[var(--theme)]">{titleSub}</span>
+                </h1>
+                <div className="flex items-baseline gap-4 mt-2 flex-wrap">
+                    <span className="text-6xl font-black text-slate-300 font-[Orbitron]">{countNumber}</span>
+                    <span className="text-lg font-bold text-slate-500 font-[Rajdhani] tracking-[0.3em] uppercase">
+                        {countDesc}
+                    </span>
+                </div>
+            </div>
+
+            {/* 中央グラフィックブロック */}
+            <div className="flex-1 relative mb-12 border border-slate-200 bg-white/40 p-6 rounded-lg">
+                {/* 難易度表示 */}
+                <div className="absolute top-6 right-6 flex flex-col items-end">
+                    <span className="text-[10px] uppercase font-bold text-slate-400 tracking-widest mb-1">Difficulty Level</span>
+                    <div className="flex gap-1">
+                        {[1, 2, 3, 4, 5].map((i) => (
+                            <div 
+                                key={i} 
+                                className={`w-3 h-8 skew-x-[-20deg] ${i <= 2 ? 'bg-[var(--accent)]' : 'bg-slate-200'}`}
+                            ></div>
+                        ))}
+                    </div>
+                    <span className="text-xl font-bold text-[var(--accent)] font-[Rajdhani] mt-1 uppercase">{difficulty}</span>
+                </div>
+
+                {/* リスト風装飾 */}
+                <div className="mt-8 space-y-4 max-w-[60%]">
+                    {[1, 2, 3, 4].map((i) => (
+                        <div key={i} className="flex items-center gap-3 group">
+                            <div className="w-6 h-6 rounded bg-slate-100 flex items-center justify-center group-hover:bg-[var(--theme)] group-hover:text-white transition-colors">
+                                <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-white" />
+                            </div>
+                            <div className="h-2 bg-slate-100 rounded flex-1 group-hover:bg-slate-200 transition-colors w-full relative overflow-hidden">
+                                <div className="absolute left-0 top-0 bottom-0 bg-[var(--theme)] opacity-20 w-[40%]"></div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="absolute bottom-6 left-6 right-6">
+                    <div className="text-[10px] font-mono text-slate-400 mb-2">PROGRESS METRICS</div>
+                    <div className="w-full h-1 bg-slate-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-[var(--theme)] w-[0%]"></div>
+                    </div>
+                </div>
+            </div>
+
+            {/* --- 4. フッターエリア --- */}
+            <div className="border-t border-slate-200 pt-8 flex justify-between items-end">
+                <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                        <ShieldCheck className="w-6 h-6 text-[var(--theme)]" />
+                        <div>
+                            <div className="text-[10px] text-slate-400 uppercase font-bold">Recommended For</div>
+                            <div className="text-base font-bold text-slate-700 font-[Share_Tech_Mono] uppercase">{target}</div>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                        <FileText className="w-6 h-6 text-[var(--theme)]" />
+                        <div>
+                            <div className="text-[10px] text-slate-400 uppercase font-bold">Format</div>
+                            <div className="text-base font-bold text-slate-700 font-[Share_Tech_Mono] uppercase">{format}</div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* バーコード下のテキスト */}
+                <div className="flex flex-col items-end gap-1">
+                    <div className="h-8 w-32 flex items-end gap-[2px] opacity-60">
+                         {[...Array(20)].map((_, i) => (
+                             <div key={i} className="bg-slate-800" style={{
+                                 width: Math.random() > 0.5 ? '2px' : '4px',
+                                 height: Math.random() > 0.5 ? '100%' : '60%'
+                             }}></div>
+                         ))}
+                    </div>
+                    <span className="text-[10px] font-mono text-slate-400 tracking-[0.3em] uppercase">{barcodeText}</span>
+                </div>
+            </div>
+        </div>
+
+        {/* 左サイドのアクセントライン */}
+        <div className="absolute left-0 top-16 bottom-0 w-2 bg-[var(--theme)]"></div>
+        
+        {/* 右上のテック装飾 */}
+        <div className="absolute top-0 right-0 w-32 h-32 pointer-events-none">
+            <svg width="100%" height="100%" viewBox="0 0 100 100">
+                <path d="M100 0 L50 0 L100 50 Z" fill="var(--theme)" opacity="0.1" />
+                <path d="M90 10 L60 10 L90 40 Z" fill="var(--theme)" opacity="0.2" />
+            </svg>
+        </div>
+      </div>
+    );
+  };
+
+  // UI描画
+  return (
+    <div className={`min-h-screen bg-slate-900 text-white flex p-8 gap-8 font-sans transition-all ${config.isRecMode ? 'justify-center items-center' : 'flex-col lg:flex-row'}`}>
+      
+      {/* 設定パネル */}
+      {!config.isRecMode && (
+        <div className="w-full lg:w-96 bg-[#111] border-t-4 border-blue-500 shadow-2xl h-fit overflow-hidden flex flex-col max-h-[90vh]">
+          {/* Header */}
+          <div className="p-6 pb-4 border-b border-gray-800 flex justify-between items-center bg-[#111] z-10">
+            <div>
+              <h1 className="text-xl font-black italic tracking-tighter font-[Orbitron] text-blue-400">DESIGN_LAB</h1>
+              <p className="text-[10px] text-gray-500 font-mono tracking-widest mt-1">A4 CUSTOM EDITOR</p>
+            </div>
+            <Box className="text-gray-700" />
+          </div>
+
+          {/* Scrollable Content */}
+          <div className="p-6 space-y-8 overflow-y-auto custom-scrollbar">
+            
+            <button 
+              onClick={() => handleChange('isRecMode', true)}
+              className="w-full flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-600 py-3 font-bold tracking-widest transition-colors shadow-lg rounded"
+            >
+              <ImageIcon className="w-4 h-4" /> PREVIEW MODE
+            </button>
+
+            {/* --- Text Input Section --- */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 text-xs font-bold text-gray-400 tracking-widest uppercase border-b border-gray-800 pb-2">
+                <Type className="w-3 h-3" /> Text Content
+              </div>
+
+              <div className="space-y-3">
+                <div>
+                  <label className="text-[10px] text-gray-500 uppercase block mb-1">Main Title (Top Line)</label>
+                  <input type="text" value={config.titleMain} onChange={(e) => handleChange('titleMain', e.target.value)} className="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-sm font-mono text-white focus:border-blue-500 outline-none" />
+                </div>
+                <div>
+                  <label className="text-[10px] text-gray-500 uppercase block mb-1">Sub Title (Colored)</label>
+                  <input type="text" value={config.titleSub} onChange={(e) => handleChange('titleSub', e.target.value)} className="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-sm font-mono text-white focus:border-blue-500 outline-none" />
+                </div>
+                <div className="grid grid-cols-3 gap-2">
+                   <div className="col-span-1">
+                      <label className="text-[10px] text-gray-500 uppercase block mb-1">Number</label>
+                      <input type="text" value={config.countNumber} onChange={(e) => handleChange('countNumber', e.target.value)} className="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-sm font-mono text-white focus:border-blue-500 outline-none" />
+                   </div>
+                   <div className="col-span-2">
+                      <label className="text-[10px] text-gray-500 uppercase block mb-1">Desc</label>
+                      <input type="text" value={config.countDesc} onChange={(e) => handleChange('countDesc', e.target.value)} className="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-sm font-mono text-white focus:border-blue-500 outline-none" />
+                   </div>
+                </div>
+                <div>
+                  <label className="text-[10px] text-gray-500 uppercase block mb-1">Category Tag</label>
+                  <input type="text" value={config.category} onChange={(e) => handleChange('category', e.target.value)} className="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-sm font-mono text-white focus:border-blue-500 outline-none" />
+                </div>
+                <div>
+                  <label className="text-[10px] text-gray-500 uppercase block mb-1">Difficulty Label</label>
+                  <input type="text" value={config.difficulty} onChange={(e) => handleChange('difficulty', e.target.value)} className="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-sm font-mono text-white focus:border-blue-500 outline-none" />
+                </div>
+                <div>
+                  <label className="text-[10px] text-gray-500 uppercase block mb-1">Target Audience</label>
+                  <input type="text" value={config.target} onChange={(e) => handleChange('target', e.target.value)} className="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-sm font-mono text-white focus:border-blue-500 outline-none" />
+                </div>
+                <div>
+                  <label className="text-[10px] text-gray-500 uppercase block mb-1">Format</label>
+                  <input type="text" value={config.format} onChange={(e) => handleChange('format', e.target.value)} className="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-sm font-mono text-white focus:border-blue-500 outline-none" />
+                </div>
+                <div>
+                   <label className="text-[10px] text-gray-500 uppercase block mb-1">Document ID</label>
+                   <input type="text" value={config.docId} onChange={(e) => handleChange('docId', e.target.value)} className="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-sm font-mono text-white focus:border-blue-500 outline-none" />
+                </div>
+              </div>
+            </div>
+
+            {/* --- Colors --- */}
+            <div className="space-y-4 pt-4 border-t border-gray-800">
+              <label className="text-xs font-bold text-gray-400 tracking-widest uppercase">Color & Zoom</label>
+              
+              <div className="flex gap-2 mb-4">
+                <button onClick={() => applyPreset('standard')} className="flex-1 py-1 bg-blue-600 hover:bg-blue-500 rounded text-[10px] font-bold">BLUE</button>
+                <button onClick={() => applyPreset('eco')} className="flex-1 py-1 bg-emerald-600 hover:bg-emerald-500 rounded text-[10px] font-bold">GREEN</button>
+                <button onClick={() => applyPreset('pop')} className="flex-1 py-1 bg-orange-600 hover:bg-orange-500 rounded text-[10px] font-bold">ORANGE</button>
+                <button onClick={() => applyPreset('mono')} className="flex-1 py-1 bg-slate-600 hover:bg-slate-500 rounded text-[10px] font-bold">MONO</button>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="text-[10px] text-gray-500 uppercase block mb-1">Main Color</label>
+                  <div className="flex gap-2 items-center bg-black/30 p-1 rounded border border-gray-800">
+                    <input type="color" value={config.themeColor} onChange={(e) => handleChange('themeColor', e.target.value)} className="w-6 h-6 cursor-pointer bg-transparent border-none" />
+                    <span className="font-mono text-[10px] text-gray-500">{config.themeColor}</span>
+                  </div>
+                </div>
+                <div>
+                  <label className="text-[10px] text-gray-500 uppercase block mb-1">Accent</label>
+                  <div className="flex gap-2 items-center bg-black/30 p-1 rounded border border-gray-800">
+                    <input type="color" value={config.accentColor} onChange={(e) => handleChange('accentColor', e.target.value)} className="w-6 h-6 cursor-pointer bg-transparent border-none" />
+                    <span className="font-mono text-[10px] text-gray-500">{config.accentColor}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-2">
+                 <div className="flex justify-between text-xs font-mono text-gray-500"><span>ZOOM</span><span>{Math.round(config.zoom * 100)}%</span></div>
+                 <input type="range" min="0.2" max="1.2" step="0.05" value={config.zoom} onChange={(e) => handleChange('zoom', parseFloat(e.target.value))} className="w-full h-1 bg-gray-800 appearance-none cursor-pointer [&::-webkit-slider-thumb]:bg-blue-500" />
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      )}
+
+      {/* プレビュー解除ボタン */}
+      {config.isRecMode && (
+        <button 
+          onClick={() => handleChange('isRecMode', false)}
+          className="fixed top-4 right-4 z-[200] bg-white/10 hover:bg-white/20 p-2 rounded-full backdrop-blur-md transition-all group"
+        >
+          <X className="w-6 h-6 text-white group-hover:scale-110" />
+        </button>
+      )}
+
+      {/* プレビューエリア */}
+      <div className={`flex-1 flex justify-center items-center overflow-auto ${config.isRecMode ? 'fixed inset-0 bg-slate-900 z-[100]' : ''}`}>
+        <div 
+          className="relative transition-all duration-300 shadow-[0_0_50px_rgba(0,0,0,0.5)]"
+          style={{ 
+            transform: `scale(${config.zoom})`,
+            width: '595px',
+            height: '842px'
+          }}
+        >
+            <BasicPackA4Card />
+            
+            {!config.isRecMode && (
+              <div className="absolute -bottom-8 left-0 w-full text-center">
+                  <span className="font-mono text-[10px] text-gray-500">595px × 842px (A4)</span>
+              </div>
+            )}
+        </div>
+      </div>
+      
+      <style>{`
+        /* カスタムスクロールバー (設定パネル用) */
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: #1a1a1a;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: #333;
+          border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: #555;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default App;
