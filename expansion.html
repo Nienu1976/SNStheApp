@@ -17,6 +17,7 @@
             --accent-lime: #ccff00; 
             --accent-white: #ffffff;
             --accent-gold: #ffd700;
+            --accent-blue: #3b82f6; /* 追加: BASIC PACK用ブルー */
         }
 
         body {
@@ -143,6 +144,7 @@
         .badge-yellow { background: var(--accent-yellow); }
         .badge-lime { background: var(--accent-lime); }
         .badge-gold { background: var(--accent-gold); }
+        .badge-blue { background: var(--accent-blue); color: #fff; } /* 追加 */
 
         .pack-title {
             font-family: 'Orbitron', sans-serif;
@@ -263,6 +265,34 @@
                     <a href="https://booth.pm/ja/items/7777732" target="_blank" class="btn btn-booth">BOOTH で購入</a>
                     <a href="https://q-tak.com/?p=21124" target="_blank" class="btn btn-qtaku">クイズ宅配便 で購入</a>
                     <div class="text-[9px] text-gray-500 text-center mt-1">※アプリ内ショップでも購入可能です</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 0.5. BASIC PACK 200 (New Addition) -->
+        <div class="product-card" style="border-color: var(--accent-blue);">
+            <div class="pack-image" style="border-color: var(--accent-blue);">
+                <img src="pack_basic.jpg" alt="BASIC PACK 200">
+            </div>
+            <div class="pack-content">
+                <div>
+                    <span class="badge badge-blue">RECOMMENDED</span>
+                    <h2 class="pack-title">BASIC PACK 200</h2>
+                    <span class="pack-sub" style="border-color: var(--accent-blue);">基礎固めの200問</span>
+                    
+                    <p class="description">クイズの「基本」を学ぶためのエントリーモデル。
+頻出問題を中心に、知識の土台を作るための200問を厳選収録。</p>
+
+                    <table class="spec-table">
+                        <tr><td class="spec-label">LEVEL</td><td class="spec-val">Basic / Entry (Novice)</td></tr>
+                        <tr><td class="spec-label">TOTAL</td><td class="spec-val">200 Questions</td></tr>
+                    </table>
+                </div>
+                
+                <div class="btn-group">
+                    <div class="flex items-center justify-center p-3 text-[10px] text-gray-400 border border-gray-800 rounded bg-[#111]">
+                        アプリ内ショップにて配信中
+                    </div>
                 </div>
             </div>
         </div>
