@@ -1,0 +1,343 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { Copy, Image as ImageIcon, X, RefreshCw, CheckCircle2, Type, Hash, Palette } from 'lucide-react';
+
+const App = () => {
+  // --- テーマカラー定義 (ジャンル対応) ---
+  const themes = {
+    blue:   { label: 'ANIME & GAME', main: '#3b82f6', glow: '#60a5fa', bg: '#172554' }, // アニメ＆ゲーム（青）
+    red:    { label: 'SPORTS',       main: '#ef4444', glow: '#f87171', bg: '#450a0a' }, // スポーツ（赤）
+    green:  { label: 'ENTERTAINMENT',main: '#22c55e', glow: '#4ade80', bg: '#052e16' }, // 芸能（緑）
+    yellow: { label: 'LIFESTYLE',    main: '#eab308', glow: '#facc15', bg: '#422006' }, // ライフスタイル（黄）
+    orange: { label: 'SOCIAL',       main: '#f97316', glow: '#fb923c', bg: '#431407' }, // 社会（橙）
+    indigo: { label: 'LITERATURE',   main: '#6366f1', glow: '#818cf8', bg: '#1e1b4b' }, // 文系（藍 - Indigo）
+    purple: { label: 'SCIENCE',      main: '#a855f7', glow: '#c084fc', bg: '#3b0764' }, // 理系（紫）
+    white:  { label: 'NON GENRE',    main: '#94a3b8', glow: '#ffffff', bg: '#0f172a' }, // ノンセクション（白/シルバー）
+  };
+
+  // --- 設定 & 入力状態 ---
+  const [data, setData] = useState({
+    date: new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' }),
+    vol: '1',
+    label: 'ANIME & GAME', // ジャンルラベル
+    question: 'ここに問題文を入力してください。\n適度な長さで改行すると\n読みやすくなります。',
+    answer: '正解',
+    difficulty: 'NORMAL',
+    themeColor: 'blue', // 初期値: 青
+  });
+
+  const [uiState, setUiState] = useState({
+    isRecMode: false, // 撮影モード（UI非表示）
+    zoom: 0.8,        // プレビュー倍率
+    copied: false,    // コピー完了フラグ
+  });
+
+  // フォント読み込み
+  useEffect(() => {
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@600;700&family=Noto+Sans+JP:wght@400;700;900&display=swap';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+  }, []);
+
+  // --- ハンドラ ---
+  const handleChange = (key, value) => {
+    setData(prev => ({ ...prev, [key]: value }));
+  };
+
+  // 色変更時のハンドラ（ジャンル名も自動更新）
+  const handleColorChange = (colorKey) => {
+    setData(prev => ({
+      ...prev,
+      themeColor: colorKey,
+      label: themes[colorKey].label // 色に対応するジャンル名をセット
+    }));
+  };
+
+  const handleCopyText = () => {
+    // X投稿用のテキストフォーマット
+    const postText = `【今日の1問】Vol.${data.vol} [${data.date}]
+ジャンル: ${themes[data.themeColor].label}
+難易度: ${data.difficulty}
+
+Q. ${data.question}
+
+⇩ 正解は...
+||${data.answer}||
+
+#SNStheApp #競技クイズ #今日の1問`;
+
+    // クリップボードへコピー
+    const textArea = document.createElement("textarea");
+    textArea.value = postText;
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+      document.execCommand('copy');
+      setUiState(prev => ({ ...prev, copied: true }));
+      setTimeout(() => setUiState(prev => ({ ...prev, copied: false })), 2000);
+    } catch (err) {
+      console.error('Copy failed', err);
+    }
+    document.body.removeChild(textArea);
+  };
+
+  const currentTheme = themes[data.themeColor];
+
+  // ----------------------------------------------------------------
+  // カードコンポーネント (1200px x 675px / 16:9)
+  // ----------------------------------------------------------------
+  const QuizCard = () => {
+    return (
+      <div 
+        className="relative w-[1200px] h-[675px] bg-[#020617] overflow-hidden shadow-2xl text-white font-sans flex flex-col"
+        style={{ '--main': currentTheme.main, '--glow': currentTheme.glow }}
+      >
+        {/* 背景テクスチャ */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-[#050505] to-[var(--main)] opacity-20"></div>
+        <div 
+          className="absolute inset-0 opacity-10" 
+          style={{
+            backgroundImage: `linear-gradient(var(--main) 1px, transparent 1px), linear-gradient(90deg, var(--main) 1px, transparent 1px)`,
+            backgroundSize: '40px 40px'
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#000_100%)] opacity-80"></div>
+
+        {/* --- ヘッダーエリア --- */}
+        <div className="relative z-10 h-24 flex justify-between items-center px-12 pt-8">
+            <div className="flex items-center gap-4">
+                {/* ジャンルラベル (元 DAILY QUIZ) */}
+                <div className="bg-[var(--main)] text-black text-xl font-black px-6 py-1 skew-x-[-12deg] font-[Orbitron] shadow-[0_0_15px_var(--main)]">
+                    <span className="skew-x-[12deg] block tracking-wider">{data.label}</span>
+                </div>
+                <div className="h-[2px] w-20 bg-[var(--main)]"></div>
+                <span className="text-xl font-bold font-[Rajdhani] text-[var(--glow)] tracking-[0.2em] opacity-80">
+                    SNStheApp
+                </span>
+            </div>
+            <div className="flex flex-col items-end">
+                <span className="text-4xl font-black font-[Orbitron] text-white tracking-widest drop-shadow-md">
+                    <span className="text-2xl text-[var(--main)] mr-2">Vol.</span>
+                    {data.vol}
+                </span>
+                <span className="text-sm font-mono text-gray-400 tracking-widest mt-1">{data.date}</span>
+            </div>
+        </div>
+
+        {/* --- メイン問題エリア --- */}
+        <div className="relative z-10 flex-1 flex items-center justify-center px-24">
+            {/* 装飾枠 */}
+            <div className="absolute inset-16 border border-[var(--main)] opacity-30 rounded-lg pointer-events-none"></div>
+            <div className="absolute inset-16 border-t-[4px] border-l-[4px] border-[var(--main)] w-8 h-8 rounded-tl-lg pointer-events-none"></div>
+            <div className="absolute inset-16 top-auto left-auto bottom-0 right-0 border-b-[4px] border-r-[4px] border-[var(--main)] w-8 h-8 rounded-br-lg pointer-events-none"></div>
+
+            <div className="text-left w-full">
+                {/* 問題文 */}
+                <p 
+                  className="text-5xl font-bold leading-relaxed tracking-wide text-white drop-shadow-md whitespace-pre-wrap font-sans"
+                  style={{ textShadow: '0 4px 10px rgba(0,0,0,0.8)' }}
+                >
+                    {data.question}
+                </p>
+            </div>
+        </div>
+
+        {/* --- フッターエリア --- */}
+        <div className="relative z-10 h-24 flex justify-between items-end px-12 pb-8">
+            <div className="flex items-center gap-6">
+                <div className="flex flex-col">
+                    <span className="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-1">DIFFICULTY</span>
+                    <div className="flex items-center gap-2">
+                        <div className={`w-3 h-3 rounded-full ${data.difficulty === 'EASY' ? 'bg-green-500' : 'bg-gray-800'}`}></div>
+                        <div className={`w-3 h-3 rounded-full ${data.difficulty === 'NORMAL' ? 'bg-blue-500' : 'bg-gray-800'}`}></div>
+                        <div className={`w-3 h-3 rounded-full ${data.difficulty === 'HARD' ? 'bg-red-500' : 'bg-gray-800'}`}></div>
+                        <span className="text-xl font-bold font-[Orbitron] text-white ml-2">{data.difficulty}</span>
+                    </div>
+                </div>
+            </div>
+
+            {/* コピーライト的なもの */}
+            <div className="text-right opacity-50">
+                <div className="text-[10px] font-mono tracking-widest text-[var(--glow)]">
+                    TRAINING GEAR FOR QUIZ PLAYERS
+                </div>
+            </div>
+        </div>
+
+        {/* --- エフェクト --- */}
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[var(--main)] blur-[150px] opacity-10 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[var(--main)] blur-[100px] opacity-10 pointer-events-none"></div>
+      </div>
+    );
+  };
+
+  // ----------------------------------------------------------------
+  // メインUI
+  // ----------------------------------------------------------------
+  return (
+    <div className={`min-h-screen bg-[#050505] text-white flex p-4 gap-6 font-sans transition-all ${uiState.isRecMode ? 'justify-center items-center p-0' : 'flex-col lg:flex-row'}`}>
+      
+      {/* --- 左側：コントロールパネル --- */}
+      {!uiState.isRecMode && (
+        <div className="w-full lg:w-[400px] bg-[#111] border-r-2 border-cyan-900/30 flex flex-col h-fit lg:h-[calc(100vh-2rem)] sticky top-4 rounded-xl overflow-hidden shadow-2xl">
+          {/* Header */}
+          <div className="p-5 bg-[#0a0a0a] border-b border-gray-800">
+            <h1 className="text-xl font-black italic tracking-tighter font-[Orbitron] text-cyan-400 flex items-center gap-2">
+              <RefreshCw className="w-5 h-5" /> DAILY GEN
+            </h1>
+            <p className="text-[10px] text-gray-500 font-mono tracking-widest mt-1">X POST MAKER v1.1</p>
+          </div>
+
+          <div className="p-5 space-y-6 overflow-y-auto flex-1 custom-scrollbar">
+            
+            {/* Input Group */}
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="text-[10px] text-gray-500 uppercase block mb-1">Vol. No</label>
+                  <input type="text" value={data.vol} onChange={(e) => handleChange('vol', e.target.value)} className="w-full bg-gray-900 border border-gray-700 rounded px-3 py-2 text-sm font-mono text-white focus:border-cyan-500 outline-none transition-colors" />
+                </div>
+                <div>
+                  <label className="text-[10px] text-gray-500 uppercase block mb-1">Date</label>
+                  <input type="text" value={data.date} onChange={(e) => handleChange('date', e.target.value)} className="w-full bg-gray-900 border border-gray-700 rounded px-3 py-2 text-sm font-mono text-white focus:border-cyan-500 outline-none transition-colors" />
+                </div>
+              </div>
+
+              {/* Genre Selector (Color Palette) */}
+              <div>
+                <label className="text-[10px] text-gray-500 uppercase block mb-2 flex items-center gap-2">
+                  <Palette className="w-3 h-3"/> Genre / Theme Color
+                </label>
+                <div className="grid grid-cols-4 gap-2 bg-gray-900 rounded border border-gray-700 p-2">
+                  {Object.keys(themes).map(color => (
+                    <button 
+                      key={color}
+                      onClick={() => handleColorChange(color)}
+                      className={`h-8 rounded transition-all flex items-center justify-center relative group ${data.themeColor === color ? 'ring-2 ring-white scale-95' : 'hover:scale-105'}`}
+                      style={{ backgroundColor: themes[color].main }}
+                      title={themes[color].label}
+                    >
+                      {/* 選択中のマーク */}
+                      {data.themeColor === color && <div className="w-1.5 h-1.5 bg-white rounded-full shadow-sm"></div>}
+                    </button>
+                  ))}
+                </div>
+                <div className="text-right mt-1">
+                   <span className="text-[10px] font-mono text-cyan-400">{themes[data.themeColor].label}</span>
+                </div>
+              </div>
+
+              <div>
+                <label className="text-[10px] text-gray-500 uppercase block mb-1">Genre Label (Editable)</label>
+                <input 
+                  type="text" 
+                  value={data.label} 
+                  onChange={(e) => handleChange('label', e.target.value)} 
+                  className="w-full bg-gray-900 border border-gray-700 rounded px-3 py-2 text-sm font-[Orbitron] text-white focus:border-cyan-500 outline-none transition-colors tracking-wider"
+                />
+              </div>
+
+              <div>
+                <label className="text-[10px] text-gray-500 uppercase block mb-1 flex items-center gap-2"><Type className="w-3 h-3"/> Question Text</label>
+                <textarea 
+                  value={data.question} 
+                  onChange={(e) => handleChange('question', e.target.value)} 
+                  rows={4}
+                  className="w-full bg-gray-900 border border-gray-700 rounded px-3 py-2 text-sm text-white focus:border-cyan-500 outline-none transition-colors resize-none leading-relaxed"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="text-[10px] text-gray-500 uppercase block mb-1">Difficulty</label>
+                  <select value={data.difficulty} onChange={(e) => handleChange('difficulty', e.target.value)} className="w-full bg-gray-900 border border-gray-700 rounded px-3 py-2 text-sm text-white focus:border-cyan-500 outline-none cursor-pointer">
+                    <option value="EASY">EASY</option>
+                    <option value="NORMAL">NORMAL</option>
+                    <option value="HARD">HARD</option>
+                    <option value="EXPERT">EXPERT</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label className="text-[10px] text-gray-500 uppercase block mb-1 flex items-center gap-2"><CheckCircle2 className="w-3 h-3"/> Correct Answer</label>
+                <input 
+                  type="text" 
+                  value={data.answer} 
+                  onChange={(e) => handleChange('answer', e.target.value)} 
+                  className="w-full bg-gray-900 border border-gray-700 rounded px-3 py-2 text-sm text-white focus:border-cyan-500 outline-none transition-colors"
+                  placeholder="正解を入力（投稿用テキストに使用）"
+                />
+              </div>
+            </div>
+
+            <hr className="border-gray-800" />
+
+            {/* Actions */}
+            <div className="space-y-3">
+              <button 
+                onClick={handleCopyText}
+                className={`w-full flex items-center justify-center gap-2 py-4 font-bold tracking-widest transition-all shadow-lg rounded group ${uiState.copied ? 'bg-green-600 text-white' : 'bg-gray-800 hover:bg-gray-700 text-cyan-400'}`}
+              >
+                {uiState.copied ? <CheckCircle2 className="w-5 h-5" /> : <Hash className="w-5 h-5" />}
+                {uiState.copied ? 'COPIED!' : 'COPY POST TEXT'}
+              </button>
+              
+              <button 
+                onClick={() => setUiState(prev => ({ ...prev, isRecMode: true }))}
+                className="w-full flex items-center justify-center gap-2 bg-cyan-700 hover:bg-cyan-600 py-4 font-bold tracking-widest transition-colors shadow-lg rounded text-white"
+              >
+                <ImageIcon className="w-5 h-5" /> FULLSCREEN (REC)
+              </button>
+            </div>
+
+            <div className="pt-4">
+               <label className="text-[10px] text-gray-500 uppercase block mb-1">Preview Zoom</label>
+               <input type="range" min="0.3" max="1.2" step="0.1" value={uiState.zoom} onChange={(e) => setUiState(prev => ({ ...prev, zoom: parseFloat(e.target.value) }))} className="w-full h-1 bg-gray-800 appearance-none cursor-pointer [&::-webkit-slider-thumb]:bg-cyan-500" />
+            </div>
+
+          </div>
+        </div>
+      )}
+
+      {/* --- 右側：プレビューエリア --- */}
+      <div className={`flex-1 flex justify-center items-center overflow-auto ${uiState.isRecMode ? 'fixed inset-0 bg-black z-[100]' : 'bg-[radial-gradient(#1a1a1a_1px,transparent_1px)] bg-[size:20px_20px] rounded-xl border border-gray-800 min-h-[500px]'}`}>
+        
+        {uiState.isRecMode && (
+          <button 
+            onClick={() => setUiState(prev => ({ ...prev, isRecMode: false }))}
+            className="fixed top-4 right-4 z-[200] bg-white/10 hover:bg-white/20 p-2 rounded-full backdrop-blur-md transition-all group"
+          >
+            <X className="w-8 h-8 text-white group-hover:scale-110" />
+          </button>
+        )}
+
+        <div 
+          className="relative transition-all duration-300 shadow-[0_0_100px_rgba(0,0,0,0.8)]"
+          style={{ 
+            transform: `scale(${uiState.zoom})`,
+            width: '1200px',
+            height: '675px'
+          }}
+        >
+            <QuizCard />
+            
+            {!uiState.isRecMode && (
+              <div className="absolute -bottom-10 left-0 w-full text-center">
+                  <span className="font-mono text-[10px] text-gray-500 border border-gray-700 px-2 py-1 rounded bg-black">1200px × 675px (16:9)</span>
+              </div>
+            )}
+        </div>
+      </div>
+
+      <style>{`
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #0a0a0a; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #555; }
+      `}</style>
+    </div>
+  );
+};
+
+export default App;
