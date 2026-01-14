@@ -43,7 +43,7 @@
     <header class="relative z-10 border-b border-white/5 bg-black/50 backdrop-blur-sm sticky top-0">
         <div class="max-w-5xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
             <h1 class="text-lg font-bold flex items-center gap-2 tracking-widest font-mono text-white">
-                <span class="text-cyan-400">SNS</span>theApp <span class="text-slate-600">///</span> 4択問題選択肢ジェネレーター
+                <span class="text-cyan-400">SNS</span>theApp <span class="text-slate-600">///</span> 4択問題選択肢生成ジェネレーター
             </h1>
             <button id="modeToggleBtn" class="text-xs px-4 py-1.5 border font-mono tracking-widest transition-all bg-transparent border-fuchsia-500 text-fuchsia-400 hover:bg-fuchsia-950/50 flex items-center gap-2">
                 <i data-lucide="eye" class="w-3 h-3"></i> プレビュー
@@ -89,11 +89,23 @@
             </div>
         </div>
 
-        <!-- 広告エリア -->
-        <div class="w-full bg-black/40 border border-cyan-900/50 rounded-lg p-4 flex flex-col items-center justify-center text-cyan-700/50 my-8 h-32 hover:bg-cyan-950/20 transition-all cursor-pointer backdrop-blur-sm group mb-12">
-            <i data-lucide="shopping-bag" class="w-8 h-8 mb-2 opacity-50 group-hover:text-cyan-400 group-hover:opacity-100 transition-all"></i>
-            <span class="text-[10px] font-bold bg-cyan-950 text-cyan-600 px-2 py-0.5 rounded mb-1 border border-cyan-900 group-hover:border-cyan-500 group-hover:text-cyan-400">広告スペース</span>
-            <p class="text-sm text-center font-mono">ここにバナー広告を配置できます</p>
+        <!-- 上部広告エリア -->
+        <div class="mb-12">
+            <p class="text-[10px] text-slate-500 font-mono mb-2 tracking-widest text-center">RECOMMENDED ITEMS</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <!-- リンク1 -->
+                <a href="https://amzn.to/3NkWX6T" target="_blank" class="flex-1 bg-black/40 border border-slate-700 p-4 rounded-lg flex items-center justify-center gap-3 hover:bg-cyan-950/20 hover:border-cyan-500/50 hover:shadow-[0_0_15px_rgba(0,255,255,0.1)] transition-all group">
+                    <i data-lucide="shopping-bag" class="w-5 h-5 text-slate-500 group-hover:text-cyan-400 transition-colors"></i>
+                    <span class="text-sm font-bold text-slate-300 group-hover:text-white transition-colors">おすすめ商品 A (Amazon)</span>
+                    <i data-lucide="external-link" class="w-3 h-3 text-slate-600 group-hover:text-cyan-500 ml-auto"></i>
+                </a>
+                <!-- リンク2 -->
+                <a href="https://amzn.to/4sFAotS" target="_blank" class="flex-1 bg-black/40 border border-slate-700 p-4 rounded-lg flex items-center justify-center gap-3 hover:bg-fuchsia-950/20 hover:border-fuchsia-500/50 hover:shadow-[0_0_15px_rgba(217,70,239,0.1)] transition-all group">
+                    <i data-lucide="shopping-bag" class="w-5 h-5 text-slate-500 group-hover:text-fuchsia-400 transition-colors"></i>
+                    <span class="text-sm font-bold text-slate-300 group-hover:text-white transition-colors">おすすめ商品 B (Amazon)</span>
+                    <i data-lucide="external-link" class="w-3 h-3 text-slate-600 group-hover:text-fuchsia-500 ml-auto"></i>
+                </a>
+            </div>
         </div>
 
         <!-- 生成フォーム -->
@@ -153,14 +165,30 @@
 
             <div id="quizListContainer" class="space-y-6">
                 <!-- リストはここに描画 -->
+                <div class="text-center py-20 bg-black/40 border border-slate-800 border-dashed">
+                    <p class="text-lg font-bold text-slate-500 mb-1">データがありません</p>
+                    <p class="text-xs text-slate-600">上のフォームから生成を実行してください。</p>
+                </div>
             </div>
         </section>
 
-        <!-- フッター広告 -->
-        <div class="w-full bg-black/40 border border-cyan-900/50 rounded-lg p-4 flex flex-col items-center justify-center text-cyan-700/50 my-12 h-32 hover:bg-cyan-950/20 transition-all cursor-pointer backdrop-blur-sm group">
-            <i data-lucide="shopping-bag" class="w-8 h-8 mb-2 opacity-50 group-hover:text-cyan-400 group-hover:opacity-100 transition-all"></i>
-            <span class="text-[10px] font-bold bg-cyan-950 text-cyan-600 px-2 py-0.5 rounded mb-1 border border-cyan-900 group-hover:border-cyan-500 group-hover:text-cyan-400">広告スペース</span>
-            <p class="text-sm text-center font-mono">ここにバナー広告を配置できます</p>
+        <!-- フッター広告エリア -->
+        <div class="my-12">
+            <p class="text-[10px] text-slate-500 font-mono mb-2 tracking-widest text-center">CHECK THIS OUT</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <!-- リンク3 -->
+                <a href="https://amzn.to/4pGRFQC" target="_blank" class="flex-1 bg-black/40 border border-slate-700 p-4 rounded-lg flex items-center justify-center gap-3 hover:bg-cyan-950/20 hover:border-cyan-500/50 hover:shadow-[0_0_15px_rgba(0,255,255,0.1)] transition-all group">
+                    <i data-lucide="shopping-bag" class="w-5 h-5 text-slate-500 group-hover:text-cyan-400 transition-colors"></i>
+                    <span class="text-sm font-bold text-slate-300 group-hover:text-white transition-colors">おすすめ商品 C (Amazon)</span>
+                    <i data-lucide="external-link" class="w-3 h-3 text-slate-600 group-hover:text-cyan-500 ml-auto"></i>
+                </a>
+                <!-- リンク4 -->
+                <a href="https://amzn.to/4qU9P2p" target="_blank" class="flex-1 bg-black/40 border border-slate-700 p-4 rounded-lg flex items-center justify-center gap-3 hover:bg-fuchsia-950/20 hover:border-fuchsia-500/50 hover:shadow-[0_0_15px_rgba(217,70,239,0.1)] transition-all group">
+                    <i data-lucide="shopping-bag" class="w-5 h-5 text-slate-500 group-hover:text-fuchsia-400 transition-colors"></i>
+                    <span class="text-sm font-bold text-slate-300 group-hover:text-white transition-colors">おすすめ商品 D (Amazon)</span>
+                    <i data-lucide="external-link" class="w-3 h-3 text-slate-600 group-hover:text-fuchsia-500 ml-auto"></i>
+                </a>
+            </div>
         </div>
 
     </main>
@@ -173,6 +201,7 @@
     </footer>
 
     <!-- モーダル系 -->
+    
     <div id="welcomeModal" class="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm hidden animate-fade-in">
         <div class="bg-[#0a0a12] border border-cyan-500/50 shadow-[0_0_30px_rgba(0,255,255,0.2)] max-w-2xl w-full p-0 overflow-hidden relative">
             <div class="bg-black p-6 text-center border-b border-cyan-900">
@@ -185,7 +214,9 @@
                     <div><h3 class="font-bold text-white mb-1 text-sm">2. 問題入力</h3><p class="text-[10px] text-slate-400">問題と正解を入力<br>AIが解析を開始</p></div>
                     <div><h3 class="font-bold text-white mb-1 text-sm">3. 生成完了</h3><p class="text-[10px] text-slate-400">高精度な選択肢を生成<br>CSV保存も可能</p></div>
                 </div>
-                <button onclick="closeWelcome()" class="w-full bg-cyan-600 text-black py-3 font-bold text-base hover:bg-cyan-400 transition-all flex items-center justify-center gap-2 tracking-wider">はじめる <i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+                <button onclick="closeWelcome()" class="w-full bg-cyan-600 text-black py-3 font-bold text-base hover:bg-cyan-400 transition-all flex items-center justify-center gap-2 tracking-wider">
+                    はじめる <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
             </div>
         </div>
     </div>
@@ -207,7 +238,7 @@
         </div>
     </div>
 
-    <!-- 編集用モーダル (新規追加) -->
+    <!-- 編集用モーダル -->
     <div id="editModal" class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 backdrop-blur-md hidden">
         <div class="bg-black border border-cyan-500 p-6 shadow-[0_0_30px_rgba(0,255,255,0.3)] w-full max-w-2xl relative">
             <div class="absolute top-0 right-0 bg-cyan-500 text-black text-[10px] px-2 font-bold">編集モード</div>
@@ -314,7 +345,6 @@
                     【作成ルール】
                     1. 正解と同じカテゴリ（人名、地名、作品名など）で、字面や響きが似ている、あるいは歴史的背景が近いなど、プレイヤーが迷いそうな選択肢を作成してください。
                     2. 特に「Vシネマ」のように「アルファベット1文字＋語句」のパターンの場合は、そのアルファベット部分のみを変更した誤答（Bシネマ、Xシネマ等）を含めるなど、構造的に類似したひっかけを優先してください。
-                    3. 解答が作品名、問題文中に作者名、作曲者名など、クリエイターの名前が入る場合は、そのクリエイターの作品の名前を４つ列挙してください。
                     
                     出力は以下のJSON形式のみで行うこと。余計な会話は不要。
                     {
@@ -375,7 +405,6 @@
             box.classList.remove('hidden');
         }
 
-        // 編集機能
         function startEdit(id) {
             const quiz = quizList.find(q => q.id === id);
             if (!quiz) return;
@@ -528,9 +557,7 @@
         function exportCSV() {
             if(!quizList.length) return;
             let csv = '\uFEFFID,問題,選択肢A,選択肢B,選択肢C,選択肢D,正解記号,正解,解説\n';
-            
             quizList.forEach(q => {
-                // シャッフルロジック（A~Dの配置をランダム化）
                 const options = [q.answer, q.wrong1, q.wrong2, q.wrong3];
                 for (let i = options.length - 1; i > 0; i--) {
                     const j = Math.floor(Math.random() * (i + 1));
@@ -540,18 +567,9 @@
                 const correctIndex = options.indexOf(q.answer);
                 const correctSymbol = ['A', 'B', 'C', 'D'][correctIndex];
 
-                const row = [
-                    q.id, 
-                    q.question, 
-                    options[0], options[1], options[2], options[3], 
-                    correctSymbol, 
-                    q.answer, 
-                    q.reason
-                ].map(t => `"${String(t).replace(/"/g, '""')}"`).join(',');
-                
+                const row = [q.id, q.question, options[0], options[1], options[2], options[3], correctSymbol, q.answer, q.reason].map(t => `"${String(t).replace(/"/g, '""')}"`).join(',');
                 csv += row + '\n';
             });
-            
             const blob = new Blob([csv], {type: 'text/csv;charset=utf-8;'});
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
