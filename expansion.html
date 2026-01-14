@@ -17,7 +17,8 @@
             --accent-lime: #ccff00; 
             --accent-white: #ffffff;
             --accent-gold: #ffd700;
-            --accent-blue: #3b82f6; /* 追加: BASIC PACK用ブルー */
+            --accent-blue: #3b82f6;
+            --accent-red: #ff3333; /* 追加: Q1GP用レッド */
         }
 
         body {
@@ -144,7 +145,8 @@
         .badge-yellow { background: var(--accent-yellow); }
         .badge-lime { background: var(--accent-lime); }
         .badge-gold { background: var(--accent-gold); }
-        .badge-blue { background: var(--accent-blue); color: #fff; } /* 追加 */
+        .badge-blue { background: var(--accent-blue); color: #fff; }
+        .badge-red { background: var(--accent-red); color: #fff; } /* 追加 */
 
         .pack-title {
             font-family: 'Orbitron', sans-serif;
@@ -269,7 +271,7 @@
             </div>
         </div>
 
-        <!-- 0.5. BASIC PACK 200 (New Addition) -->
+        <!-- 0.5. BASIC PACK 200 -->
         <div class="product-card" style="border-color: var(--accent-blue);">
             <div class="pack-image" style="border-color: var(--accent-blue);">
                 <img src="pack_basic.jpg" alt="BASIC PACK 200">
@@ -296,7 +298,34 @@
             </div>
         </div>
 
-        <!-- 1. THE COLLECTIVE (Final Data Update) -->
+        <!-- 0.6. Q1 Grand Prix 2025 -Singularity- (New Addition) -->
+        <div class="product-card" style="border-color: var(--accent-red);">
+            <div class="pack-image" style="border-color: var(--accent-red);">
+                <img src="pack_q1.jpg" alt="Q1 Grand Prix 2025">
+            </div>
+            <div class="pack-content">
+                <div>
+                    <span class="badge badge-red">SPECIAL COLLAB</span>
+                    <h2 class="pack-title">Q1GP 2025<br>-Singularity-</h2>
+                    <span class="pack-sub" style="border-color: var(--accent-red);">Wata Quiz Collection</span>
+                    
+                    <p class="description">Wata氏主催『Q-1ぐらんぷり2025』等の問題を収録。
+多形式800問以上を誇る元問題集から「早押し問題 650問以上」を抽出して実装。圧倒的ボリュームと良質な難問を、指先で体感せよ。</p>
+
+                    <table class="spec-table">
+                        <tr><td class="spec-label">TOTAL</td><td class="spec-val">650+ Questions (早押し限定)</td></tr>
+                        <tr><td class="spec-label">LEVEL</td><td class="spec-val">Various (Q1GP Standard)</td></tr>
+                    </table>
+                </div>
+                
+                <div class="btn-group">
+                    <a href="https://wata-tp.booth.pm/items/7776946" target="_blank" class="btn btn-booth">BOOTH で購入</a>
+                    <div class="text-[9px] text-gray-500 text-center mt-1">※アプリ内実装は早押し問題のみです</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 1. THE COLLECTIVE -->
         <div class="product-card" style="border-color: var(--accent-purple); box-shadow: 0 0 20px rgba(188, 19, 254, 0.2);">
             <div class="pack-image" style="border-color: var(--accent-purple);">
                 <img src="expansion_visual.jpg.png" alt="THE COLLECTIVE">
