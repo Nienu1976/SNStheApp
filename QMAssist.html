@@ -157,7 +157,7 @@
             </div>
 
             <!-- SNStheApp 紹介 -->
-            <div class="glass-panel rounded-xl p-4 mb-8 flex flex-col md:flex-row items-center justify-between gap-4 relative overflow-hidden group shrink-0 transition-all hover:border-cyan-500/30">
+            <div class="glass-panel rounded-xl p-4 mb-4 flex flex-col md:flex-row items-center justify-between gap-4 relative overflow-hidden group shrink-0 transition-all hover:border-cyan-500/30">
                 <div class="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-cyan-400 to-blue-600 shadow-[0_0_15px_rgba(6,182,212,0.5)]"></div>
                 <!-- 背景の装飾文字 -->
                 <div class="absolute -right-4 -bottom-4 text-6xl font-black text-white/5 font-tech pointer-events-none select-none">SNS</div>
@@ -180,44 +180,21 @@
                     </a>
                 </div>
             </div>
-            
-            <!-- ウェルカム / 使い方案内（データがない時のみ表示） -->
-            <div id="welcomeGuide" class="mb-6 hidden shrink-0">
-                <div class="glass-panel rounded-xl p-5 mb-4 relative overflow-hidden border-cyan-500/20">
-                    <h3 class="text-cyan-400 font-bold mb-4 flex items-center gap-2 text-sm font-tech tracking-wide">
-                        <i data-lucide="info" class="w-4 h-4"></i> 3-STEP START GUIDE
-                    </h3>
-                    <div class="space-y-4">
-                        <div class="flex gap-3 items-start">
-                            <div class="w-6 h-6 rounded-full bg-cyan-900/50 text-cyan-300 flex items-center justify-center font-bold border border-cyan-800 shrink-0 text-xs mt-0.5 font-mono-tech">1</div>
-                            <div class="flex-1">
-                                <p class="font-bold text-xs mb-1 text-gray-200">CSVファイルを用意</p>
-                                <p class="text-[10px] text-gray-400 mb-2 leading-relaxed">
-                                    Excel等で <span class="font-mono-tech text-cyan-300">A:No, B:Q, C:Ans, D:Note</span> の順に入力して保存。
-                                </p>
-                                <button onclick="downloadSampleCSV()" class="text-[10px] bg-gray-800 hover:bg-gray-700 px-3 py-1.5 rounded border border-gray-600 text-cyan-300 transition flex items-center gap-1 w-fit font-mono-tech">
-                                    <i data-lucide="download" class="w-3 h-3"></i> DOWNLOAD SAMPLE
-                                </button>
-                            </div>
-                        </div>
-                        <div class="flex gap-3 items-start">
-                            <div class="w-6 h-6 rounded-full bg-cyan-900/50 text-cyan-300 flex items-center justify-center font-bold border border-cyan-800 shrink-0 text-xs mt-0.5 font-mono-tech">2</div>
-                            <div class="flex-1">
-                                <p class="font-bold text-xs mb-1 text-gray-200">ファイルを読み込み</p>
-                                <p class="text-[10px] text-gray-400">下の「CSVファイルを選択して追加」ボタンからインポート。</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-3 items-start">
-                            <div class="w-6 h-6 rounded-full bg-cyan-900/50 text-cyan-300 flex items-center justify-center font-bold border border-cyan-800 shrink-0 text-xs mt-0.5 font-mono-tech">3</div>
-                            <div class="flex-1">
-                                <p class="font-bold text-xs mb-1 text-gray-200">司会スタート！</p>
-                                <p class="text-[10px] text-gray-400">データは自動保存されます。</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
+            <!-- 関連プロジェクトリンク (復元) -->
+            <div class="grid grid-cols-2 gap-3 mb-8 shrink-0">
+                <a href="https://nienu1976.github.io/SNStheApp/" target="_blank" class="block bg-gray-900/40 border border-slate-700/50 hover:border-blue-500 hover:bg-blue-900/20 rounded-xl p-3 text-center transition group active:scale-95 backdrop-blur-sm">
+                    <div class="text-blue-500 mb-2 group-hover:scale-110 transition-transform"><i data-lucide="globe" class="w-5 h-5 mx-auto"></i></div>
+                    <span class="text-[10px] font-bold text-gray-300 block group-hover:text-blue-400 font-tech tracking-wide">OFFICIAL SITE</span>
+                    <span class="text-[9px] text-gray-500 block font-mono-tech">SNStheApp Home</span>
+                </a>
+                <a href="https://nienu1976.github.io/SNStheApp/selectgenelater.html" target="_blank" class="block bg-gray-900/40 border border-slate-700/50 hover:border-cyan-500 hover:bg-cyan-900/20 rounded-xl p-3 text-center transition group active:scale-95 backdrop-blur-sm">
+                    <div class="text-cyan-500 mb-2 group-hover:scale-110 transition-transform"><i data-lucide="zap" class="w-5 h-5 mx-auto"></i></div>
+                    <span class="text-[10px] font-bold text-gray-300 block group-hover:text-cyan-400 font-tech tracking-wide">4-CHOICE GEN</span>
+                    <span class="text-[9px] text-gray-500 block font-mono-tech">AI Powered Tool</span>
+                </a>
+            </div>
+            
             <!-- アクションエリア -->
             <label class="block w-full py-5 px-4 bg-gradient-to-r from-blue-700/80 to-cyan-700/80 hover:from-blue-600 hover:to-cyan-600 text-white rounded-xl font-bold cursor-pointer text-center transition-all shadow-[0_0_20px_rgba(6,182,212,0.15)] mb-4 flex items-center justify-center gap-3 btn-active border border-cyan-500/30 group text-sm shrink-0 backdrop-blur-sm">
                 <div class="bg-white/20 p-1.5 rounded-full group-hover:rotate-90 transition-transform duration-300">
@@ -245,7 +222,6 @@
                 </div>
             </div>
             
-            <!-- フッター -->
             <div class="mt-8 text-center text-[10px] text-gray-700 font-mono-tech">
                 &copy; 2026 QuizMasterAssist / SYSTEM.V2
             </div>
@@ -305,7 +281,7 @@
             </div>
 
             <!-- B. 次の問題エリア (サブ・高さ固定) -->
-            <div id="nextQuestionArea" class="h-28 bg-[#0a0a0c]/90 backdrop-blur-xl border-t border-white/10 p-4 flex flex-col text-gray-500 transition-all shrink-0 shadow-[0_-5px_20px_rgba(0,0,0,0.5)] z-20">
+            <div id="nextQuestionArea" class="h-28 bg-[#0a0a0c]/90 backdrop-blur-xl border-t border-white/10 p-4 flex flex-col text-gray-300 transition-all shrink-0 shadow-[0_-5px_20px_rgba(0,0,0,0.5)] z-20">
                 <div class="flex items-center gap-2 mb-2 shrink-0">
                     <span class="bg-gray-800 text-gray-400 px-1.5 py-0.5 rounded text-[9px] font-bold border border-gray-600 font-mono-tech">NEXT</span>
                     <span class="text-[10px] font-mono-tech text-gray-500">No.<span id="nextQNo">--</span></span>
@@ -448,18 +424,19 @@
 
         function renderLibrary() {
             const listEl = document.getElementById('bookList');
-            const welcomeEl = document.getElementById('welcomeGuide');
             const libraryCountEl = document.getElementById('libraryCount');
             
             listEl.innerHTML = '';
             libraryCountEl.textContent = `${library.length} BOOKS`;
 
             if (library.length === 0) {
-                welcomeEl.classList.remove('hidden');
-                // listEl.innerHTML = `<p class="text-gray-600 text-center py-10 text-xs">データがありません。<br>上のボタンから追加してください。</p>`;
+                listEl.innerHTML = `
+                    <div class="text-center py-12 border-2 border-dashed border-gray-800 rounded-xl bg-gray-900/20">
+                        <i data-lucide="file-question" class="w-12 h-12 text-gray-700 mx-auto mb-3"></i>
+                        <p class="text-gray-500 text-sm mb-1">NO DATA FOUND</p>
+                        <p class="text-gray-600 text-xs">CSVファイルを読み込んでください</p>
+                    </div>`;
             } else {
-                welcomeEl.classList.add('hidden');
-                
                 library.sort((a, b) => b.id - a.id).forEach(book => {
                     const unusedCount = book.questions.filter(q => !q.isUsed).length;
                     const total = book.questions.length;
@@ -668,7 +645,7 @@
             const text = document.getElementById('randomBtnText');
             const icon = btn.querySelector('i');
             
-            // アイコン要素を再生成する（lucideによる書き換え後への対応）
+            // アイコン要素を再生成する
             if (isRandom) {
                 btn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded border text-[10px] font-bold transition-all btn-active backdrop-blur-md random-mode-active text-purple-100 border-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.3)]";
                 btn.innerHTML = `<i data-lucide="shuffle" class="w-3 h-3"></i><span id="randomBtnText" class="font-mono-tech">RND</span>`;
@@ -769,12 +746,10 @@
                 document.getElementById('nextQNo').textContent = nextQ.no;
                 document.getElementById('nextQText').textContent = nextQ.text;
                 document.getElementById('nextQAnswer').textContent = `(A: ${nextQ.answer})`;
-                // document.getElementById('nextQText').classList.remove('opacity-60');
             } else {
                 document.getElementById('nextQNo').textContent = "-";
                 document.getElementById('nextQText').textContent = "（最後の問題です）";
                 document.getElementById('nextQAnswer').textContent = "";
-                // document.getElementById('nextQText').classList.add('opacity-60');
             }
         }
 
