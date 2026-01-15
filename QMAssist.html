@@ -6,44 +6,45 @@
     <title>QuizMasterAssist From SNStheApp</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-color: #030305;
+            --panel-bg: rgba(15, 23, 42, 0.6);
+        }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #050505;
+            background-color: var(--bg-color);
             color: #ffffff;
             user-select: none;
             -webkit-user-select: none;
             touch-action: manipulation;
-            overflow: hidden; /* 全体スクロール禁止 */
-            height: 100dvh; /* ダイナミックビューポート対応 */
+            overflow: hidden;
+            height: 100dvh; /* ダイナミックビューポート */
+            width: 100vw;
         }
-        /* カスタムスクロールバー */
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 2px;
-        }
+        .font-tech { font-family: 'Rajdhani', sans-serif; }
+        .font-mono-tech { font-family: 'JetBrains Mono', monospace; }
 
-        /* アニメーション定義 */
-        @keyframes flow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
+        /* スクロールバー */
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 2px; }
+
+        /* 背景アニメーション */
         .animate-bg-flow {
             background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #0f172a);
             background-size: 400% 400%;
             animation: flow 15s ease infinite;
         }
+        @keyframes flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
         .glass-panel {
-            background: rgba(20, 20, 30, 0.7);
+            background: var(--panel-bg);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
@@ -51,7 +52,6 @@
 
         .btn-active:active { transform: scale(0.96); opacity: 0.9; }
         
-        /* ランダムモードのスタイル */
         .random-mode-active {
             background: linear-gradient(135deg, rgba(147, 51, 234, 0.2), rgba(79, 70, 229, 0.2));
             border-color: #a855f7;
@@ -59,87 +59,83 @@
             text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
         }
 
-        /* 横画面（ランドスケープ）時の特別調整 */
-        @media (orientation: landscape) and (max-height: 500px) {
-            header {
-                height: 2.5rem; /* ヘッダーを小さく */
-                padding: 0.25rem 1rem;
-            }
-            #mainArea {
-                height: calc(100dvh - 2.5rem);
-            }
-            .landscape-hidden {
-                display: none;
-            }
+        /* 縦横比に応じた微調整 */
+        @media (orientation: landscape) {
+            .landscape-compact-header { height: 3rem; padding-top: 0.25rem; padding-bottom: 0.25rem; }
+            .landscape-compact-main { padding: 0.5rem; }
+            .landscape-compact-card { padding: 0.75rem; }
         }
     </style>
 </head>
 <body class="flex flex-col animate-bg-flow relative">
 
-    <!-- 背景装飾（動く光） -->
+    <!-- 背景装飾 -->
     <div class="fixed inset-0 pointer-events-none z-0">
         <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[100px]"></div>
         <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-600/10 rounded-full blur-[100px]"></div>
     </div>
 
-    <!-- ヘッダーエリア -->
-    <header class="flex justify-between items-center px-3 py-2 glass-panel border-b-0 h-14 shrink-0 z-20 relative transition-all duration-300">
+    <!-- ヘッダー -->
+    <header class="flex justify-between items-center px-3 py-2 glass-panel border-b-0 h-14 landscape:h-12 shrink-0 z-30 relative w-full transition-all">
         <div class="flex items-center gap-2 overflow-hidden flex-1 mr-2">
             <h1 class="text-xs font-bold text-gray-200 whitespace-nowrap shrink-0 cursor-pointer flex items-center gap-1" onclick="showLibrary()">
                 <div class="p-1 bg-blue-600/20 rounded border border-blue-500/30">
                     <i data-lucide="mic" class="w-3 h-3 text-blue-400"></i>
                 </div>
-                <span class="tracking-wide">QuizMasterAssist</span>
+                <span class="tracking-wide font-tech text-base">QuizMasterAssist</span>
             </h1>
-            <!-- 現在のタイトル -->
             <div id="currentTitleArea" class="hidden flex items-center gap-1 overflow-hidden min-w-0 opacity-0 transition-opacity duration-300">
                 <i data-lucide="chevron-right" class="w-3 h-3 text-gray-600 shrink-0"></i>
-                <span id="headerBookTitle" class="text-white font-bold text-xs truncate tracking-wide"></span>
+                <span id="headerBookTitle" class="text-white font-bold text-xs truncate tracking-wide font-mono-tech"></span>
             </div>
         </div>
         
         <div class="flex gap-2 shrink-0">
-            <!-- 全画面切り替えボタン（手動用） -->
-            <button onclick="toggleFullScreen()" class="p-1.5 bg-gray-800/50 rounded text-gray-300 border border-gray-700/50 btn-active backdrop-blur-sm hover:bg-gray-700/50 transition">
+            <!-- 全画面ボタン -->
+            <button onclick="toggleFullScreen()" class="hidden md:flex p-1.5 bg-gray-800/50 rounded text-gray-300 border border-gray-700/50 btn-active backdrop-blur-sm hover:bg-gray-700/50 transition" title="全画面表示">
                 <i data-lucide="maximize" class="w-4 h-4"></i>
             </button>
 
-            <!-- ランダムモード切替ボタン -->
+            <!-- ランダムボタン -->
             <button id="randomBtn" onclick="toggleRandomMode()" class="flex items-center gap-1 px-2 py-1.5 bg-gray-800/50 rounded border border-gray-700/50 text-[10px] font-bold text-gray-400 transition-all btn-active backdrop-blur-sm">
                 <i data-lucide="arrow-right-circle" class="w-3 h-3"></i>
-                <span id="randomBtnText">順送り</span>
+                <span id="randomBtnText" class="font-mono-tech">SEQ</span>
             </button>
             
-            <button onclick="toggleFontSize()" class="p-1.5 bg-gray-800/50 rounded text-gray-300 border border-gray-700/50 btn-active backdrop-blur-sm hover:bg-gray-700/50 transition">
+            <!-- 文字サイズボタン -->
+            <button onclick="toggleFontSize()" class="p-1.5 bg-gray-800/50 rounded text-gray-300 border border-gray-700/50 btn-active backdrop-blur-sm hover:bg-gray-700/50 transition flex items-center gap-1">
                 <i data-lucide="type" class="w-4 h-4"></i>
+                <span id="fontSizeIndicator" class="text-[9px] font-mono-tech w-8 text-center">AUTO</span>
             </button>
+
+            <!-- ライブラリボタン -->
             <button onclick="showLibrary()" class="p-1.5 bg-blue-900/20 text-blue-400 rounded border border-blue-800/50 btn-active backdrop-blur-sm hover:bg-blue-900/30 transition">
                 <i data-lucide="library" class="w-4 h-4"></i>
             </button>
         </div>
     </header>
 
-    <!-- メイン表示エリア (伸縮可能、はみ出し禁止) -->
-    <main id="mainArea" class="flex-1 flex flex-col relative overflow-hidden z-10 min-h-0">
+    <!-- メインエリア -->
+    <main id="mainArea" class="flex-1 flex flex-col relative overflow-hidden z-10 w-full min-h-0">
         
         <!-- 1. ライブラリ画面 -->
         <div id="libraryView" class="absolute inset-0 flex flex-col p-4 md:p-6 overflow-y-auto custom-scrollbar z-20 transition-all duration-300 pb-20">
             
             <div class="text-center mb-4 pt-2">
-                <h2 class="text-xl font-black text-white mb-1 tracking-tight">QuizMasterAssist</h2>
-                <p class="text-gray-400 text-[10px]">From SNStheApp Project</p>
+                <h2 class="text-2xl font-black text-white mb-1 tracking-tight font-tech">QuizMasterAssist</h2>
+                <p class="text-gray-400 text-[10px] font-mono-tech tracking-widest">From SNStheApp Project</p>
             </div>
 
             <!-- SNStheApp 紹介 -->
             <div class="bg-slate-900/80 border border-cyan-900/30 rounded-xl p-4 mb-6 flex flex-col md:flex-row items-center justify-between gap-4 shadow-lg relative overflow-hidden group shrink-0">
                 <div class="absolute top-0 left-0 w-1 h-full bg-cyan-600"></div>
                 <div class="text-center md:text-left z-10">
-                    <h3 class="text-cyan-400 font-bold mb-1 flex items-center justify-center md:justify-start gap-2 text-sm">
-                        <i data-lucide="smartphone" class="w-4 h-4"></i> SNStheApp プロジェクト
+                    <h3 class="text-cyan-400 font-bold mb-1 flex items-center justify-center md:justify-start gap-2 text-sm font-tech">
+                        <i data-lucide="smartphone" class="w-4 h-4"></i> OFFICIAL APP
                     </h3>
                     <p class="text-[10px] text-slate-300 leading-tight">
                         最高の早押しクイズ体験を、あなたのポケットに。<br>
-                        <span class="text-gray-500">※本ツールとアプリ間のデータ連携機能はありません。</span>
+                        <span class="text-gray-500 font-mono-tech">※本ツールとアプリ間のデータ連携機能はありません。</span>
                     </p>
                 </div>
                 <div class="flex gap-2 z-10 shrink-0">
@@ -152,22 +148,8 @@
                 </div>
             </div>
             
-            <!-- 関連プロジェクトリンク -->
-            <div class="grid grid-cols-2 gap-3 mb-6 shrink-0">
-                <a href="https://nienu1976.github.io/SNStheApp/" target="_blank" class="block bg-slate-900/50 border border-slate-700 hover:border-blue-500 rounded-xl p-3 text-center transition group active:scale-95">
-                    <div class="text-blue-400 mb-1 group-hover:scale-110 transition-transform"><i data-lucide="globe" class="w-5 h-5 mx-auto"></i></div>
-                    <span class="text-[10px] font-bold text-gray-300 block group-hover:text-blue-400">公式サイト</span>
-                    <span class="text-[9px] text-gray-500 block">SNStheApp Home</span>
-                </a>
-                <a href="https://nienu1976.github.io/SNStheApp/selectgenelater.html" target="_blank" class="block bg-slate-900/50 border border-slate-700 hover:border-purple-500 rounded-xl p-3 text-center transition group active:scale-95">
-                    <div class="text-purple-400 mb-1 group-hover:scale-110 transition-transform"><i data-lucide="zap" class="w-5 h-5 mx-auto"></i></div>
-                    <span class="text-[10px] font-bold text-gray-300 block group-hover:text-purple-400">4択ジェネレーター</span>
-                    <span class="text-[9px] text-gray-500 block">AI作問支援ツール</span>
-                </a>
-            </div>
-
             <!-- アクションエリア -->
-            <label class="block w-full py-4 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl font-bold cursor-pointer text-center transition shadow-lg shadow-blue-900/20 mb-3 flex items-center justify-center gap-2 btn-active border border-blue-400/20 group text-sm shrink-0">
+            <label class="block w-full py-5 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl font-bold cursor-pointer text-center transition shadow-lg shadow-blue-900/20 mb-3 flex items-center justify-center gap-2 btn-active border border-blue-400/20 group text-sm shrink-0">
                 <div class="bg-white/20 p-1 rounded-full group-hover:scale-110 transition-transform">
                     <i data-lucide="plus" class="w-4 h-4"></i>
                 </div>
@@ -176,23 +158,22 @@
             </label>
 
             <!-- CSVガイドボタン -->
-            <button onclick="openModal('csvHelpModal')" class="w-full text-[10px] text-gray-400 hover:text-white flex items-center justify-center gap-1 mb-6 py-2">
-                <i data-lucide="help-circle" class="w-3 h-3"></i> CSVファイルの作り方・サンプル
+            <button onclick="openModal('csvHelpModal')" class="w-full text-[10px] text-gray-400 hover:text-white flex items-center justify-center gap-1 mb-6 py-2 font-mono-tech">
+                <i data-lucide="help-circle" class="w-3 h-3"></i> CSV FORMAT GUIDE
             </button>
 
             <!-- 保存済みリスト -->
             <div class="flex-1">
-                <div class="flex justify-between items-center mb-3 px-1">
-                    <h3 class="text-gray-400 text-[10px] font-bold uppercase tracking-wider">Library</h3>
-                    <span id="libraryCount" class="text-[10px] text-gray-600 font-mono">0 Books</span>
+                <div class="flex justify-between items-center mb-3 px-1 border-b border-white/5 pb-1">
+                    <h3 class="text-gray-400 text-[10px] font-bold uppercase tracking-wider font-tech">Library</h3>
+                    <span id="libraryCount" class="text-[10px] text-gray-600 font-mono-tech">0 Books</span>
                 </div>
                 <div id="bookList" class="space-y-2">
                     <!-- JSでリスト生成 -->
                 </div>
             </div>
             
-            <!-- フッター的要素 -->
-            <div class="mt-8 text-center text-[10px] text-gray-600 pb-4">
+            <div class="mt-8 text-center text-[10px] text-gray-600 pb-4 font-mono-tech">
                 &copy; 2026 QuizMasterAssist
             </div>
         </div>
@@ -201,43 +182,45 @@
         <div id="questionView" class="absolute inset-0 flex flex-col landscape:flex-row hidden z-20 bg-black">
             
             <!-- A. 現在の問題エリア (メイン・伸縮) -->
-            <div class="flex-1 flex flex-col p-4 overflow-hidden relative min-h-0 landscape:w-[65%] landscape:border-r landscape:border-gray-800">
+            <div class="flex-1 flex flex-col p-4 landscape:p-3 overflow-hidden relative min-h-0 landscape:w-[65%] landscape:border-r landscape:border-gray-800">
                 <!-- ステータスバー -->
                 <div class="flex justify-between items-start mb-2 shrink-0">
-                    <div class="font-mono flex flex-col">
+                    <div class="font-mono-tech flex flex-col">
                         <div class="flex items-baseline gap-1">
-                            <span class="text-xs text-gray-500">Q.</span>
-                            <span id="qNo" class="text-blue-400 font-black text-4xl leading-none" style="text-shadow: 0 0 20px rgba(59, 130, 246, 0.3);">1</span>
+                            <span class="text-xs text-gray-500 font-bold">No.</span>
+                            <span id="qNo" class="text-blue-400 font-black text-4xl landscape:text-3xl leading-none" style="text-shadow: 0 0 20px rgba(59, 130, 246, 0.3);">1</span>
                         </div>
                         <span id="randomBadge" class="hidden text-[9px] text-purple-300 mt-0.5 font-bold tracking-widest bg-purple-900/30 px-1 py-0 rounded border border-purple-500/30 w-fit">RANDOM</span>
                     </div>
                     
                     <div class="flex flex-col items-end gap-1">
-                        <div id="usedBadge" class="hidden px-1.5 py-0.5 rounded text-[9px] font-bold border backdrop-blur-sm"></div>
-                        <span class="text-[9px] text-gray-500 font-mono">REMAIN: <span id="qUnusedCount" class="text-gray-300">--</span> / <span id="qTotal">--</span></span>
+                        <div id="usedBadge" class="hidden px-1.5 py-0.5 rounded text-[9px] font-bold border backdrop-blur-sm font-mono-tech"></div>
+                        <span class="text-[9px] text-gray-500 font-mono-tech bg-black/40 px-2 py-0.5 rounded border border-white/5">
+                            REMAIN: <span id="qUnusedCount" class="text-gray-200 font-bold">--</span> / <span id="qTotal">--</span>
+                        </span>
                     </div>
                 </div>
 
-                <!-- 問題文 (スクロール可能) -->
-                <div class="flex-1 flex items-center overflow-y-auto my-2 pr-1 custom-scrollbar">
-                    <p id="qText" class="text-2xl md:text-3xl font-bold leading-relaxed text-white w-full break-words whitespace-pre-wrap drop-shadow-md">
+                <!-- 問題文エリア (自動サイズ調整用コンテナ) -->
+                <div id="qTextContainer" class="flex-1 flex items-center overflow-y-auto my-1 pr-1 custom-scrollbar w-full">
+                    <p id="qText" class="font-bold leading-relaxed text-white w-full break-words whitespace-pre-wrap drop-shadow-md" style="font-size: 2rem;">
                         ここに問題文が表示されます。
                     </p>
                 </div>
 
                 <!-- 正解・解説 (常時表示・下部に固定) -->
-                <div class="glass-panel p-4 rounded-lg mt-auto border-l-4 border-l-yellow-500 shrink-0 mb-1">
+                <div class="glass-panel p-4 landscape:p-3 rounded-lg mt-auto border-l-4 border-l-yellow-500 shrink-0 mb-1">
                     <div class="flex items-start gap-3">
                         <div class="flex flex-col items-center gap-0.5 shrink-0 mt-1">
-                            <span class="text-[8px] font-bold text-yellow-500/80 tracking-widest">ANSWER</span>
+                            <span class="text-[8px] font-bold text-yellow-500/80 tracking-widest font-tech">ANSWER</span>
                             <div class="w-0.5 h-6 bg-yellow-500/20 rounded-full"></div>
                         </div>
                         <div class="flex-1 min-w-0">
-                            <p id="qAnswer" class="text-xl md:text-2xl font-bold text-yellow-400 leading-tight mb-1 break-words">
+                            <p id="qAnswer" class="text-xl landscape:text-lg font-bold text-yellow-400 leading-tight mb-1 break-words">
                                 正解表示エリア
                             </p>
                             <div id="qNoteBox" class="pt-1 border-t border-white/10 hidden">
-                                <p id="qNote" class="text-xs text-gray-400 leading-relaxed break-words">
+                                <p id="qNote" class="text-xs text-gray-400 leading-relaxed break-words font-mono-tech">
                                     解説エリア
                                 </p>
                             </div>
@@ -252,37 +235,35 @@
                 <!-- 次の問題エリア -->
                 <div id="nextQuestionArea" class="h-24 landscape:flex-1 bg-black/40 landscape:bg-transparent backdrop-blur-md p-3 flex flex-col text-gray-500 transition-all shrink-0 border-b landscape:border-b-gray-800">
                     <div class="flex items-center gap-2 mb-1 shrink-0">
-                        <span class="bg-gray-800 text-gray-400 px-1.5 py-0 rounded text-[9px] font-bold border border-gray-700">NEXT</span>
-                        <span class="text-[10px] font-mono text-gray-600">Q.<span id="nextQNo">--</span></span>
-                        <span id="nextRandomBadge" class="hidden text-[9px] text-purple-500 font-mono flex items-center gap-1"><i data-lucide="shuffle" class="w-3 h-3"></i> ???</span>
+                        <span class="bg-gray-800 text-gray-400 px-1.5 py-0 rounded text-[9px] font-bold border border-gray-700 font-mono-tech">NEXT</span>
+                        <span class="text-[10px] font-mono-tech text-gray-600">Q.<span id="nextQNo">--</span></span>
+                        <span id="nextRandomBadge" class="hidden text-[9px] text-purple-500 font-mono-tech flex items-center gap-1"><i data-lucide="shuffle" class="w-3 h-3"></i> ???</span>
                     </div>
                     <div class="flex-1 overflow-hidden relative px-1">
-                        <p id="nextQText" class="text-xs font-bold text-gray-300 leading-snug line-clamp-1 landscape:line-clamp-4 opacity-100">
+                        <p id="nextQText" class="text-sm font-bold text-gray-300 leading-snug line-clamp-1 landscape:line-clamp-4 opacity-100">
                             次は...
                         </p>
-                        <p id="nextQAnswer" class="text-[10px] text-yellow-500 mt-0.5 font-bold truncate">
+                        <p id="nextQAnswer" class="text-[11px] text-yellow-500 mt-0.5 font-bold truncate font-mono-tech">
                             (Answer hidden)
                         </p>
                     </div>
                 </div>
                 
                 <!-- フッター: 操作ボタン (固定) -->
-                <div id="controlBar" class="grid grid-cols-4 gap-2 p-3 pb-6 landscape:pb-4 glass-panel border-t-0 h-24 landscape:h-auto shrink-0 z-30 landscape:rounded-none landscape:border-none">
+                <div id="controlBar" class="grid grid-cols-4 gap-2 p-3 pb-6 landscape:pb-3 glass-panel border-t-0 h-24 landscape:h-auto shrink-0 z-30 landscape:rounded-none landscape:border-none">
                     <!-- 戻るボタン -->
-                    <button onclick="prevQuestion()" class="col-span-1 bg-gray-800/50 hover:bg-gray-700/50 text-gray-400 rounded-xl flex flex-col items-center justify-center font-bold btn-active border border-gray-700/50 transition backdrop-blur-sm group landscape:h-20">
+                    <button onclick="prevQuestion()" class="col-span-1 bg-gray-800/50 hover:bg-gray-700/50 text-gray-400 rounded-xl flex flex-col items-center justify-center font-bold btn-active border border-gray-700/50 transition backdrop-blur-sm group landscape:h-16">
                         <i data-lucide="chevron-left" class="w-5 h-5 mb-0.5 group-hover:-translate-x-1 transition-transform"></i>
-                        <span class="text-[9px] tracking-widest">PREV</span>
+                        <span class="text-[9px] tracking-widest font-tech">PREV</span>
                     </button>
 
                     <!-- 進むボタン -->
-                    <button onclick="nextQuestion()" id="nextBtn" class="col-span-3 bg-gradient-to-br from-blue-600 to-indigo-700 hover:from-blue-500 hover:to-indigo-600 text-white rounded-xl flex items-center justify-center font-bold text-xl btn-active shadow-[0_0_20px_rgba(37,99,235,0.3)] transition relative overflow-hidden group border border-blue-400/30 landscape:h-20">
-                        <span class="mr-2 relative z-10 tracking-widest">NEXT</span>
-                        <i data-lucide="chevron-right" class="w-6 h-6 relative z-10 group-hover:translate-x-1 transition-transform"></i>
+                    <button onclick="nextQuestion()" id="nextBtn" class="col-span-3 bg-gradient-to-br from-blue-600 to-indigo-700 hover:from-blue-500 hover:to-indigo-600 text-white rounded-xl flex items-center justify-center font-bold text-xl btn-active shadow-[0_0_20px_rgba(37,99,235,0.3)] transition relative overflow-hidden group border border-blue-400/30 landscape:h-16">
+                        <span class="mr-2 relative z-10 tracking-widest font-tech italic pr-1">NEXT</span>
+                        <i data-lucide="chevron-right" class="w-6 h-6 relative z-10 group-hover:translate-x-1.5 transition-transform"></i>
                         
-                        <!-- ランダム時の背景エフェクト -->
                         <div id="randomEffect" class="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 opacity-0 transition-opacity duration-300"></div>
-                        <!-- 光沢エフェクト -->
-                        <div class="absolute top-0 -left-full w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 group-hover:animate-[shine_1s_ease-in-out]"></div>
+                        <div class="absolute top-0 -left-full w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 group-hover:animate-[shine_0.75s_ease-in-out]"></div>
                     </button>
                 </div>
             </div>
@@ -292,46 +273,6 @@
 
     <!-- モーダル系 -->
     
-    <div id="welcomeModal" class="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm hidden animate-fade-in">
-        <div class="bg-[#0a0a12] border border-cyan-500/50 shadow-[0_0_30px_rgba(6,182,212,0.2)] max-w-2xl w-full p-0 overflow-hidden relative">
-            <div class="bg-black p-6 text-center border-b border-cyan-900">
-                <h2 class="text-xl font-bold mb-1 text-white tracking-widest">SYSTEM INITIALIZED</h2>
-                <p class="text-cyan-500 text-xs">QuizMasterAssistへようこそ</p>
-            </div>
-            <div class="p-6 space-y-6">
-                <div class="grid md:grid-cols-3 gap-4 text-center">
-                    <div class="group">
-                        <div class="w-12 h-12 bg-cyan-950/50 border border-cyan-800 text-cyan-400 flex items-center justify-center mx-auto mb-2 group-hover:border-cyan-400 transition-all">
-                            <i data-lucide="file-spreadsheet" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="font-bold text-white mb-1 text-sm">1. CSV準備</h3>
-                        <p class="text-[10px] text-slate-400">Excelなどで<br>問題リストを作成</p>
-                    </div>
-                    <div class="group">
-                        <div class="w-12 h-12 bg-cyan-950/50 border border-cyan-800 text-cyan-400 flex items-center justify-center mx-auto mb-2 group-hover:border-cyan-400 transition-all">
-                            <i data-lucide="upload" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="font-bold text-white mb-1 text-sm">2. 読み込み</h3>
-                        <p class="text-[10px] text-slate-400">ファイルを読み込み<br>ライブラリに保存</p>
-                    </div>
-                    <div class="group">
-                        <div class="w-12 h-12 bg-cyan-950/50 border border-cyan-800 text-cyan-400 flex items-center justify-center mx-auto mb-2 group-hover:border-cyan-400 transition-all">
-                            <i data-lucide="play" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="font-bold text-white mb-1 text-sm">3. スタート</h3>
-                        <p class="text-[10px] text-slate-400">司会進行を<br>強力にアシスト</p>
-                    </div>
-                </div>
-                <div class="text-center text-[10px] text-gray-500 border-t border-gray-800 pt-4">
-                     <p>ヒント: 画面を横にすると「司会者モード（2カラム表示）」になります。</p>
-                </div>
-                <button onclick="closeWelcome()" class="w-full bg-cyan-600 text-black py-4 font-bold text-lg hover:bg-cyan-400 transition-all flex items-center justify-center gap-2 tracking-widest shadow-[0_0_20px_rgba(6,182,212,0.4)]">
-                    LAUNCH SYSTEM <i data-lucide="chevron-right" class="w-5 h-5"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- CSV作成ガイドモーダル -->
     <div id="csvHelpModal" class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 backdrop-blur-sm hidden animate-fade-in">
         <div class="glass-panel border border-blue-500/30 shadow-[0_0_50px_rgba(59,130,246,0.3)] max-w-lg w-full p-0 overflow-hidden relative rounded-2xl flex flex-col max-h-[90vh]">
@@ -346,7 +287,6 @@
             
             <div class="p-5 overflow-y-auto custom-scrollbar bg-black/40">
                 <div class="space-y-6">
-                    <!-- 列の構成 -->
                     <div>
                         <h4 class="text-xs font-bold text-gray-300 mb-2 border-l-2 border-blue-500 pl-2 font-mono-tech">1. DATA STRUCTURE</h4>
                         <div class="bg-gray-900/80 rounded-lg overflow-hidden border border-gray-700 shadow-inner">
@@ -372,19 +312,15 @@
                         <p class="text-[9px] text-gray-500 mt-1 ml-1 flex items-center gap-1"><i data-lucide="alert-circle" class="w-3 h-3"></i> 1行目はヘッダーとして無視されます。</p>
                     </div>
 
-                    <!-- 保存方法 -->
                     <div>
                         <h4 class="text-xs font-bold text-gray-300 mb-2 border-l-2 border-green-500 pl-2 font-mono-tech">2. HOW TO SAVE</h4>
-                        
-                        <div class="space-y-3">
-                            <div class="bg-gray-800/50 p-3 rounded border border-gray-700">
-                                <p class="text-[11px] font-bold text-green-400 mb-1 flex items-center gap-1"><i data-lucide="sheet" class="w-3 h-3"></i> Excel</p>
-                                <ol class="text-[10px] text-gray-400 list-decimal pl-4 leading-relaxed">
-                                    <li>「ファイル」タブ → 「名前を付けて保存」</li>
-                                    <li>ファイルの種類で <span class="text-white font-bold bg-gray-700 px-1 rounded">CSV (コンマ区切り) (*.csv)</span> を選択</li>
-                                    <li>保存を実行</li>
-                                </ol>
-                            </div>
+                        <div class="bg-gray-800/50 p-3 rounded border border-gray-700">
+                            <p class="text-[11px] font-bold text-green-400 mb-1 flex items-center gap-1"><i data-lucide="sheet" class="w-3 h-3"></i> Excel</p>
+                            <ol class="text-[10px] text-gray-400 list-decimal pl-4 leading-relaxed">
+                                <li>「ファイル」タブ → 「名前を付けて保存」</li>
+                                <li>ファイルの種類で <span class="text-white font-bold bg-gray-700 px-1 rounded">CSV (コンマ区切り) (*.csv)</span> を選択</li>
+                                <li>保存を実行</li>
+                            </ol>
                         </div>
                     </div>
 
@@ -393,10 +329,42 @@
                     </button>
                 </div>
             </div>
-            
             <div class="p-4 border-t border-white/10 bg-black/50 text-center backdrop-blur-md">
                 <button onclick="closeModal('csvHelpModal')" class="text-xs text-gray-400 hover:text-white underline font-mono-tech">CLOSE GUIDE</button>
             </div>
+        </div>
+    </div>
+    
+    <!-- 関連プロジェクトリンク（広告用エリア） -->
+    <div class="mb-12 mx-4" id="footerAdArea" style="display: none;">
+        <p class="text-[10px] text-slate-500 font-mono-tech mb-2 tracking-widest text-center">RECOMMENDED ITEMS</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+             <!-- リンク3 -->
+             <a href="https://amzn.to/4pGRFQC" target="_blank" class="block w-full bg-slate-900 border border-slate-700 rounded-lg overflow-hidden hover:border-cyan-500 hover:shadow-[0_0_15px_rgba(0,255,255,0.1)] transition-all group">
+                <div class="flex h-24">
+                    <div class="w-24 bg-white p-2 flex items-center justify-center shrink-0">
+                        <img src="https://m.media-amazon.com/images/I/718J4Gz4lxL._SL1500_.jpg" alt="商品画像" class="max-h-full object-contain">
+                    </div>
+                    <div class="p-3 flex flex-col justify-center w-full">
+                        <p class="text-[10px] text-cyan-400 font-bold mb-1 font-mono-tech">RECOMMENDED</p>
+                        <p class="text-sm text-white font-bold leading-tight mb-2 line-clamp-2">QuizKnockの博識クイズデラックス</p>
+                        <span class="text-[10px] text-slate-400 bg-slate-800 px-2 py-1 rounded w-fit group-hover:text-cyan-400 group-hover:bg-slate-700 transition-colors flex items-center gap-1"><i data-lucide="external-link" class="w-3 h-3"></i> Amazonで見る</span>
+                    </div>
+                </div>
+            </a>
+            <!-- リンク4 -->
+            <a href="https://amzn.to/4qU9P2p" target="_blank" class="block w-full bg-slate-900 border border-slate-700 rounded-lg overflow-hidden hover:border-fuchsia-500 hover:shadow-[0_0_15px_rgba(217,70,239,0.1)] transition-all group">
+                <div class="flex h-24">
+                    <div class="w-24 bg-white p-2 flex items-center justify-center shrink-0">
+                        <img src="https://m.media-amazon.com/images/I/71rDt9mKr0L._AC_SL1500_.jpg" alt="商品画像" class="max-h-full object-contain">
+                    </div>
+                    <div class="p-3 flex flex-col justify-center w-full">
+                        <p class="text-[10px] text-fuchsia-400 font-bold mb-1 font-mono-tech">RECOMMENDED</p>
+                        <p class="text-sm text-white font-bold leading-tight mb-2 line-clamp-2">クイックアンサーブザー</p>
+                        <span class="text-[10px] text-slate-400 bg-slate-800 px-2 py-1 rounded w-fit group-hover:text-fuchsia-400 group-hover:bg-slate-700 transition-colors flex items-center gap-1"><i data-lucide="external-link" class="w-3 h-3"></i> Amazonで見る</span>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
 
@@ -404,16 +372,23 @@
         // --- データ構造 ---
         let library = [];
         let currentBookId = null;
-        let fontSizeLevel = 1; // 0:小, 1:中, 2:大
+        let fontSizeLevel = 0; // 0:Auto, 1:Large, 2:Huge
 
         // --- 初期化 ---
         document.addEventListener('DOMContentLoaded', () => {
             lucide.createIcons();
             loadLibrary();
             renderLibrary();
-            // 初回訪問チェック (キー名はユニークなものに)
             if (!localStorage.getItem('mcassist_visited_v1')) {
-                document.getElementById('welcomeModal').classList.remove('hidden');
+                // document.getElementById('welcomeModal').classList.remove('hidden'); // ウェルカムモーダルがあるなら
+            }
+            // リサイズ時に文字サイズ調整
+            window.addEventListener('resize', applyFontSize);
+            // 広告エリアをライブラリビューの最後に移動（メインに置くと邪魔なため）
+            const adArea = document.getElementById('footerAdArea');
+            if(adArea) {
+                adArea.style.display = 'block';
+                document.getElementById('libraryView').appendChild(adArea);
             }
         });
 
@@ -421,37 +396,26 @@
         function loadLibrary() {
             const data = localStorage.getItem('mcassist_library_v2');
             if (data) {
-                try {
-                    library = JSON.parse(data);
-                } catch (e) {
-                    library = [];
-                }
+                try { library = JSON.parse(data); } catch (e) { library = []; }
             }
         }
-
         function saveLibrary() {
             localStorage.setItem('mcassist_library_v2', JSON.stringify(library));
         }
 
+        // --- 表示ロジック ---
         function renderLibrary() {
             const listEl = document.getElementById('bookList');
             const libraryCountEl = document.getElementById('libraryCount');
-            
             listEl.innerHTML = '';
             libraryCountEl.textContent = `${library.length} BOOKS`;
 
             if (library.length === 0) {
-                listEl.innerHTML = `
-                    <div class="text-center py-12 border-2 border-dashed border-gray-800 rounded-xl bg-gray-900/20">
-                        <i data-lucide="file-question" class="w-12 h-12 text-gray-700 mx-auto mb-3"></i>
-                        <p class="text-gray-500 text-sm mb-1">NO DATA FOUND</p>
-                        <p class="text-gray-600 text-xs">CSVファイルを読み込んでください</p>
-                    </div>`;
+                listEl.innerHTML = `<div class="text-center py-12 border-2 border-dashed border-gray-800 rounded-xl bg-gray-900/20"><i data-lucide="file-question" class="w-12 h-12 text-gray-700 mx-auto mb-3"></i><p class="text-gray-500 text-sm mb-1 font-tech">NO DATA FOUND</p><p class="text-gray-600 text-xs">CSVファイルを読み込んでください</p></div>`;
             } else {
                 library.sort((a, b) => b.id - a.id).forEach(book => {
                     const unusedCount = book.questions.filter(q => !q.isUsed).length;
                     const total = book.questions.length;
-                    
                     const item = document.createElement('div');
                     item.className = 'flex flex-col bg-gray-900/60 border border-gray-800 rounded-xl overflow-hidden mb-3 backdrop-blur-md hover:border-cyan-500/50 transition group shadow-lg';
                     item.innerHTML = `
@@ -460,22 +424,14 @@
                                 <h4 class="text-white font-bold text-lg mb-1 truncate group-hover:text-cyan-400 transition-colors tracking-wide">${escapeHtml(book.title)}</h4>
                                 <div class="flex gap-4 text-xs text-gray-500 font-mono-tech">
                                     <span class="flex items-center gap-1.5"><i data-lucide="layers" class="w-3 h-3"></i> ${total} Qs</span>
-                                    <span class="flex items-center gap-1.5 ${unusedCount === 0 ? 'text-red-400' : 'text-emerald-400'}">
-                                        <i data-lucide="${unusedCount === 0 ? 'check-circle-2' : 'circle'}" class="w-3 h-3"></i> 残り: ${unusedCount}
-                                    </span>
+                                    <span class="flex items-center gap-1.5 ${unusedCount === 0 ? 'text-red-400' : 'text-emerald-400'}"><i data-lucide="${unusedCount === 0 ? 'check-circle-2' : 'circle'}" class="w-3 h-3"></i> 残り: ${unusedCount}</span>
                                 </div>
                             </div>
-                            <div class="bg-gray-800/50 p-2 rounded-lg text-gray-500 group-hover:text-white group-hover:bg-blue-600 transition-all shadow-inner">
-                                <i data-lucide="play" class="w-5 h-5 fill-current"></i>
-                            </div>
+                            <div class="bg-gray-800/50 p-2 rounded-lg text-gray-500 group-hover:text-white group-hover:bg-blue-600 transition-all shadow-inner"><i data-lucide="play" class="w-5 h-5 fill-current"></i></div>
                         </div>
                         <div class="flex border-t border-gray-800/50 divide-x divide-gray-800/50">
-                            <button onclick="resetBookProgress(${book.id})" class="flex-1 py-3 text-[10px] text-gray-500 hover:text-blue-400 hover:bg-gray-800/30 transition flex items-center justify-center gap-1.5 font-bold tracking-wider">
-                                <i data-lucide="rotate-ccw" class="w-3 h-3"></i> 進行リセット
-                            </button>
-                            <button onclick="deleteBook(${book.id})" class="flex-1 py-3 text-[10px] text-gray-500 hover:text-red-400 hover:bg-gray-800/30 transition flex items-center justify-center gap-1.5 font-bold tracking-wider">
-                                <i data-lucide="trash-2" class="w-3 h-3"></i> 削除
-                            </button>
+                            <button onclick="resetBookProgress(${book.id})" class="flex-1 py-3 text-[10px] text-gray-500 hover:text-blue-400 hover:bg-gray-800/30 transition flex items-center justify-center gap-1.5 font-bold tracking-wider"><i data-lucide="rotate-ccw" class="w-3 h-3"></i> 進行リセット</button>
+                            <button onclick="deleteBook(${book.id})" class="flex-1 py-3 text-[10px] text-gray-500 hover:text-red-400 hover:bg-gray-800/30 transition flex items-center justify-center gap-1.5 font-bold tracking-wider"><i data-lucide="trash-2" class="w-3 h-3"></i> 削除</button>
                         </div>
                     `;
                     listEl.appendChild(item);
@@ -488,26 +444,15 @@
             currentBookId = id;
             const book = library.find(b => b.id === id);
             if (!book) return;
-
             if (book.isRandomMode === undefined) book.isRandomMode = false;
-            if (book.questions.length > 0 && book.questions[0].isUsed === undefined) {
-                book.questions.forEach(q => q.isUsed = false);
-            }
-
-            // ランダムモードで次の候補が決まっていない場合の初期化
-            if (book.isRandomMode && book.nextCandidateIndex === undefined) {
-                prepareNextRandomCandidate(book);
-            }
+            if (book.questions.length > 0 && book.questions[0].isUsed === undefined) book.questions.forEach(q => q.isUsed = false);
+            if (book.isRandomMode && book.nextCandidateIndex === undefined) prepareNextRandomCandidate(book);
 
             document.getElementById('libraryView').classList.add('hidden');
             document.getElementById('questionView').classList.remove('hidden');
             document.getElementById('questionView').classList.add('flex');
-            document.getElementById('controlBar').classList.remove('hidden');
-            document.getElementById('controlBar').classList.add('grid');
-            
-            const titleArea = document.getElementById('currentTitleArea');
-            titleArea.classList.remove('hidden');
-            titleArea.classList.remove('opacity-0');
+            document.getElementById('currentTitleArea').classList.remove('hidden');
+            document.getElementById('currentTitleArea').classList.remove('opacity-0');
             document.getElementById('headerBookTitle').textContent = book.title;
 
             updateRandomButtonUI(book.isRandomMode);
@@ -519,13 +464,10 @@
             document.getElementById('libraryView').classList.remove('hidden');
             document.getElementById('questionView').classList.add('hidden');
             document.getElementById('questionView').classList.remove('flex');
-            document.getElementById('controlBar').classList.add('hidden');
-            document.getElementById('controlBar').classList.remove('grid');
             
             const titleArea = document.getElementById('currentTitleArea');
             titleArea.classList.add('opacity-0');
             setTimeout(() => titleArea.classList.add('hidden'), 300);
-            
             renderLibrary();
         }
 
@@ -543,54 +485,20 @@
                 if (book) {
                     book.questions.forEach(q => q.isUsed = false);
                     book.currentIndex = 0;
-                    book.nextCandidateIndex = undefined; // リセット時は候補もクリア
+                    book.nextCandidateIndex = undefined;
                     saveLibrary();
                     renderLibrary();
                 }
             }
         }
 
-        // --- モーダル制御 ---
+        // --- CSV系 ---
         function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
         function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
         
-        // --- ウェルカムモーダル制御 ---
-        function closeWelcome() {
-            document.getElementById('welcomeModal').classList.add('hidden');
-            localStorage.setItem('mcassist_visited_v1', 'true');
-            // 全画面化をリクエスト
-            try {
-                if (document.documentElement.requestFullscreen) {
-                    document.documentElement.requestFullscreen();
-                } else if (document.documentElement.webkitRequestFullscreen) { /* Safari */
-                    document.documentElement.webkitRequestFullscreen();
-                }
-            } catch (e) {
-                console.log("Fullscreen request failed (likely need user interaction)", e);
-            }
-        }
-        
-        // 手動全画面切り替え
-        function toggleFullScreen() {
-            if (!document.fullscreenElement) {
-                if (document.documentElement.requestFullscreen) {
-                    document.documentElement.requestFullscreen();
-                } else if (document.documentElement.webkitRequestFullscreen) {
-                    document.documentElement.webkitRequestFullscreen();
-                }
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.webkitExitFullscreen) {
-                    document.webkitExitFullscreen();
-                }
-            }
-        }
-
-        // --- サンプルCSVダウンロード ---
         function downloadSampleCSV() {
             const csvContent = "No,問題文,正解,解説(任意)\n1,日本で一番高い山は？,富士山,標高3776mです。\n2,「パンはパンでも食べられないパンは？」というなぞなぞの答えとして一般的な、調理器具は何？,フライパン, \n3,元素記号Hで表される元素は何？,水素,原子番号1番です。";
-            const blob = new Blob([new Uint8Array([0xEF, 0xBB, 0xBF]), csvContent], { type: "text/csv;charset=utf-8;" }); // BOM付き
+            const blob = new Blob([new Uint8Array([0xEF, 0xBB, 0xBF]), csvContent], { type: "text/csv;charset=utf-8;" });
             const link = document.createElement("a");
             link.href = URL.createObjectURL(blob);
             link.download = "sample_quiz.csv";
@@ -599,30 +507,21 @@
             document.body.removeChild(link);
         }
 
-        // --- CSV読み込み ---
         function loadCSV(input) {
             const file = input.files[0];
             if (!file) return;
             const defaultTitle = file.name.replace(/\.[^/.]+$/, "");
             const reader = new FileReader();
             reader.onload = (e) => {
-                const text = e.target.result;
-                const questions = parseCSV(text);
+                const questions = parseCSV(e.target.result);
                 if (questions.length > 0) {
                     const userTitle = prompt("問題集のタイトルを入力してください", defaultTitle);
-                    const finalTitle = userTitle ? userTitle : defaultTitle;
-                    const newBook = {
-                        id: Date.now(),
-                        title: finalTitle,
-                        questions: questions,
-                        currentIndex: 0,
-                        isRandomMode: false
-                    };
+                    const newBook = { id: Date.now(), title: userTitle || defaultTitle, questions: questions, currentIndex: 0, isRandomMode: false };
                     library.push(newBook);
                     saveLibrary();
                     openBook(newBook.id);
                 } else {
-                    alert('有効なデータが見つかりませんでした。フォーマットを確認してください。');
+                    alert('有効なデータが見つかりませんでした。');
                 }
             };
             reader.readAsText(file);
@@ -634,45 +533,29 @@
             const newQuestions = [];
             let startRow = 0;
             if (lines.length > 0 && isNaN(parseInt(lines[0].split(',')[0]))) startRow = 1;
-
             for (let i = startRow; i < lines.length; i++) {
                 const line = lines[i].trim();
                 if (!line) continue;
-                // 簡易パース
                 const cols = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
                 if (!cols) {
                      const simpleCols = line.split(',');
                      if (simpleCols.length < 2) continue;
-                     newQuestions.push({
-                        no: simpleCols[0].trim(),
-                        text: simpleCols[1].trim(),
-                        answer: simpleCols[2] ? simpleCols[2].trim() : '',
-                        note: simpleCols[3] ? simpleCols[3].trim() : '',
-                        isUsed: false
-                    });
-                    continue;
+                     newQuestions.push({ no: simpleCols[0].trim(), text: simpleCols[1].trim(), answer: simpleCols[2] || '', note: simpleCols[3] || '', isUsed: false });
+                     continue;
                 }
-                
                 const cleanCols = cols.map(c => c.replace(/^"|"$/g, '').trim());
                 if (cleanCols.length < 2) continue;
-
-                newQuestions.push({
-                    no: cleanCols[0],
-                    text: cleanCols[1],
-                    answer: cleanCols[2] || '',
-                    note: cleanCols[3] || '',
-                    isUsed: false
-                });
+                newQuestions.push({ no: cleanCols[0], text: cleanCols[1], answer: cleanCols[2] || '', note: cleanCols[3] || '', isUsed: false });
             }
             return newQuestions;
         }
 
-        // --- ランダムモード制御 ---
+        // --- ロジック ---
         function toggleRandomMode() {
             const book = library.find(b => b.id === currentBookId);
             if (!book) return;
-            
             book.isRandomMode = !book.isRandomMode;
+            if (book.isRandomMode && book.nextCandidateIndex === undefined) prepareNextRandomCandidate(book);
             updateRandomButtonUI(book.isRandomMode);
             saveLibrary();
             renderQuestion();
@@ -682,60 +565,40 @@
             const btn = document.getElementById('randomBtn');
             const text = document.getElementById('randomBtnText');
             const icon = btn.querySelector('i');
-            const nextBtnEffect = document.getElementById('randomEffect');
-            const badge = document.getElementById('randomBadge');
-            const nextBadge = document.getElementById('nextRandomBadge');
-
             if (isRandom) {
                 btn.classList.add('random-mode-active');
                 btn.classList.remove('bg-gray-800/50', 'text-gray-400');
-                btn.innerHTML = `<i data-lucide="shuffle" class="w-3 h-3"></i><span id="randomBtnText">ランダム</span>`;
-                
-                if(nextBtnEffect) nextBtnEffect.classList.remove('opacity-0');
-                badge.classList.remove('hidden');
-                nextBadge.classList.remove('hidden');
+                text.textContent = 'ランダム';
+                icon.setAttribute('data-lucide', 'shuffle');
+                document.getElementById('randomBadge').classList.remove('hidden');
+                document.getElementById('nextRandomBadge').classList.remove('hidden');
             } else {
                 btn.classList.remove('random-mode-active');
                 btn.classList.add('bg-gray-800/50', 'text-gray-400');
-                btn.innerHTML = `<i data-lucide="arrow-right-circle" class="w-3 h-3"></i><span id="randomBtnText">順送り</span>`;
-
-                if(nextBtnEffect) nextBtnEffect.classList.add('opacity-0');
-                badge.classList.add('hidden');
-                nextBadge.classList.add('hidden');
+                text.textContent = '順送り';
+                icon.setAttribute('data-lucide', 'arrow-right-circle');
+                document.getElementById('randomBadge').classList.add('hidden');
+                document.getElementById('nextRandomBadge').classList.add('hidden');
             }
             lucide.createIcons();
         }
 
-        // 次のランダム候補を決めて保存する関数
         function prepareNextRandomCandidate(book) {
-            // 未出題かつ現在表示中でないもののインデックスを集める
-            const candidates = book.questions
-                .map((q, idx) => ({ idx, isUsed: q.isUsed }))
-                .filter(item => !item.isUsed && item.idx !== book.currentIndex)
-                .map(item => item.idx);
-            
+            const candidates = book.questions.map((q, idx) => ({ idx, isUsed: q.isUsed })).filter(item => !item.isUsed && item.idx !== book.currentIndex).map(item => item.idx);
             if (candidates.length > 0) {
-                const randomIdx = Math.floor(Math.random() * candidates.length);
-                book.nextCandidateIndex = candidates[randomIdx];
+                book.nextCandidateIndex = candidates[Math.floor(Math.random() * candidates.length)];
             } else {
-                book.nextCandidateIndex = null; // 候補なし（終了）
+                book.nextCandidateIndex = null;
             }
         }
 
-        // --- 問題表示処理 ---
         function renderQuestion() {
             const book = library.find(b => b.id === currentBookId);
             if (!book) return;
-
             const q = book.questions[book.currentIndex];
             
-            // 現在の問題を表示
             document.getElementById('qNo').textContent = q.no;
             document.getElementById('qTotal').textContent = book.questions.length;
-            
-            const unusedCount = book.questions.filter(x => !x.isUsed).length;
-            document.getElementById('qUnusedCount').textContent = unusedCount;
-
             document.getElementById('qText').textContent = q.text;
             document.getElementById('qAnswer').textContent = q.answer;
             
@@ -743,45 +606,31 @@
             if (q.note) {
                 document.getElementById('qNote').textContent = q.note;
                 noteBox.classList.remove('hidden');
-            } else {
-                noteBox.classList.add('hidden');
-            }
+            } else { noteBox.classList.add('hidden'); }
 
-            // 済マーク表示
             const usedBadge = document.getElementById('usedBadge');
             if (q.isUsed) {
-                usedBadge.className = "px-1.5 py-0.5 rounded text-[9px] font-bold border border-red-900 bg-red-900/30 text-red-400 block tracking-wider";
+                usedBadge.className = "px-2 py-0.5 rounded text-[9px] font-bold border border-red-900 bg-red-900/30 text-red-400 block tracking-wider";
                 usedBadge.textContent = "USED";
+                usedBadge.classList.remove('hidden');
             } else {
-                usedBadge.className = "px-1.5 py-0.5 rounded text-[9px] font-bold border border-green-900 bg-green-900/30 text-green-400 block tracking-wider";
-                usedBadge.textContent = "NEW";
+                usedBadge.classList.add('hidden');
             }
-            
+            document.getElementById('qUnusedCount').textContent = book.questions.filter(x => !x.isUsed).length;
+
+            // Auto-Fit Apply
             applyFontSize();
 
-            // 次の問題プレビュー
+            // Next Preview
             const nextArea = document.getElementById('nextQuestionArea');
-            
-            // 表示する対象（モードによって分岐）
             let nextQ = null;
-            let nextLabel = "";
-
             if (book.isRandomMode) {
-                // ランダムモード: 予約済みの候補を表示
-                if (book.nextCandidateIndex !== undefined && book.nextCandidateIndex !== null) {
-                    nextQ = book.questions[book.nextCandidateIndex];
-                    nextLabel = "RANDOM NEXT";
-                }
+                if (book.nextCandidateIndex !== undefined && book.nextCandidateIndex !== null) nextQ = book.questions[book.nextCandidateIndex];
             } else {
-                // 通常モード: 単純に次のインデックス
                 const nextIndex = book.currentIndex + 1;
-                if (nextIndex < book.questions.length) {
-                    nextQ = book.questions[nextIndex];
-                    nextLabel = "NEXT";
-                }
+                if (nextIndex < book.questions.length) nextQ = book.questions[nextIndex];
             }
 
-            // プレビュー描画
             if (nextQ) {
                 nextArea.style.opacity = '1';
                 document.getElementById('nextQNo').textContent = nextQ.no;
@@ -795,26 +644,22 @@
             }
         }
 
-        // --- ナビゲーション操作 ---
         function nextQuestion() {
             const book = library.find(b => b.id === currentBookId);
             if (!book) return;
-
             book.questions[book.currentIndex].isUsed = true;
 
             if (book.isRandomMode) {
-                const unusedIndices = book.questions
-                    .map((q, idx) => ({ idx, isUsed: q.isUsed }))
-                    .filter(item => !item.isUsed)
-                    .map(item => item.idx);
-
-                if (unusedIndices.length > 0) {
-                    const randomIdx = Math.floor(Math.random() * unusedIndices.length);
-                    book.currentIndex = unusedIndices[randomIdx];
+                if (book.nextCandidateIndex !== undefined && book.nextCandidateIndex !== null) {
+                    book.currentIndex = book.nextCandidateIndex;
+                    prepareNextRandomCandidate(book);
                 } else {
-                    if(confirm('全ての問題が出題されました！\nリセットしますか？')) {
-                        resetBookProgress(book.id);
-                        return;
+                    prepareNextRandomCandidate(book); // Retry
+                    if(book.nextCandidateIndex !== null) {
+                         book.currentIndex = book.nextCandidateIndex;
+                         prepareNextRandomCandidate(book);
+                    } else {
+                         if(confirm('全ての問題が出題されました！\nリセットしますか？')) { resetBookProgress(book.id); return; }
                     }
                 }
             } else {
@@ -831,18 +676,15 @@
         function prevQuestion() {
             const book = library.find(b => b.id === currentBookId);
             if (!book) return;
-
             if (book.currentIndex > 0) {
                 book.currentIndex--;
-                // ランダムモードの場合、戻った瞬間に「次（さっきいた場所）」を候補にするか？
-                // 複雑になるため、戻った場合は「現在の次」を再計算させるだけに留める
                 if(book.isRandomMode) prepareNextRandomCandidate(book);
-                
                 saveLibrary();
                 renderQuestion();
             }
         }
 
+        // --- フォントサイズ制御 (Auto-Fit) ---
         function toggleFontSize() {
             fontSizeLevel = (fontSizeLevel + 1) % 3;
             applyFontSize();
@@ -850,22 +692,46 @@
 
         function applyFontSize() {
             const qText = document.getElementById('qText');
-            // デフォルトのフォントサイズを縮小 (旧: 2xl/4xl -> 新: xl/2xl)
-            if (fontSizeLevel === 0) { // 小
-                qText.className = "text-lg md:text-xl font-bold leading-relaxed text-white w-full break-words whitespace-pre-wrap drop-shadow-md";
-            } else if (fontSizeLevel === 1) { // 中
-                qText.className = "text-xl md:text-2xl font-bold leading-relaxed text-white w-full break-words whitespace-pre-wrap drop-shadow-md";
-            } else { // 大
-                qText.className = "text-2xl md:text-3xl font-bold leading-relaxed text-white w-full break-words whitespace-pre-wrap drop-shadow-md";
+            const container = document.getElementById('qTextContainer');
+            const indicator = document.getElementById('fontSizeIndicator');
+
+            // Reset
+            qText.style.fontSize = '';
+            qText.className = "font-bold leading-relaxed text-white w-full break-words whitespace-pre-wrap drop-shadow-md";
+
+            if (fontSizeLevel === 0) { // AUTO
+                indicator.textContent = "AUTO";
+                // Auto-Fit Logic
+                let size = 3.5; // Start Big (rem)
+                qText.style.fontSize = `${size}rem`;
+                
+                // Reduce until fits or too small
+                while (container.scrollHeight > container.clientHeight && size > 1.2) {
+                    size -= 0.1;
+                    qText.style.fontSize = `${size}rem`;
+                }
+            } else if (fontSizeLevel === 1) { // LARGE
+                indicator.textContent = "L";
+                qText.style.fontSize = "2.5rem";
+            } else { // HUGE
+                indicator.textContent = "XL";
+                qText.style.fontSize = "3.5rem";
+            }
+        }
+        
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen();
+                else if (document.documentElement.webkitRequestFullscreen) document.documentElement.webkitRequestFullscreen();
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
             }
         }
 
         function escapeHtml(str) {
             if (!str) return '';
-            return str.replace(/[&<>"']/g, function(match) {
-                const escape = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
-                return escape[match];
-            });
+            return str.replace(/[&<>"']/g, match => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[match]);
         }
     </script>
 </body>
