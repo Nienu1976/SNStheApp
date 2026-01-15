@@ -62,68 +62,73 @@
 
     <main class="max-w-5xl mx-auto px-4 mt-8 relative z-20 pb-20">
 
-        <!-- 設定・エンジン選択 -->
+        <!-- エンジン設定 -->
         <section class="bg-[#0a0a12]/90 border-l-2 border-cyan-500 backdrop-blur-md mb-8">
             <div class="bg-black/50 p-4 border border-slate-800">
                 <div class="flex justify-between items-center mb-2">
-                    <label class="block text-xs font-bold text-cyan-400 flex items-center gap-2 tracking-widest font-mono">
-                        <i data-lucide="cpu" class="w-3 h-3"></i> ENGINE_CONTROL
+                    <label class="block text-xs font-bold text-cyan-400 flex items-center gap-2 tracking-widest font-mono uppercase">
+                        <i data-lucide="cpu" class="w-3 h-3"></i> Engine_Profile
                     </label>
-                    <button onclick="openModal('helpModal')" class="text-[10px] text-slate-400 hover:text-white flex items-center gap-1 hover:underline transition-colors uppercase font-mono">
+                    <button onclick="openModal('helpModal')" class="text-[10px] text-slate-400 hover:text-white flex items-center gap-1 hover:underline transition-colors font-mono">
                         <i data-lucide="help-circle" class="w-3 h-3"></i> 制限とエラーの対策
                     </button>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <!-- APIキー入力 -->
                     <div class="flex gap-0 shadow-[0_0_15px_rgba(0,255,255,0.05)]">
-                        <div class="bg-slate-800 px-3 flex items-center text-slate-400 text-[10px] border border-r-0 border-slate-700 font-mono tracking-tighter">GEMINI_KEY</div>
+                        <div class="bg-slate-800 px-3 flex items-center text-slate-400 text-[10px] border border-r-0 border-slate-700 font-mono">API_KEY</div>
                         <input type="password" id="apiKeyInput" placeholder="AIzaSy..." class="flex-1 p-2 bg-black border border-slate-700 focus:border-cyan-500 outline-none transition-all text-sm text-cyan-500 placeholder-slate-700 font-mono">
                     </div>
                     
+                    <!-- モデル選択 -->
                     <div class="flex gap-0 shadow-[0_0_15px_rgba(0,255,255,0.05)]">
-                        <div class="bg-slate-800 px-3 flex items-center text-slate-400 text-[10px] border border-r-0 border-slate-700 font-mono tracking-tighter shrink-0">MODEL_SELECT</div>
-                        <select id="modelSelect" class="flex-1 p-2 bg-black border border-slate-700 focus:border-cyan-500 outline-none transition-all text-xs text-cyan-400 font-mono">
-                            <option value="gemini-2.5-flash-preview-09-2025" selected>Gemini 2.5 Flash (推奨: 最新・1500回/日)</option>
-                            <option value="gemini-2.0-flash-exp">Gemini 2.0 Flash Exp (高速試作版)</option>
+                        <div class="bg-slate-800 px-3 flex items-center text-slate-400 text-[10px] border border-r-0 border-slate-700 font-mono shrink-0 uppercase tracking-tighter">AI_Engine</div>
+                        <select id="modelSelect" class="flex-1 p-2 bg-black border border-slate-700 focus:border-cyan-500 outline-none transition-all text-[11px] text-cyan-400 font-mono">
+                            <option value="gemini-2.5-flash-lite" selected>Gemini 2.5 Flash-lite (推奨: 1500回/日)</option>
+                            <option value="gemini-2.5-flash-preview-09-2025">Gemini 2.5 Flash (標準版)</option>
                         </select>
                     </div>
                 </div>
-                <p id="modelStatus" class="mt-2 text-[9px] text-slate-500 font-mono italic">※Gemini 2.5 Flashは1日約1,500回まで無料で利用可能です。</p>
+                <p id="modelStatus" class="mt-2 text-[9px] text-slate-500 font-mono italic">※Gemini 2.5 Flash-lite は1日1,500リクエストが可能な無料枠の主役です。</p>
             </div>
         </section>
 
-        <!-- SNStheApp 紹介 & プロジェクト・ナビ -->
+        <!-- アプリ紹介 & ナビゲーション -->
         <div class="space-y-4 mb-8">
-            <!-- アプリ紹介 -->
             <div class="bg-slate-900/80 border border-cyan-900/30 rounded-xl p-5 flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg relative overflow-hidden">
                 <div class="absolute top-0 left-0 w-1 h-full bg-cyan-600 shadow-[0_0_10px_rgba(6,182,212,0.5)]"></div>
                 <div class="text-center md:text-left z-10 pl-2">
                     <h3 class="text-cyan-400 font-bold mb-1 flex items-center justify-center md:justify-start gap-2 text-lg uppercase tracking-tight font-tech">
                         <i data-lucide="smartphone" class="w-5 h-5"></i> Official App: SNStheApp
                     </h3>
-                    <p class="text-xs text-slate-300">最高の早押しクイズ体験を、あなたのポケットに。</p>
+                    <p class="text-xs text-slate-300 font-mono tracking-tighter italic opacity-80">The Ultimate Quick-Response Quiz Experience.</p>
                 </div>
                 <div class="flex gap-2 z-10 shrink-0">
-                    <a href="https://apps.apple.com/jp/app/%E9%9F%B3%E5%A3%B0%E3%81%A7%E6%8A%BC%E3%81%9B%E3%82%8B%E6%97%A9%E6%8A%BC%E3%81%97%E3%82%AF%E3%82%A4%E3%82%BA%E7%B7%B4%E7%BF%92%E3%82%A2%E3%83%97%E3%83%AA-snstheapp/id6753719073" target="_blank" class="flex items-center bg-black text-white px-3 py-2 rounded border border-slate-700 hover:border-cyan-500 transition-colors text-xs font-mono uppercase tracking-tighter shadow-lg">App Store</a>
-                    <a href="https://play.google.com/store/apps/details?id=com.ATTENTIONSEEKINGMONSTERS.SNSApp" target="_blank" class="flex items-center bg-black text-white px-3 py-2 rounded border border-slate-700 hover:border-cyan-500 transition-colors text-xs font-mono uppercase tracking-tighter shadow-lg">Google Play</a>
+                    <a href="https://apps.apple.com/jp/app/%E9%9F%B3%E5%A3%B0%E3%81%A7%E6%8A%BC%E3%81%9B%E3%82%8B%E6%97%A9%E6%8A%BC%E3%81%97%E3%82%AF%E3%82%A4%E3%82%BA%E7%B7%B4%E7%BF%92%E3%82%A2%E3%83%97%E3%83%AA-snstheapp/id6753719073" target="_blank" class="flex items-center bg-black text-white px-3 py-2 rounded border border-slate-700 hover:border-cyan-500 transition-colors text-xs font-mono uppercase shadow-lg group">
+                       <i data-lucide="apple" class="w-4 h-4 mr-1"></i> App Store
+                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=com.ATTENTIONSEEKINGMONSTERS.SNSApp" target="_blank" class="flex items-center bg-black text-white px-3 py-2 rounded border border-slate-700 hover:border-cyan-500 transition-colors text-xs font-mono uppercase shadow-lg group">
+                       <i data-lucide="play-circle" class="w-4 h-4 mr-1"></i> Google Play
+                    </a>
                 </div>
             </div>
 
-            <!-- 関連プロジェクトリンク (ナビゲーション復元) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <a href="https://nienu1976.github.io/SNStheApp/" target="_blank" class="bg-slate-900/40 border border-slate-800 rounded-lg p-3 flex flex-col items-center justify-center gap-1 hover:bg-cyan-950/20 hover:border-cyan-500/50 transition-all group">
+            <!-- プロジェクト・ナビゲーション -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 font-mono">
+                <a href="https://nienu1976.github.io/SNStheApp/" target="_blank" class="bg-slate-900/40 border border-slate-800 rounded-lg p-3 flex flex-col items-center justify-center gap-1 hover:bg-cyan-950/20 hover:border-cyan-500/50 transition-all group text-center">
                     <div class="flex items-center gap-2 text-cyan-400 mb-1">
                         <i data-lucide="globe" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
-                        <span class="text-xs font-black tracking-widest font-mono">OFFICIAL_SITE</span>
+                        <span class="text-xs font-black tracking-widest">OFFICIAL_SITE</span>
                     </div>
-                    <span class="text-[9px] text-slate-500 uppercase font-mono tracking-tighter">SNStheApp Landing Page</span>
+                    <span class="text-[9px] text-slate-500 uppercase tracking-tighter italic">SNStheApp Home Page (プロジェクト公式サイト)</span>
                 </a>
-                <a href="mcassist.html" target="_blank" class="bg-slate-900/40 border border-slate-800 rounded-lg p-3 flex flex-col items-center justify-center gap-1 hover:bg-fuchsia-950/20 hover:border-fuchsia-500/50 transition-all group">
+                <a href="mcassist.html" target="_blank" class="bg-slate-900/40 border border-slate-800 rounded-lg p-3 flex flex-col items-center justify-center gap-1 hover:bg-fuchsia-950/20 hover:border-fuchsia-500/50 transition-all group text-center">
                     <div class="flex items-center gap-2 text-fuchsia-400 mb-1">
                         <i data-lucide="monitor" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
-                        <span class="text-xs font-black tracking-widest font-mono">QUIZ_MASTER_ASSIST</span>
+                        <span class="text-xs font-black tracking-widest">QUIZ_MASTER_ASSIST</span>
                     </div>
-                    <span class="text-[9px] text-slate-500 uppercase font-mono tracking-tighter">CSV Prompter Tool</span>
+                    <span class="text-[9px] text-slate-500 uppercase tracking-tighter italic">CSV Prompter Tool (司会用カンペツール)</span>
                 </a>
             </div>
         </div>
@@ -131,8 +136,9 @@
         <!-- 生成フォーム -->
         <section id="generatorSection" class="bg-black border border-slate-800 p-6 md:p-8 shadow-2xl mb-12 relative overflow-hidden group">
             <div class="absolute top-0 left-0 w-1 h-full bg-slate-800 group-hover:bg-cyan-600 transition-colors duration-500"></div>
+            <div class="absolute top-0 right-0 w-16 h-16 bg-cyan-500/5 rounded-bl-full pointer-events-none"></div>
             <h2 class="text-lg font-bold mb-6 flex items-center gap-3 text-white tracking-widest uppercase font-mono">
-                <i data-lucide="terminal" class="w-5 h-5 text-cyan-500"></i> Generator Console
+                <i data-lucide="terminal" class="w-5 h-5 text-cyan-500"></i> Generation Console
             </h2>
             <div class="space-y-6">
                 <div>
@@ -144,13 +150,13 @@
                     <input type="text" id="answerInput" class="w-full p-4 bg-[#05050a] border border-slate-700 rounded-none focus:border-fuchsia-500 outline-none transition-all text-lg font-bold text-white font-mono" placeholder="正解を入力">
                 </div>
                 
-                <!-- エラー診断表示 -->
+                <!-- エラー診断エリア -->
                 <div id="errorMessage" class="hidden bg-red-950/30 border border-red-900 text-red-400 p-4 flex flex-col gap-3 text-xs animate-fade-in font-mono">
                     <div class="flex items-center gap-3">
                         <i data-lucide="alert-circle" class="w-4 h-4 shrink-0"></i>
                         <span id="errorText" class="font-bold uppercase">SYSTEM_ERROR</span>
                     </div>
-                    <div id="errorDiagnostic" class="bg-black/50 p-3 border border-red-900/50 rounded text-[10px] text-red-300/80 hidden break-all leading-relaxed overflow-x-auto whitespace-pre-wrap">
+                    <div id="errorDiagnostic" class="bg-black/50 p-3 border border-red-900/50 rounded text-[10px] text-red-300/80 hidden break-all leading-relaxed overflow-x-auto whitespace-pre-wrap font-mono uppercase">
                     </div>
                 </div>
 
@@ -162,6 +168,53 @@
             </div>
         </section>
 
+        <!-- 広告エリア (4商品) -->
+        <div class="mb-12">
+            <p class="text-[10px] text-slate-500 font-mono mb-3 tracking-widest text-center uppercase border-b border-slate-900 pb-1 w-fit mx-auto px-4 font-bold text-shadow">Recommended Items</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <a href="https://amzn.to/4b4hHtD" target="_blank" class="block bg-slate-900 border border-slate-700 rounded-lg overflow-hidden hover:border-cyan-500 transition-all group p-4 backdrop-blur-md">
+                   <div class="flex items-center gap-4">
+                       <img src="https://m.media-amazon.com/images/I/713mrEeF6yL._SL1500_.jpg" class="w-16 h-16 object-contain bg-white p-1 rounded shrink-0 shadow-sm" alt="WHAT 2024">
+                       <div>
+                           <p class="text-[9px] text-cyan-400 font-bold font-mono uppercase mb-0.5">Official Book</p>
+                           <p class="text-xs font-bold text-gray-200 line-clamp-1 leading-tight uppercase font-mono tracking-tighter">WHAT 2024 公式問題集</p>
+                           <p class="text-[8px] text-slate-500 mt-1 uppercase font-mono italic">Amazon.co.jp <i data-lucide="external-link" class="w-2 h-2 inline"></i></p>
+                       </div>
+                   </div>
+                </a>
+                <a href="https://amzn.to/4sFAotS" target="_blank" class="block bg-slate-900 border border-slate-700 rounded-lg overflow-hidden hover:border-fuchsia-500 transition-all group p-4 backdrop-blur-md">
+                    <div class="flex items-center gap-4">
+                        <img src="https://m.media-amazon.com/images/I/61qkiLPGwiL._SL1200_.jpg" class="w-16 h-16 object-contain bg-white p-1 rounded shrink-0 shadow-sm" alt="知識検定事典">
+                        <div>
+                            <p class="text-[9px] text-fuchsia-400 font-bold font-mono uppercase mb-0.5">Reference</p>
+                            <p class="text-xs font-bold text-gray-200 line-clamp-1 leading-tight uppercase font-mono tracking-tighter">知識検定事典</p>
+                            <p class="text-[8px] text-slate-500 mt-1 uppercase font-mono italic">Amazon.co.jp <i data-lucide="external-link" class="w-2 h-2 inline"></i></p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://amzn.to/4pGRFQC" target="_blank" class="block bg-slate-900 border border-slate-700 rounded-lg overflow-hidden hover:border-cyan-500 transition-all group p-4 backdrop-blur-md">
+                    <div class="flex items-center gap-4">
+                        <img src="https://m.media-amazon.com/images/I/71ENrm2+riL._SL1468_.jpg" class="w-16 h-16 object-contain bg-white p-1 rounded shrink-0 shadow-sm" alt="QuizKnock">
+                        <div>
+                            <p class="text-[9px] text-cyan-400 font-bold font-mono uppercase mb-0.5">Game</p>
+                            <p class="text-xs font-bold text-gray-200 line-clamp-1 leading-tight uppercase font-mono tracking-tighter">QuizKnock 博識クイズDX</p>
+                            <p class="text-[8px] text-slate-500 mt-1 uppercase font-mono italic">Amazon.co.jp <i data-lucide="external-link" class="w-2 h-2 inline"></i></p>
+                        </div>
+                    </div>
+                 </a>
+                <a href="https://amzn.to/4qU9P2p" target="_blank" class="block bg-slate-900 border border-slate-700 rounded-lg overflow-hidden hover:border-fuchsia-500 transition-all group p-4 backdrop-blur-md">
+                    <div class="flex items-center gap-4">
+                        <img src="https://m.media-amazon.com/images/I/71rDt9mKr0L._AC_SL1500_.jpg" class="w-16 h-16 object-contain bg-white p-1 rounded shrink-0 shadow-sm" alt="ブザー">
+                        <div>
+                            <p class="text-[9px] text-fuchsia-400 font-bold font-mono uppercase mb-0.5">Gadget</p>
+                            <p class="text-xs font-bold text-gray-200 line-clamp-1 leading-tight uppercase font-mono tracking-tighter">クイックアンサーブザー</p>
+                            <p class="text-[8px] text-slate-500 mt-1 uppercase font-mono italic">Amazon.co.jp <i data-lucide="external-link" class="w-2 h-2 inline"></i></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
         <!-- データベースエリア -->
         <section>
             <div class="flex flex-col md:flex-row justify-between items-end mb-6 gap-6 border-b border-slate-800 pb-6">
@@ -169,105 +222,117 @@
                     <i data-lucide="database" class="w-5 h-5 text-cyan-500"></i> Records
                     <span id="listCount" class="bg-cyan-950 text-cyan-400 px-3 py-1 text-xs font-mono">0</span>
                 </h2>
-                
                 <div class="flex flex-wrap items-center gap-2 font-mono">
                     <input type="file" id="importInput" accept=".json" class="hidden">
-                    <button onclick="document.getElementById('importInput').click()" class="text-[9px] bg-black border border-slate-700 text-slate-500 px-3 py-1.5 hover:border-white hover:text-white transition-all uppercase tracking-tighter border-dashed">
+                    <button onclick="document.getElementById('importInput').click()" class="text-[9px] bg-black border border-slate-700 text-slate-500 px-3 py-1.5 hover:border-white hover:text-white transition-all uppercase tracking-tighter">
                         <i data-lucide="upload" class="w-3 h-3 inline mr-1"></i> JSON_Load
                     </button>
-                    <button onclick="exportJSON()" class="text-[9px] bg-black border border-slate-700 text-slate-500 px-3 py-1.5 hover:border-white hover:text-white transition-all uppercase tracking-tighter border-dashed">
+                    <button onclick="exportJSON()" class="text-[9px] bg-black border border-slate-700 text-slate-500 px-3 py-1.5 hover:border-white hover:text-white transition-all uppercase tracking-tighter">
                         <i data-lucide="file-json" class="w-3 h-3 inline mr-1"></i> JSON_Save
                     </button>
-                    <button onclick="exportCSV()" class="text-[9px] bg-cyan-950/20 border border-cyan-800 text-cyan-600 px-3 py-1.5 hover:bg-cyan-900/40 hover:text-cyan-400 transition-all uppercase tracking-tighter font-bold">
+                    <button onclick="exportCSV()" class="text-[9px] bg-cyan-950/20 border border-cyan-800 text-cyan-600 px-3 py-1.5 hover:bg-cyan-900/40 hover:text-cyan-400 transition-all uppercase tracking-tighter font-bold shadow-[0_0_10px_rgba(6,182,212,0.1)]">
                         <i data-lucide="download" class="w-3 h-3 inline mr-1"></i> CSV_Out
                     </button>
                 </div>
             </div>
-
-            <div id="quizListContainer" class="space-y-6">
-                <div class="text-center py-20 bg-black/40 border border-slate-800 border-dashed text-slate-600 uppercase font-mono text-sm tracking-widest opacity-20 italic">No Data Entry Found</div>
+            <div id="quizListContainer" class="space-y-6 pb-20">
+                <!-- JSでリスト生成 -->
             </div>
         </section>
-
-        <!-- 広告エリア -->
-        <div class="my-12">
-            <p class="text-[10px] text-slate-500 font-mono mb-3 tracking-widest text-center uppercase border-b border-slate-900 pb-1 w-fit mx-auto px-4 font-bold">Recommended Items</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <a href="https://amzn.to/4b4hHtD" target="_blank" class="block bg-slate-900 border border-slate-700 rounded-lg overflow-hidden hover:border-cyan-500 transition-all group p-4 backdrop-blur-md">
-                   <div class="flex items-center gap-4">
-                       <img src="https://m.media-amazon.com/images/I/713mrEeF6yL._SL1500_.jpg" class="w-16 h-16 object-contain bg-white p-1 rounded shrink-0 shadow-sm">
-                       <div>
-                           <p class="text-xs font-bold text-gray-200 line-clamp-1 leading-tight uppercase font-mono tracking-tighter">WHAT 2024 問題集</p>
-                           <p class="text-[10px] text-slate-500 mt-1 uppercase font-mono italic">Quiz Reference</p>
-                       </div>
-                   </div>
-                </a>
-                <a href="https://amzn.to/4pGRFQC" target="_blank" class="block bg-slate-900 border border-slate-700 rounded-lg overflow-hidden hover:border-fuchsia-500 transition-all group p-4 backdrop-blur-md">
-                    <div class="flex items-center gap-4">
-                        <img src="https://m.media-amazon.com/images/I/71ENrm2+riL._SL1468_.jpg" class="w-16 h-16 object-contain bg-white p-1 rounded shrink-0 shadow-sm">
-                        <div>
-                            <p class="text-xs font-bold text-gray-200 line-clamp-1 leading-tight uppercase font-mono tracking-tighter">QuizKnock DX</p>
-                            <p class="text-[10px] text-slate-500 mt-1 uppercase font-mono italic">Trivia Game</p>
-                        </div>
-                    </div>
-                 </a>
-            </div>
-        </div>
 
     </main>
 
     <footer class="bg-black py-16 text-center text-sm border-t border-slate-900 font-mono">
         <div class="max-w-4xl mx-auto px-4">
             <p class="mb-2 text-slate-600 tracking-wider font-bold">&copy; 2026 4択問題選択肢生成ジェネレーター</p>
-            <p class="text-slate-800 text-[10px] uppercase tracking-[0.3em]">Pure 2.x Neural Architecture /// 1500 RPD Mode</p>
+            <p class="text-slate-800 text-[10px] uppercase tracking-[0.3em]">Pure 2.x Neural Engine /// SNStheApp Project Hub</p>
         </div>
     </footer>
 
     <!-- モーダル系 -->
     
-    <div id="helpModal" class="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 backdrop-blur-md hidden font-mono">
-        <div class="bg-[#0a0a12] border border-cyan-500/40 max-w-lg w-full p-0 relative shadow-[0_0_50px_rgba(0,255,255,0.1)] rounded-xl overflow-hidden animate-fade-in">
-            <div class="bg-cyan-950/20 p-4 border-b border-cyan-900/50 flex justify-between items-center uppercase tracking-widest font-bold">
-                <h3><i data-lucide="terminal" class="w-4 h-4 inline mr-2 text-cyan-500"></i> Diagnostic Guide</h3>
-                <button onclick="closeModal('helpModal')" class="text-slate-500 hover:text-white transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
+    <div id="welcomeModal" class="fixed inset-0 bg-black/95 z-[100] flex items-center justify-center p-4 backdrop-blur-md hidden animate-fade-in font-mono">
+        <div class="bg-[#0a0a12] border border-cyan-500/50 shadow-[0_0_30px_rgba(0,255,255,0.2)] max-w-2xl w-full p-0 overflow-hidden relative rounded-xl">
+            <div class="bg-black p-6 text-center border-b border-cyan-900">
+                <h2 class="text-xl font-bold mb-1 text-white tracking-widest uppercase">System Initialized</h2>
+                <p class="text-cyan-500 text-xs">Generator V4.0.5 Ready</p>
             </div>
-            <div class="p-6 space-y-4 text-xs leading-relaxed text-slate-400">
-                <div class="bg-cyan-950/20 border border-cyan-800/30 p-4 rounded space-y-2">
-                    <p class="font-bold text-cyan-400 uppercase">Rate Limits</p>
-                    <p>1分間30回 / 1日1,500回リクエスト可能です。大量の問題作成にも耐えうる仕様です。</p>
+            <div class="p-6 space-y-6">
+                <div class="grid md:grid-cols-3 gap-6 text-center text-shadow">
+                    <div>
+                        <div class="w-10 h-10 bg-cyan-950 border border-cyan-800 text-cyan-400 flex items-center justify-center mx-auto mb-2 rounded shadow-lg shadow-cyan-900/20">
+                           <i data-lucide="key" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-white mb-1 text-xs uppercase">1. Key_Access</h3>
+                        <p class="text-[9px] text-slate-400 leading-relaxed uppercase">AI Studioから<br/>無料キーを取得</p>
+                    </div>
+                    <div>
+                        <div class="w-10 h-10 bg-cyan-950 border border-cyan-800 text-cyan-400 flex items-center justify-center mx-auto mb-2 rounded shadow-lg shadow-cyan-900/20">
+                           <i data-lucide="terminal" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-white mb-1 text-xs uppercase">2. Data_Input</h3>
+                        <p class="text-[9px] text-slate-400 leading-relaxed uppercase">問題と正解を<br/>入力して実行</p>
+                    </div>
+                    <div>
+                        <div class="w-10 h-10 bg-cyan-950 border border-cyan-800 text-cyan-400 flex items-center justify-center mx-auto mb-2 rounded shadow-lg shadow-cyan-900/20">
+                           <i data-lucide="cpu" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-white mb-1 text-xs uppercase">3. Gen_Complete</h3>
+                        <p class="text-[9px] text-slate-400 leading-relaxed uppercase">2.5 Liteモデルが<br/>選択肢を自動生成</p>
+                    </div>
                 </div>
-                <div class="bg-amber-950/20 border border-amber-800/30 p-4 rounded space-y-2">
-                    <p class="font-bold text-amber-500 uppercase">Connection Troubleshooting</p>
-                    <p>
-                        「API key not valid」が出る場合は、AI Studioからキーを<span class="text-white">コピーボタン</span>で再コピーしてください。前後の余計な空白はシステムが自動で除去します。
-                    </p>
-                </div>
-            </div>
-            <div class="p-4 bg-black/50 border-t border-cyan-900/30 flex justify-center">
-                <button onclick="closeModal('helpModal')" class="px-10 py-2 bg-cyan-950 border border-cyan-500 text-cyan-400 font-bold hover:bg-cyan-500 hover:text-black transition-all">OK</button>
+                <button onclick="closeWelcome()" class="w-full bg-cyan-600 text-black py-4 font-bold text-base hover:bg-cyan-400 transition-all flex items-center justify-center gap-2 tracking-widest uppercase">
+                    Launch Generator <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- 編集モーダル -->
-    <div id="editModal" class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 backdrop-blur-md hidden">
-        <div class="bg-black border border-cyan-500 p-6 shadow-[0_0_30px_rgba(0,255,255,0.3)] w-full max-w-2xl relative rounded-none animate-fade-in font-mono">
-            <h3 class="text-lg font-bold mb-6 text-white tracking-widest flex items-center gap-2 uppercase font-mono tracking-tighter"><i data-lucide="edit-2" class="w-5 h-5 text-cyan-500"></i> Edit Entry</h3>
+    <!-- 診断・ヘルプモーダル -->
+    <div id="helpModal" class="fixed inset-0 bg-black/95 z-[110] flex items-center justify-center p-4 backdrop-blur-md hidden font-mono text-shadow">
+        <div class="bg-[#0a0a12] border border-cyan-500/40 max-w-lg w-full p-0 relative shadow-[0_0_50px_rgba(0,255,255,0.1)] rounded-xl overflow-hidden animate-fade-in">
+            <div class="bg-cyan-950/20 p-4 border-b border-cyan-900/50 flex justify-between items-center uppercase tracking-widest font-bold">
+                <h3><i data-lucide="terminal" class="w-4 h-4 inline mr-2 text-cyan-500"></i> Debug_Log_Guide</h3>
+                <button onclick="closeModal('helpModal')" class="text-slate-500 hover:text-white transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <div class="p-6 space-y-4 text-xs leading-relaxed text-slate-400">
+                <div class="bg-cyan-950/20 border border-cyan-800/30 p-4 rounded space-y-2">
+                    <p class="font-bold text-cyan-400 uppercase tracking-widest">1. Quota Information</p>
+                    <p>Gemini 2.5 Flash-lite は、1日に約 1,500回リクエスト可能です。大量の問題生成にも対応できます。</p>
+                </div>
+                <div class="bg-amber-950/20 border border-amber-800/30 p-4 rounded space-y-2 text-[10px]">
+                    <p class="font-bold text-amber-500 uppercase tracking-widest">2. 429/400 Error Troubleshooting</p>
+                    <p>
+                        「API key not valid」が出る場合は、AI Studioからキーを<span class="text-white font-bold underline">コピーボタン</span>で再コピーしてください。手動でのなぞりコピーは空白が含まれやすいため非推奨です。
+                    </p>
+                </div>
+            </div>
+            <div class="p-4 bg-black/50 border-t border-cyan-900/30 flex justify-center text-shadow">
+                <button onclick="closeModal('helpModal')" class="px-10 py-2 bg-cyan-950 border border-cyan-500 text-cyan-400 font-bold hover:bg-cyan-500 hover:text-black transition-all">CLOSE</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 編集用モーダル -->
+    <div id="editModal" class="fixed inset-0 bg-black/90 z-[120] flex items-center justify-center p-4 backdrop-blur-md hidden font-mono">
+        <div class="bg-black border border-cyan-500 p-6 shadow-[0_0_30px_rgba(0,255,255,0.3)] w-full max-w-2xl relative rounded-none animate-fade-in text-shadow">
+            <div class="absolute top-0 right-0 bg-cyan-500 text-black text-[10px] px-2 font-bold uppercase tracking-tighter">Edit_Mode</div>
+            <h3 class="text-lg font-bold mb-6 text-white tracking-widest flex items-center gap-2 uppercase tracking-tighter"><i data-lucide="edit-2" class="w-5 h-5 text-cyan-500"></i> Edit Entry</h3>
             <div class="space-y-6">
                 <div><label class="text-[10px] font-bold text-cyan-600 mb-1 block uppercase">Question</label><input id="editQuestion" class="w-full p-3 bg-slate-900/50 border border-slate-700 text-white focus:border-cyan-500 outline-none text-sm"></div>
                 <div class="grid grid-cols-2 gap-6">
-                    <div class="col-span-2 md:col-span-1"><label class="text-[10px] font-bold text-fuchsia-600 mb-1 block uppercase">Answer</label><input id="editAnswer" class="w-full p-3 bg-fuchsia-950/10 border border-fuchsia-900 text-fuchsia-100 focus:border-fuchsia-500 outline-none font-bold text-sm"></div>
+                    <div class="col-span-2 md:col-span-1"><label class="text-[10px] font-bold text-fuchsia-600 mb-1 block uppercase font-bold">Answer</label><input id="editAnswer" class="w-full p-3 bg-fuchsia-950/10 border border-fuchsia-900 text-fuchsia-100 focus:border-fuchsia-500 outline-none font-bold text-sm"></div>
                     <div class="col-span-2 md:col-span-1 grid grid-cols-1 gap-2">
-                        <div><label class="text-[10px] font-bold text-slate-600 block uppercase font-mono tracking-tighter">Wrong1</label><input id="editWrong1" class="w-full p-2 bg-slate-900 border border-slate-700 text-slate-300 text-xs font-mono"></div>
-                        <div><label class="text-[10px] font-bold text-slate-600 block uppercase font-mono tracking-tighter">Wrong2</label><input id="editWrong2" class="w-full p-2 bg-slate-900 border border-slate-700 text-slate-300 text-xs font-mono"></div>
-                        <div><label class="text-[10px] font-bold text-slate-600 block uppercase font-mono tracking-tighter">Wrong3</label><input id="editWrong3" class="w-full p-2 bg-slate-900 border border-slate-700 text-slate-300 text-xs font-mono"></div>
+                        <div><label class="text-[10px] font-bold text-slate-600 block uppercase font-mono tracking-tighter">Wrong_1</label><input id="editWrong1" class="w-full p-2 bg-slate-900 border border-slate-700 text-slate-300 text-xs font-mono"></div>
+                        <div><label class="text-[10px] font-bold text-slate-600 block uppercase font-mono tracking-tighter">Wrong_2</label><input id="editWrong2" class="w-full p-2 bg-slate-900 border border-slate-700 text-slate-300 text-xs font-mono"></div>
+                        <div><label class="text-[10px] font-bold text-slate-600 block uppercase font-mono tracking-tighter">Wrong_3</label><input id="editWrong3" class="w-full p-2 bg-slate-900 border border-slate-700 text-slate-300 text-xs font-mono"></div>
                     </div>
                 </div>
-                <div><label class="text-[10px] font-bold text-cyan-600/70 mb-1 block uppercase font-mono tracking-tighter">AI Reasoning</label><textarea id="editReason" class="w-full p-2 bg-slate-900/50 border border-slate-700 text-slate-400 text-xs h-20 resize-none outline-none focus:border-cyan-500"></textarea></div>
+                <div><label class="text-[10px] font-bold text-cyan-600/70 mb-1 block uppercase font-mono tracking-tighter">AI Reasoning</label><textarea id="editReason" class="w-full p-2 bg-slate-900/50 border border-slate-700 text-slate-400 text-xs h-20 resize-none outline-none focus:border-cyan-500 transition-colors"></textarea></div>
             </div>
             <div class="flex justify-end gap-3 mt-6 border-t border-slate-800 pt-4">
-                <button onclick="closeModal('editModal')" class="px-6 py-2 text-slate-500 hover:text-white text-xs transition-colors uppercase font-bold font-mono">Cancel</button>
-                <button onclick="saveEdit()" class="px-6 py-2 bg-cyan-600 text-black font-bold hover:bg-cyan-400 transition-colors text-xs flex items-center gap-2 uppercase font-mono">Apply Changes</button>
+                <button onclick="closeModal('editModal')" class="px-6 py-2 text-slate-500 hover:text-white text-xs transition-colors uppercase font-bold tracking-tighter">Cancel</button>
+                <button onclick="saveEdit()" class="px-6 py-2 bg-cyan-600 text-black font-bold hover:bg-cyan-400 transition-colors text-xs flex items-center gap-2 uppercase tracking-tighter font-mono">Apply Changes</button>
             </div>
         </div>
     </div>
@@ -281,6 +346,10 @@
             lucide.createIcons();
             loadApiKey();
             renderList();
+            if (!localStorage.getItem('mcassist_v4_visited')) {
+                 document.getElementById('welcomeModal').classList.remove('hidden');
+            }
+            window.addEventListener('resize', () => { if (currentEditId !== null) applyFontSize(); });
         });
 
         document.getElementById('apiKeyInput').addEventListener('input', (e) => localStorage.setItem('gemini_api_key', e.target.value.trim()));
@@ -315,7 +384,7 @@
         }
 
         async function fetchGeminiWithRetry(apiKey, modelId, payload, retries = 5) {
-            const delays = [2000, 4000, 8000, 16000, 32000];
+            const delays = [1500, 3000, 6000, 12000, 24000];
             const btnText = document.getElementById('generateBtnText');
             const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelId}:generateContent?key=${apiKey}`;
 
@@ -329,7 +398,7 @@
                     if (response.ok) return response;
                     const errData = await response.json().catch(() => ({}));
                     if (response.status === 429) {
-                        if (i === retries) throw new Error(`[${response.status}] 制限回数超過: ${errData.error?.message}`);
+                        if (i === retries) throw new Error(`[${response.status}] 回数制限です: ${errData.error?.message}`);
                         const waitTime = delays[i];
                         if (btnText) btnText.innerHTML = `<i data-lucide="clock" class="w-4 h-4 animate-pulse"></i> Wait ${waitTime/1000}s...`;
                         lucide.createIcons();
@@ -351,8 +420,8 @@
             const btn = document.getElementById('generateBtn');
             const btnText = document.getElementById('generateBtnText');
 
-            if (!apiKey) { showError('APIキーを入力してください。', 'MISSING_KEY'); return; }
-            if (!question || !answer) { showError('データが不足しています。', 'MISSING_CONTENT'); return; }
+            if (!apiKey) { showError('APIキーを入力してください。', 'KEY_REQUIRED'); return; }
+            if (!question || !answer) { showError('入力データが不足しています。', 'CONTENT_MISSING'); return; }
 
             errorBox.classList.add('hidden');
             errorDiag.classList.add('hidden');
@@ -361,13 +430,13 @@
             lucide.createIcons();
 
             try {
-                const prompt = `競技クイズ誤答生成(JSON): {"wrong1":"誤答1","wrong2":"誤答2","wrong3":"誤答3","reason":"解説"} 問題:${question} 正解:${answer}`;
+                const prompt = `競技クイズ誤答生成(JSON出力): {"wrong1":"誤答1","wrong2":"誤答2","wrong3":"誤答3","reason":"解説"} 問題:${question} 正解:${answer}`;
                 const payload = { contents: [{ parts: [{ text: prompt }] }] };
                 const response = await fetchGeminiWithRetry(apiKey, modelId, payload);
                 const data = await response.json();
                 const text = data.candidates[0].content.parts[0].text;
                 const jsonMatch = text.match(/\{[\s\S]*\}/);
-                if (!jsonMatch) throw new Error('解析エラー');
+                if (!jsonMatch) throw new Error('データ抽出失敗。AIの応答を確認してください。');
                 const parsed = JSON.parse(jsonMatch[0]);
                 const newQuiz = { id: Date.now(), question, answer, ...parsed };
                 quizList.unshift(newQuiz);
@@ -383,7 +452,7 @@
             const box = document.getElementById('errorMessage');
             document.getElementById('errorText').textContent = msg;
             const diagBox = document.getElementById('errorDiagnostic');
-            diagBox.textContent = `[DIAG_INFO]\n${diag}`;
+            diagBox.textContent = `[FAILURE_DIAGNOSTIC]\n${diag}`;
             box.classList.remove('hidden');
             diagBox.classList.remove('hidden');
         }
@@ -393,7 +462,7 @@
             document.getElementById('listCount').textContent = quizList.length;
             container.innerHTML = '';
             if (quizList.length === 0) {
-                container.innerHTML = `<div class="text-center py-20 bg-black/40 border border-slate-800 border-dashed text-slate-700 uppercase font-mono text-xs tracking-widest opacity-30 italic">Storage Empty</div>`;
+                container.innerHTML = `<div class="text-center py-20 bg-black/40 border border-slate-800 border-dashed text-slate-700 uppercase font-mono text-xs tracking-widest opacity-20 italic">No Database Entry</div>`;
                 return;
             }
             quizList.forEach(quiz => {
@@ -408,14 +477,19 @@
                         </div>
                     `).join('');
                     card.className = "bg-black/50 p-6 border-l-4 border-cyan-500 backdrop-blur-md animate-fade-in";
-                    card.innerHTML = `<div class="flex justify-between items-start mb-6"><h3 class="font-bold text-lg text-cyan-50 flex items-start gap-3 leading-relaxed font-mono italic">Q. ${quiz.question}</h3><button onclick="this.nextElementSibling.classList.toggle('hidden')" class="text-[10px] border border-cyan-800 text-cyan-400 px-3 py-1 hover:bg-cyan-900 transition-colors uppercase font-mono font-bold tracking-widest shrink-0">Show Answer</button><div class="hidden absolute right-6 top-16 bg-black p-4 border border-fuchsia-500 text-fuchsia-400 shadow-2xl z-10 animate-fade-in text-xs font-mono border-l-4">正解: ${quiz.answer}<br><span class="text-slate-400 text-[10px] mt-1 block leading-tight font-sans">${quiz.reason}</span></div></div><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${optsHtml}</div>`;
+                    card.innerHTML = `<div class="flex justify-between items-start mb-6"><h3 class="font-bold text-lg text-cyan-50 flex items-start gap-3 leading-relaxed font-mono italic text-shadow">Q. ${quiz.question}</h3><button onclick="this.nextElementSibling.classList.toggle('hidden')" class="text-[10px] border border-cyan-800 text-cyan-400 px-3 py-1 hover:bg-cyan-900 transition-colors uppercase font-mono font-bold tracking-widest shrink-0">Show Ans</button><div class="hidden absolute right-6 top-16 bg-black p-4 border border-fuchsia-500 text-fuchsia-400 shadow-2xl z-10 animate-fade-in text-xs font-mono border-l-4">正解: ${quiz.answer}<br><span class="text-slate-400 text-[10px] mt-1 block leading-tight font-sans italic opacity-80 font-mono">${quiz.reason}</span></div></div><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${optsHtml}</div>`;
                 } else {
                     card.className = "bg-black/60 p-5 border border-slate-800 group hover:border-cyan-500/50 transition-all animate-fade-in";
-                    card.innerHTML = `<div class="mb-4 pr-20 font-mono italic text-lg font-bold text-slate-200 uppercase tracking-tighter leading-none">Q. ${quiz.question}</div><div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4 text-sm font-mono tracking-tighter"><div class="p-3 bg-fuchsia-950/20 border border-fuchsia-900/50 text-fuchsia-300 flex gap-2 items-center"><span class="bg-fuchsia-900/50 px-2 text-[10px] border border-fuchsia-800 font-bold uppercase tracking-widest text-shadow">TRUE</span>${quiz.answer}</div><div class="p-3 bg-slate-900/50 border border-slate-800 text-slate-500 flex gap-2 items-center"><span class="bg-slate-800 px-2 text-[10px] font-bold uppercase tracking-widest opacity-50">FALSE</span>${quiz.wrong1}</div><div class="p-3 bg-slate-900/50 border border-slate-800 text-slate-500 flex gap-2 items-center"><span class="bg-slate-800 px-2 text-[10px] font-bold uppercase tracking-widest opacity-50">FALSE</span>${quiz.wrong2}</div><div class="p-3 bg-slate-900/50 border border-slate-800 text-slate-500 flex gap-2 items-center"><span class="bg-slate-800 px-2 text-[10px] font-bold uppercase tracking-widest opacity-50">FALSE</span>${quiz.wrong3}</div></div><div class="bg-cyan-950/10 p-3 text-[10px] text-cyan-400/50 mb-2 border border-cyan-900/20 flex items-start gap-2 font-mono leading-tight"><i data-lucide="info" class="w-3 h-3 shrink-0 mt-0.5 opacity-50"></i> <span>${quiz.reason}</span></div><div class="flex justify-end gap-2 border-t border-slate-800 pt-3"><button onclick="startEdit(${quiz.id})" class="text-[9px] text-slate-500 hover:text-cyan-400 flex items-center gap-1 uppercase hover:bg-cyan-950/30 px-3 py-1 transition-colors border border-transparent hover:border-cyan-900 font-mono font-bold tracking-tighter"><i data-lucide="edit-2" class="w-3 h-3"></i> Edit</button><button onclick="deleteItem(${quiz.id})" class="text-[9px] text-slate-500 hover:text-red-400 flex items-center gap-1 uppercase hover:bg-red-950/30 px-3 py-1 transition-colors border border-transparent hover:border-red-900 font-mono font-bold tracking-tighter"><i data-lucide="trash-2" class="w-3 h-3"></i> Delete</button></div>`;
+                    card.innerHTML = `<div class="mb-4 pr-20 font-mono italic text-lg font-bold text-slate-200 uppercase tracking-tighter leading-none">Q. ${quiz.question}</div><div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4 text-sm font-mono tracking-tighter"><div class="p-3 bg-fuchsia-950/20 border border-fuchsia-900/50 text-fuchsia-300 flex gap-2 items-center"><span class="bg-fuchsia-900/50 px-2 text-[10px] border border-fuchsia-800 font-bold uppercase tracking-widest text-shadow">TRUE</span>${quiz.answer}</div><div class="p-3 bg-slate-900/50 border border-slate-800 text-slate-500 flex gap-2 items-center"><span class="bg-slate-800 px-2 text-[10px] font-bold uppercase tracking-widest opacity-50">FALSE</span>${quiz.wrong1}</div><div class="p-3 bg-slate-900/50 border border-slate-800 text-slate-500 flex gap-2 items-center"><span class="bg-slate-800 px-2 text-[10px] font-bold uppercase tracking-widest opacity-50">FALSE</span>${quiz.wrong2}</div><div class="p-3 bg-slate-900/50 border border-slate-800 text-slate-500 flex gap-2 items-center"><span class="bg-slate-800 px-2 text-[10px] font-bold uppercase tracking-widest opacity-50">FALSE</span>${quiz.wrong3}</div></div><div class="bg-cyan-950/10 p-3 text-[10px] text-cyan-400/50 mb-2 border border-cyan-900/20 flex items-start gap-2 font-mono leading-tight italic"><i data-lucide="info" class="w-3 h-3 shrink-0 mt-0.5 opacity-50"></i> <span>${quiz.reason}</span></div><div class="flex justify-end gap-2 border-t border-slate-800 pt-3"><button onclick="startEdit(${quiz.id})" class="text-[9px] text-slate-500 hover:text-cyan-400 flex items-center gap-1 uppercase hover:bg-cyan-950/30 px-3 py-1 transition-colors border border-transparent hover:border-cyan-900 font-mono font-bold tracking-tighter"><i data-lucide="edit-2" class="w-3 h-3"></i> Edit</button><button onclick="deleteItem(${quiz.id})" class="text-[9px] text-slate-500 hover:text-red-400 flex items-center gap-1 uppercase hover:bg-red-950/30 px-3 py-1 transition-colors border border-transparent hover:border-red-900 font-mono font-bold tracking-tighter"><i data-lucide="trash-2" class="w-3 h-3"></i> Delete</button></div>`;
                 }
                 container.appendChild(card);
             });
             lucide.createIcons();
+        }
+
+        function closeWelcome() {
+            document.getElementById('welcomeModal').classList.add('hidden');
+            localStorage.setItem('mcassist_v4_visited', 'true');
         }
 
         function startEdit(id) {
@@ -440,9 +514,9 @@
             renderList();
         }
 
-        function deleteItem(id) { if(confirm('消去しますか？')) { quizList = quizList.filter(q => q.id !== id); localStorage.setItem('quiz_list', JSON.stringify(quizList)); renderList(); } }
+        function deleteItem(id) { if(confirm('破棄しますか？')) { quizList = quizList.filter(q => q.id !== id); localStorage.setItem('quiz_list', JSON.stringify(quizList)); renderList(); } }
         function exportJSON() { const blob = new Blob([JSON.stringify(quizList, null, 2)], {type: 'application/json'}); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `quiz_backup.json`; a.click(); }
-        function importJSON() { const file = document.getElementById('importInput').files[0]; if(!file) return; const reader = new FileReader(); reader.onload = (e) => { try { const data = JSON.parse(e.target.result); quizList = confirm('リストに追加しますか？') ? [...data, ...quizList] : data; localStorage.setItem('quiz_list', JSON.stringify(quizList)); renderList(); } catch(err) { alert('読込失敗'); } }; reader.readAsText(file); }
+        function importJSON() { const file = document.getElementById('importInput').files[0]; if(!file) return; const reader = new FileReader(); reader.onload = (e) => { try { const data = JSON.parse(e.target.result); quizList = confirm('既存リストに追加しますか？') ? [...data, ...quizList] : data; localStorage.setItem('quiz_list', JSON.stringify(quizList)); renderList(); } catch(err) { alert('読み込みエラー'); } }; reader.readAsText(file); }
         function exportCSV() { let csv = '\uFEFFID,問題,選択肢A,選択肢B,選択肢C,選択肢D,正解記号,正解,解説\n'; quizList.forEach(q => { const options = [q.answer, q.wrong1, q.wrong2, q.wrong3].sort(() => Math.random() - 0.5); const correctSymbol = ['A', 'B', 'C', 'D'][options.indexOf(q.answer)]; csv += [q.id, q.question, ...options, correctSymbol, q.answer, q.reason].map(t => `"${String(t).replace(/"/g, '""')}"`).join(',') + '\n'; }); const blob = new Blob([csv], {type: 'text/csv;charset=utf-8;'}); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `quiz_export.csv`; a.click(); }
         function escapeHtml(str) { return str ? str.replace(/[&<>"']/g, match => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[match]) : ''; }
     </script>
