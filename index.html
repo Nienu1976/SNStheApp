@@ -55,7 +55,7 @@
         .font-display { font-family: 'Black Ops One', cursive; }
         .font-cyber { font-family: 'Orbitron', sans-serif; }
 
-        /* --- HERO AREA DESIGN --- */
+        /* --- HERO AREA --- */
         .hero-console {
             position: relative;
             padding: 2rem;
@@ -113,16 +113,6 @@
             0% { clip-path: inset(20% 0 60% 0); }
             50% { clip-path: inset(60% 0 20% 0); }
             100% { clip-path: inset(10% 0 80% 0); }
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        .animate-marquee {
-            display: inline-block;
-            white-space: nowrap;
-            animation: marquee 25s linear infinite;
         }
 
         .section-title {
@@ -236,7 +226,7 @@
             
             <div class="max-w-2xl mx-auto">
                 <p class="text-xl md:text-2xl font-bold text-gray-300 leading-relaxed italic">
-                    <span class="text-cyan-400 font-black">NO COMPROMISE.</span><br>
+                    <span class="text-cyan-400 font-black tracking-widest uppercase block mb-2">Technical Mastery.</span>
                     選球眼と制動を極限まで磨く、<span class="text-white border-b border-white/30">ストイックな自己研鑽</span>を。
                 </p>
             </div>
@@ -253,47 +243,50 @@
             
             <div class="pt-8">
                 <div class="inline-flex flex-col items-center animate-bounce opacity-40">
-                    <span class="font-mono text-[10px] text-gray-500 tracking-[0.3em] mb-2 uppercase">Scroll to Access</span>
+                    <span class="font-mono text-[10px] text-gray-500 tracking-[0.3em] mb-2 uppercase">Connect to Server</span>
                     <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- PHILOSOPHY -->
+    <!-- PHILOSOPHY / REALITY ENGINE -->
     <section class="py-24 px-6 border-t border-white/5 bg-[#08080a]">
         <div class="max-w-4xl mx-auto">
             <h2 class="section-title" data-title="PHILOSOPHY">PHILOSOPHY</h2>
-            <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div class="grid md:grid-cols-2 gap-16 items-start">
                 <div class="space-y-8">
                     <h3 class="text-4xl font-black text-white leading-tight">
                         「わかる」と「押す」の<br>
-                        <span class="text-cyan-400 italic">0.1秒</span>を削り出す。
+                        <span class="text-cyan-400 italic font-cyber">0.1秒</span>を削り出す。
                     </h3>
                     <p class="text-gray-400 leading-8 text-sm">
-                        早押しクイズに必要なのは、知識だけではない。<br>
+                        早押しクイズに必要なのは、単なる知識量だけではない。<br>
                         問読みの音声を聞き分け、確定ポイントを見極め、<br>
-                        指先へ信号を送る「反射神経」と「制動」。<br>
+                        脳から指先へ電気信号を送る「反射」と、指を止める「制動」。<br>
                         <br>
-                        SNStheAppは、そのプロセスを極限まで再現した<br>
-                        ストイックな早押しシミュレーターです。
+                        SNStheAppは、その一連のプロセスを現実の競技シーンに即して再現した、研ぎ澄まされた早押しシミュレーターです。
                     </p>
                 </div>
-                <div class="border border-white/10 p-8 rounded bg-black/40 relative">
-                    <div class="absolute top-0 right-0 p-3 text-[9px] font-mono text-gray-600 tracking-widest uppercase">Reality_Kernel</div>
-                    <ul class="space-y-6 text-xs font-mono text-gray-300">
+                <div class="border border-white/10 p-8 rounded bg-black/60 relative shadow-[0_0_50px_rgba(0,0,0,1)]">
+                    <div class="absolute top-0 right-0 p-3 text-[9px] font-mono text-cyan-500/50 tracking-widest uppercase">REALITY_ENGINE_LOG</div>
+                    <ul class="space-y-8">
                         <li class="flex items-start gap-4">
-                            <span class="text-cyan-400 font-bold mt-1">>></span>
+                            <span class="text-cyan-400 font-bold mt-1 text-lg">»</span>
                             <div>
-                                <strong class="text-white block mb-1 uppercase tracking-widest text-[10px]">REALISTIC LAG</strong>
-                                ボタン押下から音声停止までのタイムラグを物理挙動に基づいて完全再現。
+                                <strong class="text-white block mb-2 uppercase tracking-widest text-xs font-cyber">REALISTIC LAG</strong>
+                                <p class="text-[11px] text-gray-400 leading-relaxed font-mono">
+                                    実際の早押し機同様、ボタンを押してから物理的に音声が止まるまでの僅かなタイムラグを再現。この「ラグの間」に聞こえる一音を予測する訓練が可能。
+                                </p>
                             </div>
                         </li>
                         <li class="flex items-start gap-4">
-                            <span class="text-cyan-400 font-bold mt-1">>></span>
+                            <span class="text-cyan-400 font-bold mt-1 text-lg">»</span>
                             <div>
-                                <strong class="text-white block mb-1 uppercase tracking-widest text-[10px]">MANUAL JUDGEMENT</strong>
-                                自身の解答と照らし合わせ、主観的に正誤を確定。学習効率を最大化。
+                                <strong class="text-white block mb-2 uppercase tracking-widest text-xs font-cyber">MANUAL JUDGEMENT</strong>
+                                <p class="text-[11px] text-gray-400 leading-relaxed font-mono">
+                                    機械的な自動判定に頼らず、自身の解答を声に出し、表示された正解と照らし合わせて主観的に判定。能動的な思考プロセスを重視。
+                                </p>
                             </div>
                         </li>
                     </ul>
@@ -302,58 +295,79 @@
         </div>
     </section>
 
+    <!-- HOW TO USE -->
+    <section class="py-24 px-6 bg-[#0a0a0c] border-y border-white/5">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-center block mb-16 uppercase tracking-tighter" data-title="HOW TO USE">HOW TO USE</h2>
+            
+            <div class="grid md:grid-cols-3 gap-12 text-center">
+                <div class="flex flex-col items-center group">
+                    <div class="relative w-20 h-20 bg-gray-900 rounded-full flex items-center justify-center text-3xl font-black text-cyan-400 border-2 border-cyan-500/30 mb-8 group-hover:scale-110 transition-transform">1</div>
+                    <h3 class="text-xl font-bold text-white mb-3 font-cyber tracking-widest">PUSH</h3>
+                    <p class="text-xs text-gray-400 mb-8 h-12 leading-relaxed">正解がわかった瞬間に押す。<br>不確定ならスルーする判断力を養う。</p>
+                    <div class="w-full max-w-xs border border-white/10 rounded-xl overflow-hidden shadow-2xl opacity-60 group-hover:opacity-100 transition-all duration-500">
+                        <img src="step-push.jpg" alt="Push" class="w-full h-auto">
+                    </div>
+                </div>
+                <div class="flex flex-col items-center group">
+                    <div class="relative w-20 h-20 bg-gray-900 rounded-full flex items-center justify-center text-3xl font-black text-white border-2 border-gray-800 mb-8 group-hover:scale-110 transition-transform">2</div>
+                    <h3 class="text-xl font-bold text-white mb-3 font-cyber tracking-widest">SPEAK</h3>
+                    <p class="text-xs text-gray-400 mb-8 h-12 leading-relaxed">ボタン押下後のラグの間に<br>聞こえる情報を精査し、解答を発声する。</p>
+                    <div class="w-full max-w-xs border border-white/10 rounded-xl overflow-hidden shadow-2xl opacity-60 group-hover:opacity-100 transition-all duration-500">
+                        <img src="step-speak.jpg" alt="Speak" class="w-full h-auto">
+                    </div>
+                </div>
+                <div class="flex flex-col items-center group">
+                    <div class="relative w-20 h-20 bg-gray-900 rounded-full flex items-center justify-center text-3xl font-black text-red-500 border-2 border-red-500/30 mb-8 group-hover:scale-110 transition-transform">3</div>
+                    <h3 class="text-xl font-bold text-white mb-3 font-cyber tracking-widest">JUDGE</h3>
+                    <p class="text-xs text-gray-400 mb-8 h-12 leading-relaxed">解答を表示させ、自身の発声と<br>比較して厳格に自己採点を行う。</p>
+                    <div class="w-full max-w-xs border border-white/10 rounded-xl overflow-hidden shadow-2xl opacity-60 group-hover:opacity-100 transition-all duration-500">
+                        <img src="step-judge.jpg" alt="Judge" class="w-full h-auto">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- WEB TOOLS -->
-    <section class="py-24 px-6 border-y border-white/5 bg-[#0a0a0c]">
+    <section class="py-24 px-6 bg-[#050505] border-b border-white/5">
         <div class="max-w-6xl mx-auto">
             <h2 class="section-title text-center block mb-16 uppercase tracking-tighter" data-title="WEB TOOLS">WEB TOOLS</h2>
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- QUIZ RUSH ARENA -->
                 <a href="https://quiz-rush-arena.web.app/" target="_blank" class="cyber-card rounded-lg border-l-4 border-l-red-600 p-8 flex flex-col gap-6 hover:bg-red-600/5 transition-all group no-underline">
                     <div class="flex justify-between items-start">
-                        <div class="w-14 h-14 bg-red-600/10 rounded flex items-center justify-center text-red-600 border border-red-600/30 group-hover:scale-110 transition-transform">
+                        <div class="w-14 h-14 bg-red-600/10 rounded flex items-center justify-center text-red-600 border border-red-600/30">
                             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                         </div>
-                        <span class="bg-red-600 text-white text-[9px] font-bold px-2 py-1 rounded animate-pulse uppercase tracking-tighter">Testing_Recruit</span>
+                        <span class="bg-red-600 text-white text-[9px] font-bold px-2 py-1 rounded animate-pulse uppercase">Closed_Test_Open</span>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold font-display text-white group-hover:text-red-400 transition-colors italic">QUIZ RUSH ARENA</h3>
-                        <p class="text-xs text-gray-400 mt-4 leading-relaxed font-bold">
-                            グループで楽しむオンラインクイズ運営・解答ツール。大会・フリバ・企画のプラットフォームとして機能。
-                        </p>
-                        <div class="mt-4 p-2 bg-red-950/20 border border-red-900/30 rounded text-[9px] text-red-300 font-mono italic">
-                            >> 現在クローズドテスト協力者を募集中
-                        </div>
-                    </div>
-                    <div class="mt-auto pt-4 flex justify-end">
-                        <span class="text-[10px] font-mono text-red-600 uppercase tracking-widest flex items-center gap-2">Enter_System <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
+                        <h3 class="text-xl font-black font-cyber text-white group-hover:text-red-400 transition-colors italic">QUIZ RUSH ARENA</h3>
+                        <p class="text-xs text-gray-400 mt-4 leading-relaxed font-bold">オンラインクイズ運営・解答システム。大会や企画、フリバのための次世代プラットフォーム。</p>
+                        <div class="mt-4 p-2 bg-red-950/20 border border-red-900/30 rounded text-[9px] text-red-300 font-mono italic">>> 現在クローズドテスト協力者を募集中</div>
                     </div>
                 </a>
 
                 <!-- 4 Choice Generator -->
                 <a href="https://nienu1976.github.io/SNStheApp/selectgenelater.html" target="_blank" class="cyber-card rounded-lg border-l-4 border-l-orange-500 p-8 flex flex-col gap-6 hover:bg-orange-500/5 transition-all group no-underline">
-                    <div class="w-14 h-14 bg-orange-500/10 rounded flex items-center justify-center text-orange-500 border border-orange-500/30 group-hover:scale-110 transition-transform">
+                    <div class="w-14 h-14 bg-orange-500/10 rounded flex items-center justify-center text-orange-500 border border-orange-500/30">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold font-display text-white group-hover:text-orange-400 transition-colors italic">4-CHOICE GEN</h3>
-                        <p class="text-xs text-gray-400 mt-4 leading-relaxed font-bold">4択クイズの選択肢をAIが自動生成。データ作成プロセスを圧倒的に効率化。</p>
-                    </div>
-                    <div class="mt-auto pt-4 flex justify-end">
-                        <span class="text-[10px] font-mono text-orange-500 uppercase tracking-widest flex items-center gap-2">Load_Module <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
+                        <h3 class="text-xl font-black font-cyber text-white group-hover:text-orange-400 transition-colors italic uppercase">4-Choice Gen</h3>
+                        <p class="text-xs text-gray-400 mt-4 leading-relaxed font-bold">4択クイズの選択肢をAIが自動生成。問題データ作成の手間を劇的に削減する支援ツール。</p>
                     </div>
                 </a>
 
                 <!-- QMAssist -->
                 <a href="https://nienu1976.github.io/SNStheApp/QMAssist.html" target="_blank" class="cyber-card rounded-lg border-l-4 border-l-purple-500 p-8 flex flex-col gap-6 hover:bg-purple-500/5 transition-all group no-underline">
-                    <div class="w-14 h-14 bg-purple-500/10 rounded flex items-center justify-center text-purple-500 border border-purple-500/30 group-hover:scale-110 transition-transform">
+                    <div class="w-14 h-14 bg-purple-500/10 rounded flex items-center justify-center text-purple-500 border border-purple-500/30">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold font-display text-white group-hover:text-purple-400 transition-colors italic">QMAssist</h3>
-                        <p class="text-xs text-gray-400 mt-4 leading-relaxed font-bold">クイズ大会やフリバ、企画における問読みを円滑にする多機能補助ツール。</p>
-                    </div>
-                    <div class="mt-auto pt-4 flex justify-end">
-                        <span class="text-[10px] font-mono text-purple-500 uppercase tracking-widest flex items-center gap-2">Load_Module <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
+                        <h3 class="text-xl font-black font-cyber text-white group-hover:text-purple-400 transition-colors italic uppercase">QMAssist</h3>
+                        <p class="text-xs text-gray-400 mt-4 leading-relaxed font-bold">大会やフリバ、企画における「問読み」をスムーズに制御するための多機能アシスタント。</p>
                     </div>
                 </a>
             </div>
@@ -361,44 +375,37 @@
     </section>
 
     <!-- EXPANSION PACKS -->
-    <section id="expansion-packs" class="py-24 px-6 bg-[#050505]">
+    <section id="expansion-packs" class="py-24 px-6">
         <div class="max-w-6xl mx-auto">
             <h2 class="section-title text-center block mb-16 uppercase tracking-tighter" data-title="EXPANSION PACKS">EXPANSION PACKS</h2>
             <div class="pack-grid">
-                <!-- STARTER -->
                 <div class="pack-card" style="border-color: var(--accent-lime);">
                     <div class="pack-card-img-container">
                         <img src="pack_starter.jpg" alt="STARTER">
-                        <div class="absolute top-2 left-2 bg-[#ccff00] text-black text-[9px] font-black px-2 py-0.5 font-cyber uppercase">HOT</div>
+                        <div class="absolute top-2 left-2 bg-[#ccff00] text-black text-[9px] font-black px-2 py-0.5 font-cyber uppercase tracking-tighter">HOT</div>
                     </div>
                     <div class="pack-card-label italic tracking-widest">STARTER PACK</div>
                 </div>
-
-                <!-- BASIC PACK 200 -->
                 <div class="pack-card" style="border-color: var(--accent-basic);">
                     <div class="pack-card-img-container">
                         <img src="pack_basic.jpg" alt="BASIC PACK 200">
-                        <div class="absolute top-2 left-2 bg-blue-600 text-white text-[9px] font-black px-2 py-0.5 font-cyber uppercase">NEW</div>
+                        <div class="absolute top-2 left-2 bg-blue-600 text-white text-[9px] font-black px-2 py-0.5 font-cyber uppercase tracking-tighter">NEW</div>
                     </div>
-                    <div class="pack-card-label italic tracking-widest" style="border-top-color: var(--accent-basic);">BASIC PACK 200</div>
+                    <div class="pack-card-label italic tracking-widest">BASIC PACK 200</div>
                 </div>
-
-                <!-- Q1GP 2025 -->
                 <div class="pack-card" style="border-color: var(--accent-q1);">
                     <div class="pack-card-img-container">
                         <img src="pack_q1.jpg" alt="Q1GP 2025">
-                        <div class="absolute top-2 left-2 bg-red-600 text-white text-[9px] font-black px-2 py-0.5 font-cyber uppercase">COLLAB</div>
+                        <div class="absolute top-2 left-2 bg-red-600 text-white text-[9px] font-black px-2 py-0.5 font-cyber uppercase tracking-tighter">COLLAB</div>
                     </div>
-                    <div class="pack-card-label italic tracking-widest" style="border-top-color: var(--accent-q1);">Q1GP 2025 -Singularity-</div>
+                    <div class="pack-card-label italic tracking-widest">Q1GP 2025 -Singularity-</div>
                 </div>
-
-                <div class="pack-card"><div class="pack-card-img-container"><img src="pack_sns1.jpg" alt="SNS1"></div><div class="pack-card-label italic tracking-widest">SNSthe1st PACK</div></div>
-                <div class="pack-card"><div class="pack-card-img-container"><img src="pack_sns2.jpg" alt="SNS2"></div><div class="pack-card-label italic tracking-widest">SNSthe2nd PACK</div></div>
-                <div class="pack-card"><div class="pack-card-img-container"><img src="pack_sns3.jpg" alt="SNS3"></div><div class="pack-card-label italic tracking-widest">SNSthe3rd PACK</div></div>
+                <div class="pack-card"><div class="pack-card-img-container"><img src="pack_sns1.jpg" alt="SNS1"></div><div class="pack-card-label italic tracking-widest uppercase">SNSthe1st PACK</div></div>
+                <div class="pack-card"><div class="pack-card-img-container"><img src="pack_sns2.jpg" alt="SNS2"></div><div class="pack-card-label italic tracking-widest uppercase">SNSthe2nd PACK</div></div>
+                <div class="pack-card"><div class="pack-card-img-container"><img src="pack_sns3.jpg" alt="SNS3"></div><div class="pack-card-label italic tracking-widest uppercase">SNSthe3rd PACK</div></div>
             </div>
-
             <div class="mt-20 text-center">
-                <a href="expansion.html" class="inline-block border border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-black font-bold py-5 px-14 rounded-sm transition-all font-display tracking-[0.3em] uppercase">
+                <a href="expansion.html" class="inline-block border border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-black font-bold py-5 px-14 rounded-sm transition-all font-display tracking-[0.3em] uppercase text-sm">
                     View All Archives
                 </a>
             </div>
@@ -407,16 +414,14 @@
 
     <!-- FOOTER -->
     <footer class="py-20 border-t border-white/5 text-center bg-[#050505]">
-        <div class="mb-12 text-center">
-            <h2 class="text-4xl font-black font-display text-white italic tracking-tighter opacity-20 inline-block">SNStheApp</h2>
-            <p class="text-[10px] text-gray-700 font-mono tracking-[0.5em] mt-4 uppercase">Advanced Training Module for Elite Quiz Players</p>
+        <div class="mb-12">
+            <h2 class="text-4xl font-black font-display text-white italic tracking-tighter opacity-10 inline-block">SNStheApp</h2>
+            <p class="text-[10px] text-gray-700 font-mono tracking-[0.5em] mt-4 uppercase">Precision Training Module for Quiz Players</p>
         </div>
-        
         <div class="flex flex-wrap justify-center gap-12 mb-12">
             <a href="https://twitter.com/SNS_First" target="_blank" class="text-gray-600 hover:text-cyan-400 transition-all font-mono text-xs uppercase tracking-widest">X (Twitter)</a>
             <a href="https://note.com" target="_blank" class="text-gray-600 hover:text-green-400 transition-all font-mono text-xs uppercase tracking-widest">Dev_Log</a>
         </div>
-
         <p class="text-[10px] text-gray-800 font-mono tracking-[0.2em] uppercase">
             © 2025 Isamu Ishii / SNStheApp Project. All rights reserved.
         </p>
