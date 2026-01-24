@@ -7,7 +7,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>QuizMasterAssist From SNStheApp</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>qqq
     <script src="https://unpkg.com/lucide@latest"></script>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
@@ -488,6 +488,40 @@
             window.addEventListener('resize', () => {
                 if (currentBookId !== null) applyFontSize();
             });
+            // ★追加: キーボードショートカット
+            document.addEventListener('keydown', (e) => {
+                // 修飾キー(Ctrl/Cmd/Alt)同時押しの場合は無視（ブラウザショートカット優先）
+                if (e.ctrlKey || e.metaKey || e.altKey) return;
+
+                // ライブラリ画面やモーダルが表示されている時は無効化
+                const isLibraryHidden = document.getElementById('libraryView').classList.contains('hidden');
+                const isWelcomeHidden = document.getElementById('welcomeModal').classList.contains('hidden');
+                const isHelpHidden = document.getElementById('csvHelpModal').classList.contains('hidden');
+
+                if (!isLibraryHidden || !isWelcomeHidden || !isHelpHidden) return;
+
+                const key = e.key.toUpperCase();
+
+                // NEXT: N, Q, W, T
+                if (['N', 'Q', 'W', 'T'].includes(key)) {
+                    // ブラウザ本来の動作（Tなら別タブなど）を防ぐ
+                    e.preventDefault(); 
+                    
+                    // ボタンのアニメーション効果を発火（視覚的フィードバック）
+                    const nextBtn = document.getElementById('nextBtn');
+                    nextBtn.classList.add('scale-95', 'brightness-110');
+                    setTimeout(() => nextBtn.classList.remove('scale-95', 'brightness-110'), 100);
+                    
+                    nextQuestion();
+                }
+
+                // PREV: B
+                if (key === 'B') {
+                    e.preventDefault();
+                    prevQuestion();
+                }
+            });
+        });
         });
 
         // --- ライブラリ処理 ---
