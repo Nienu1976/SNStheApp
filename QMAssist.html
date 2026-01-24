@@ -753,19 +753,26 @@
             input.value = '';
         }
 
-        function parseCSV(text) {
+function parseCSV(text) {
             const lines = text.split(/\r\n|\n/);
+            // ヘッダー判定
             let start = (lines.length > 0 && isNaN(parseInt(lines[0].split(',')[0]))) ? 1 : 0;
             const qs = [];
+            
             for (let i = start; i < lines.length; i++) {
                 const l = lines[i].trim();
                 if (!l) continue;
-                const cols = l.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
+
+                // ★修正: [^",\s] から \s を削除しました。これでスペースを含んでも途切れません。
+                const cols = l.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
+                
                 if (!cols) {
+                    // 正規表現でマッチしなかった場合のフォールバック（単純分割）
                     const sc = l.split(',');
                     if (sc.length < 2) continue;
                     qs.push({ no: sc[0], text: sc[1], answer: sc[2]||'', note: sc[3]||'', isUsed: false });
                 } else {
+                    // 正規表現マッチ時の処理
                     const cc = cols.map(c => c.replace(/^"|"$/g, '').trim());
                     if (cc.length < 2) continue;
                     qs.push({ no: cc[0], text: cc[1], answer: cc[2]||'', note: cc[3]||'', isUsed: false });
