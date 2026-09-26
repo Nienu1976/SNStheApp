@@ -109,6 +109,14 @@
   .btn span { font-family: var(--f-head); font-weight: 900; font-size: 16px; }
 
   /* hero */
+  .call { padding: 0 0 8px; margin-top: -32px; }
+  .call-box { border: 1px solid rgba(255,235,59,.45); background: rgba(255,235,59,.05); border-radius: 20px; padding: 28px; text-align: center; }
+  .call-box .eyebrow { color: var(--gold); }
+  .call-box h2 { font-family: var(--f-head); font-weight: 900; font-size: clamp(20px, 4.5vw, 28px); margin: 6px 0; }
+  .call-box p { color: var(--ink-soft); font-size: 14px; }
+  .call-box .cstats { margin-top: 10px; font-family: var(--f-mono); font-size: 12px; letter-spacing: .12em; color: var(--gold); }
+  .call-box .cstats b { font-size: 20px; }
+  .call-box .btn { margin-top: 16px; border-color: var(--gold); } .call-box .btn small { color: var(--gold); }
   .hero { min-height: calc(100vh - 56px); display: flex; align-items: center; text-align: center; padding: 64px 0; }
   .hero h1 { font-family: var(--f-wordmark); font-weight: 400; font-size: clamp(64px, 15vw, 152px); letter-spacing: 2px; line-height: 1.05; }
   .hero h1 b { color: var(--cyan); font-weight: 400; text-shadow: 0 0 32px rgba(0,229,255,.5); }
@@ -252,6 +260,19 @@
     </div>
   </header>
 
+  <!-- THE COLLECTIVE Vol.2 CALL -->
+  <section class="call">
+    <div class="wrap">
+      <div class="call-box">
+        <div class="eyebrow">CALL FOR QUESTIONS</div>
+        <h2>THE COLLECTIVE Vol.2 問題募集中</h2>
+        <p>あなたが作った問題が、SNStheAppに収録されるかもしれません。20問以上の投稿で特典あり。締切は11月30日。</p>
+        <div class="cstats" hidden>現在 <b data-cq>0</b> 問 ／ <b data-cs>0</b> 人が投稿</div>
+        <a class="btn" href="collective.html"><small>SUBMIT</small><span>問題を投稿する</span></a>
+      </div>
+    </div>
+  </section>
+
   <!-- PHILOSOPHY -->
   <section id="philosophy">
     <div class="wrap">
@@ -393,6 +414,14 @@
     }
     el.innerHTML = html;
   })();
+</script>
+<script>
+// THE COLLECTIVE Vol.2 の投稿状況（件数のみ）。取得に失敗した場合は数字の欄だけ非表示にする。
+fetch('https://us-central1-q-tas-c6cc1.cloudfunctions.net/collectiveStats').then(function(r){ return r.json(); }).then(function(d){
+  document.querySelectorAll('[data-cq]').forEach(function(e){ e.textContent = d.questions; });
+  document.querySelectorAll('[data-cs]').forEach(function(e){ e.textContent = d.submitters; });
+  document.querySelectorAll('.cstats').forEach(function(e){ e.hidden = false; });
+}).catch(function(){});
 </script>
 </body>
 </html>
