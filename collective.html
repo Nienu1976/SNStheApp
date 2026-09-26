@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE COLLECTIVE Vol.2 問題募集 - SNStheApp</title>
+<meta name="description" content="SNStheAppのユーザー投稿問題選集「THE COLLECTIVE」第2弾の問題募集ページ。あなたが作った問題が、アプリに収録されるかもしれません。">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website">
+<meta property="og:title" content="THE COLLECTIVE Vol.2 問題募集 - SNStheApp">
+<meta property="og:description" content="あなたが作った問題が、SNStheAppに収録されるかもしれません。">
+<meta property="og:image" content="https://nienu1976.github.io/SNStheApp/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=JetBrains+Mono:wght@600&family=Outfit:wght@400;600&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#000; --bg-top:#0a1122; --surface:rgba(255,255,255,.045); --line:rgba(255,255,255,.14); --ink:#fff; --ink-soft:rgba(255,255,255,.72);
+    --ink-faint:rgba(255,255,255,.58); --cyan:#00e5ff; --gold:#ffeb3b; --red:#ff4d4d; --purple:#b18bff;
+    --f-display:'Bebas Neue',sans-serif; --f-wordmark:'Anton',sans-serif; --f-head:'Zen Kaku Gothic New',sans-serif; --f-body:'Outfit','Zen Kaku Gothic New',sans-serif; --f-mono:'JetBrains Mono',monospace; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:radial-gradient(ellipse at 50% 0%,var(--bg-top),#000 60%) fixed,#000; color:var(--ink); font-family:var(--f-body); line-height:1.8; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  a { color:inherit; text-decoration:none; }
+  nav { position:sticky; top:0; z-index:10; backdrop-filter:blur(12px); background:rgba(0,0,0,.6); border-bottom:1px solid var(--line); }
+  nav .wrap { display:flex; justify-content:space-between; align-items:center; height:56px; }
+  .wrap { max-width:760px; margin:0 auto; padding:0 20px; }
+  .wordmark { font-family:var(--f-wordmark); font-size:24px; letter-spacing:1px; } .wordmark b { color:var(--cyan); font-weight:400; }
+  nav .back { font-family:var(--f-mono); font-size:11px; letter-spacing:.15em; color:var(--ink-soft); } nav .back:hover { color:var(--cyan); }
+  header { text-align:center; padding:64px 0 32px; }
+  .eyebrow { font-family:var(--f-mono); font-size:11px; letter-spacing:.3em; color:var(--gold); }
+  h1 { font-family:var(--f-display); font-weight:400; font-size:clamp(48px,12vw,84px); letter-spacing:.04em; line-height:1; margin-top:8px; }
+  h1 span { color:var(--cyan); }
+  .lead { color:var(--ink-soft); font-size:14px; margin-top:16px; }
+  .card { border:1px solid var(--line); background:var(--surface); border-radius:20px; padding:24px; margin-bottom:20px; }
+  h2 { font-family:var(--f-head); font-weight:900; font-size:20px; line-height:1.4; margin-bottom:12px; }
+  h3 { font-family:var(--f-mono); font-size:11px; letter-spacing:.2em; color:var(--cyan); margin-bottom:10px; }
+  ul.rules { list-style:none; font-size:14px; color:var(--ink-soft); } ul.rules li { padding-left:1.2em; position:relative; margin-bottom:6px; }
+  ul.rules li::before { content:'▸'; position:absolute; left:0; color:var(--cyan); }
+  .btn { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:6px 24px; border-radius:14px; border:1px solid var(--cyan); background:transparent; color:var(--ink);
+    font-family:var(--f-head); font-weight:900; font-size:15px; cursor:pointer; transition:.2s; }
+  .btn:hover:not(:disabled) { background:rgba(0,229,255,.12); transform:translateY(-1px); }
+  .btn:disabled { opacity:.4; cursor:not-allowed; }
+  .btn.gold { border-color:var(--gold); } .btn.gold:hover:not(:disabled) { background:rgba(255,235,59,.12); }
+  .btn.ghost { border-color:var(--line); color:var(--ink-soft); font-size:13px; min-height:36px; padding:2px 14px; }
+  .row { display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+  label { display:block; font-size:12px; color:var(--ink-soft); margin:14px 0 4px; font-family:var(--f-head); font-weight:700; }
+  label .req { color:var(--red); margin-left:4px; } label .opt { color:var(--ink-faint); font-weight:500; margin-left:4px; }
+  input[type=text], input[type=email], input[type=url], textarea, select { width:100%; background:rgba(255,255,255,.06); border:1px solid var(--line); border-radius:10px; color:var(--ink);
+    font-family:var(--f-body); font-size:16px; padding:10px 12px; }
+  select option { background:#0a1122; }
+  textarea { min-height:84px; resize:vertical; line-height:1.6; }
+  input:focus, textarea:focus, select:focus { outline:none; border-color:var(--cyan); }
+  .hint { font-size:11px; color:var(--ink-faint); margin-top:4px; }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; } @media (max-width:560px) { .grid2 { grid-template-columns:1fr; } }
+  .qcard { border:1px solid rgba(0,229,255,.35); border-radius:16px; padding:18px; margin-top:16px; background:rgba(0,229,255,.03); }
+  .qhead { display:flex; justify-content:space-between; align-items:center; }
+  .qnum { font-family:var(--f-display); font-size:26px; letter-spacing:.06em; color:var(--cyan); }
+  .counter { font-family:var(--f-mono); font-size:12px; letter-spacing:.1em; color:var(--gold); }
+  .meter { height:8px; border-radius:99px; background:rgba(255,255,255,.1); overflow:hidden; margin:8px 0 4px; } .meter i { display:block; height:100%; background:linear-gradient(90deg,var(--cyan),var(--gold)); }
+  .radio label, .check label { display:flex; gap:8px; align-items:flex-start; margin:8px 0; font-weight:500; font-size:14px; color:var(--ink); cursor:pointer; }
+  .radio input, .check input { margin-top:6px; }
+  .msg { padding:12px 16px; border-radius:12px; font-size:14px; margin-top:12px; display:none; } .msg.show { display:block; }
+  .msg.err { border:1px solid var(--red); color:#ffb3b3; background:rgba(255,77,77,.08); } .msg.ok { border:1px solid var(--cyan); color:var(--cyan); background:rgba(0,229,255,.08); }
+  .mine { list-style:none; font-size:13px; } .mine li { border-top:1px solid var(--line); padding:10px 0; color:var(--ink-soft); }
+  .mine .g { font-family:var(--f-mono); font-size:10px; letter-spacing:.15em; color:var(--gold); margin-right:8px; }
+  .hidden { display:none !important; }
+  footer { border-top:1px solid var(--line); padding:40px 0; margin-top:40px; text-align:center; font-family:var(--f-mono); font-size:11px; letter-spacing:.15em; color:var(--ink-soft); }
+  footer a:hover { color:var(--cyan); }
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a href="index.html" class="wordmark">SNS<b>the</b>App</a><a class="back" href="expansion.html">← EXPANSION PACKS</a></div></nav>
+
+<header class="wrap">
+  <div class="eyebrow">CALL FOR QUESTIONS</div>
+  <h1>THE <span>COLLECTIVE</span> Vol.2</h1>
+  <p class="lead">みんなが作った問題で作る、ユーザー投稿問題選集。<br>あなたの1問が、SNStheAppに収録されるかもしれません。</p>
+</header>
+
+<main class="wrap">
+  <section class="card">
+    <h2>募集要項</h2>
+    <ul class="rules">
+      <li>締切: <b id="deadline">2026年11月30日</b>（早めの投稿ほど、じっくり選定できます）</li>
+      <li>投稿できるのは<b>1人あたり合計 <span id="maxTotalTxt">30</span> 問</b>まで。1回の送信は最大5問です。</li>
+      <li>問題は「〜は何でしょう？」形式の一問一答。答えが1つに決まるものにしてください。</li>
+      <li>出典（Webページなど）を必ず添えてください。事実確認をしたうえで採用を決めます。</li>
+      <li>採用にあたり、問題文を運営で修正させていただくことがあります。採用の連絡は個別にはお送りしません。</li>
+      <li>投稿された問題の著作権・利用権は運営に帰属します（同意が必要です）。</li>
+      <li>採用された問題には、希望者のみ投稿者名を掲載します。</li>
+    </ul>
+  </section>
+
+  <div id="closed" class="card hidden"><h2>募集は終了しました</h2><p class="lead" style="margin:0">たくさんのご投稿、ありがとうございました。</p></div>
+
+  <!-- ログイン -->
+  <section id="loginBox" class="card hidden">
+    <h2>まずはログイン</h2>
+    <p class="hint" style="margin:0 0 14px">投稿数の管理のため、ログインが必要です。パスワードは不要です。</p>
+    <div class="row"><button class="btn" id="googleBtn" type="button">Googleでログイン</button></div>
+    <h3 style="margin-top:22px">または、メールで</h3>
+    <label for="loginEmail" style="margin-top:0">メールアドレス</label>
+    <input type="email" id="loginEmail" autocomplete="email" placeholder="you@example.com">
+    <div class="row" style="margin-top:12px"><button class="btn" id="mailBtn" type="button">ログイン用リンクを送る</button></div>
+    <p class="hint">届いたメールのリンクを開くとログインできます。届かないときは迷惑メールフォルダをご確認ください。</p>
+    <div id="loginMsg" class="msg"></div>
+  </section>
+
+  <!-- 投稿フォーム -->
+  <div id="app" class="hidden">
+    <section class="card">
+      <div class="qhead"><span class="counter" id="whoami"></span><button class="btn ghost" id="logoutBtn" type="button">ログアウト</button></div>
+      <div class="meter"><i id="meterBar" style="width:0"></i></div>
+      <div class="counter" id="remainTxt"></div>
+    </section>
+
+    <form id="form" novalidate>
+      <section class="card">
+        <h2>投稿者情報</h2>
+        <label for="handleName">ハンドルネーム<span class="req">必須</span></label>
+        <input type="text" id="handleName" maxlength="50" autocomplete="nickname">
+        <label for="xAccount">Xアカウント<span class="opt">任意</span></label>
+        <input type="text" id="xAccount" maxlength="50" placeholder="@example">
+        <div class="radio">
+          <label style="margin-top:18px">採用時、問題にお名前を表示しますか？</label>
+          <label><input type="radio" name="showName" value="yes" checked>表示する（ハンドルネームを掲載）</label>
+          <label><input type="radio" name="showName" value="no">表示しない（匿名で掲載）</label>
+        </div>
+        <div class="check"><label><input type="checkbox" id="consent"><span>投稿する問題の著作権・利用権が運営に帰属することに同意します。<span class="req">必須</span></span></label></div>
+      </section>
+
+      <section class="card">
+        <h2>問題</h2>
+        <div id="questions"></div>
+        <div class="row" style="margin-top:16px">
+          <button class="btn ghost" id="addBtn" type="button">＋ 問題を追加</button>
+          <span class="hint" id="batchHint"></span>
+        </div>
+      </section>
+
+      <div id="formMsg" class="msg"></div>
+      <div class="row" style="margin:16px 0 8px"><button class="btn gold" id="submitBtn" type="submit">この内容で送信する</button></div>
+      <p class="hint">送信後の修正・削除はできません。内容をよく確認してください。</p>
+    </form>
+
+    <section class="card" style="margin-top:28px">
+      <h2>あなたの投稿履歴</h2>
+      <ul class="mine" id="mine"><li>まだ投稿はありません。</li></ul>
+    </section>
+  </div>
+</main>
+
+<footer><div class="wrap"><a href="index.html">SNStheApp</a> ／ <a href="expansion.html">EXPANSION PACKS</a></div></footer>
+
+<template id="qtpl">
+  <div class="qcard">
+    <div class="qhead"><span class="qnum"></span><button class="btn ghost rm" type="button">削除</button></div>
+    <label>問題文<span class="req">必須</span></label>
+    <textarea class="f-text" maxlength="300" placeholder="例: 常温常圧で液体として存在する唯一の金属元素である、元素記号「Hg」で表される物質は何でしょう？"></textarea>
+    <div class="hint"><span class="cnt">0</span> / 300字</div>
+    <div class="grid2">
+      <div><label>正解<span class="req">必須</span></label><input type="text" class="f-answer" maxlength="200"></div>
+      <div><label>別解<span class="opt">任意・複数は「、」区切り</span></label><input type="text" class="f-alt" maxlength="300"></div>
+    </div>
+    <div class="grid2">
+      <div><label>ジャンル<span class="req">必須</span></label><select class="f-genre"></select></div>
+      <div><label>難易度<span class="req">必須</span></label><select class="f-diff"></select></div>
+    </div>
+    <label>出典URL・情報元<span class="req">必須</span></label>
+    <input type="url" class="f-url" maxlength="1000" placeholder="https://">
+    <label>出典の補足<span class="opt">任意（書籍名・ページなど）</span></label>
+    <input type="text" class="f-note" maxlength="300">
+    <label>解説・補足<span class="opt">任意</span></label>
+    <textarea class="f-exp" maxlength="500" style="min-height:64px"></textarea>
+  </div>
+</template>
+
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.3.0/firebase-app.js';
+import { initializeAppCheck, ReCaptchaV3Provider } from 'https://www.gstatic.com/firebasejs/11.3.0/firebase-app-check.js';
+import { getAuth, GoogleAuthProvider, signInWithPopup, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink,
+  onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/11.3.0/firebase-auth.js';
+import { getFirestore, doc, getDoc, collection, query, where, getDocs, writeBatch, serverTimestamp } from 'https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js';
+
+const app = initializeApp({
+  apiKey: 'AIzaSyDPNN3zNfdcLIRhFG2zZ4ZtJOJjeVmZXKo',
+  authDomain: 'q-tas-c6cc1.firebaseapp.com',
+  projectId: 'q-tas-c6cc1',
+  storageBucket: 'q-tas-c6cc1.firebasestorage.app',
+  messagingSenderId: '290723617056',
+  appId: '1:290723617056:web:c55b31340834bb352e9f45',
+});
+// App Check（Q-TAS と同じ reCAPTCHA v3 サイトキー。公開してよい識別子）。Firestore は App Check 強制のため必須。
+initializeAppCheck(app, { provider: new ReCaptchaV3Provider('6LcrlDctAAAAAAaZKjB_weOJ41E60nNROK370jPp'), isTokenAutoRefreshEnabled: true });
+const auth = getAuth(app); auth.languageCode = 'ja';
+const db = getFirestore(app);
+
+const MAX_PER_SEND = 5;
+let maxTotal = 30;
+let isOpen = true;
+let used = new Set();   // 使用済みスロット番号
+let mineCache = [];
+
+const GENRES = [
+  ['科学', '科学（数学・物理・化学・生物など）'], ['文学', '文学'], ['言葉', '言葉'], ['日本史', '日本史'], ['世界史', '世界史'],
+  ['地理', '地理'], ['公民', '公民'], ['芸術', '芸術'], ['漫アゲ', '漫画・アニメ・ゲーム'], ['生活', '生活'],
+  ['スポーツ', 'スポーツ'], ['芸能', '芸能'], ['ns', 'ジャンル複合・不明'],
+];
+const DIFFS = [
+  ['1', '1（中学生・CM級）'], ['2', '2（高校教科書級）'], ['3', '3（雑学好き級）'], ['4', '4（競技勢級）'], ['5', '5（専門書級）'],
+];
+const GENRE_LABEL = Object.fromEntries(GENRES);
+const $ = (id) => document.getElementById(id);
+const show = (el, on) => el.classList.toggle('hidden', !on);
+function msg(el, text, kind) { el.textContent = text; el.className = 'msg show ' + kind; }
+function clearMsg(el) { el.className = 'msg'; el.textContent = ''; }
+const safeStorage = { get(k){ try { return localStorage.getItem(k); } catch { return null; } }, set(k,v){ try { localStorage.setItem(k,v); } catch {} }, del(k){ try { localStorage.removeItem(k); } catch {} } };
+
+/* ---------- ログイン ---------- */
+$('googleBtn').onclick = async () => {
+  clearMsg($('loginMsg'));
+  try { await signInWithPopup(auth, new GoogleAuthProvider()); }
+  catch (e) { if (e.code !== 'auth/popup-closed-by-user') msg($('loginMsg'), 'ログインに失敗しました。もう一度お試しください。(' + (e.code || 'error') + ')', 'err'); }
+};
+$('mailBtn').onclick = async () => {
+  clearMsg($('loginMsg'));
+  const email = $('loginEmail').value.trim();
+  if (!email) return msg($('loginMsg'), 'メールアドレスを入力してください。', 'err');
+  try {
+    await sendSignInLinkToEmail(auth, email, { url: location.origin + location.pathname, handleCodeInApp: true });
+    safeStorage.set('collectiveEmail', email);
+    msg($('loginMsg'), email + ' にログイン用リンクを送りました。メールのリンクを開いてください。届かないときは迷惑メールフォルダをご確認ください。', 'ok');
+  } catch (e) { msg($('loginMsg'), 'メールを送信できませんでした。アドレスをご確認ください。(' + (e.code || 'error') + ')', 'err'); }
+};
+$('logoutBtn').onclick = () => signOut(auth);
+
+async function finishEmailLink() {
+  if (!isSignInWithEmailLink(auth, location.href)) return;
+  let email = safeStorage.get('collectiveEmail');
+  if (!email) email = window.prompt('確認のため、ログイン用リンクを送ったメールアドレスを入力してください。');
+  if (!email) return;
+  try { await signInWithEmailLink(auth, email, location.href); safeStorage.del('collectiveEmail'); history.replaceState(null, '', location.pathname); }
+  catch (e) { show($('loginBox'), true); msg($('loginMsg'), 'リンクが無効か期限切れです。もう一度メールを送ってください。', 'err'); }
+}
+
+/* ---------- 募集設定 ---------- */
+async function loadConfig() {
+  try {
+    const snap = await getDoc(doc(db, 'publicConfig', 'collectiveVol2'));
+    if (snap.exists()) {
+      const c = snap.data();
+      if (c.open === false) isOpen = false;
+      if (Number.isInteger(c.maxTotal) && c.maxTotal >= 1 && c.maxTotal <= 30) maxTotal = c.maxTotal;
+      if (typeof c.deadlineText === 'string' && c.deadlineText) $('deadline').textContent = c.deadlineText;
+    }
+  } catch { /* 設定が読めなくても既定値で続行 */ }
+  $('maxTotalTxt').textContent = maxTotal;
+}
+
+/* ---------- 投稿履歴 ---------- */
+async function loadMine(uid) {
+  const snap = await getDocs(query(collection(db, 'submissions'), where('submitterUid', '==', uid)));
+  used = new Set(); mineCache = [];
+  snap.forEach((d) => { const n = Number(d.id.split('_').pop()); if (n) used.add(n); mineCache.push({ n, ...d.data() }); });
+  mineCache.sort((a, b) => a.n - b.n);
+  const ul = $('mine'); ul.replaceChildren();
+  if (!mineCache.length) { const li = document.createElement('li'); li.textContent = 'まだ投稿はありません。'; ul.append(li); }
+  for (const m of mineCache) {
+    const li = document.createElement('li');
+    const g = document.createElement('span'); g.className = 'g'; g.textContent = GENRE_LABEL[m.majorGenre] || m.majorGenre;
+    li.append(g, document.createTextNode(m.text + ' → ' + m.answer));
+    ul.append(li);
+  }
+  refreshCounters();
+}
+const remaining = () => Math.max(0, maxTotal - used.size);
+function refreshCounters() {
+  const r = remaining(), n = document.querySelectorAll('#questions .qcard').length;
+  $('remainTxt').textContent = `投稿済み ${used.size} 問 ／ あと ${r} 問（全${maxTotal}問まで）`;
+  $('meterBar').style.width = Math.min(100, used.size / maxTotal * 100) + '%';
+  const cap = Math.min(MAX_PER_SEND, r);
+  $('batchHint').textContent = `今回の送信: ${n} 問（最大${cap}問）`;
+  $('addBtn').disabled = n >= cap;
+  $('submitBtn').disabled = r === 0;
+  if (r === 0) msg($('formMsg'), `投稿上限の ${maxTotal} 問に達しました。ありがとうございました！`, 'ok');
+}
+
+/* ---------- 問題カード ---------- */
+function addCard() {
+  const box = $('questions');
+  if (box.children.length >= Math.min(MAX_PER_SEND, remaining())) return;
+  const node = $('qtpl').content.firstElementChild.cloneNode(true);
+  for (const [v, l] of GENRES) node.querySelector('.f-genre').add(new Option(l, v));
+  node.querySelector('.f-genre').insertAdjacentHTML('afterbegin', '<option value="" selected disabled>選んでください</option>');
+  for (const [v, l] of DIFFS) node.querySelector('.f-diff').add(new Option(l, v));
+  node.querySelector('.f-diff').insertAdjacentHTML('afterbegin', '<option value="" selected disabled>選んでください</option>');
+  const ta = node.querySelector('.f-text'), cnt = node.querySelector('.cnt');
+  ta.addEventListener('input', () => { cnt.textContent = ta.value.length; });
+  node.querySelector('.rm').onclick = () => { node.remove(); renumber(); refreshCounters(); };
+  box.append(node); renumber(); refreshCounters();
+}
+function renumber() { document.querySelectorAll('#questions .qcard').forEach((c, i) => { c.querySelector('.qnum').textContent = 'Q' + (i + 1); c.querySelector('.rm').classList.toggle('hidden', i === 0 && document.querySelectorAll('#questions .qcard').length === 1); }); }
+$('addBtn').onclick = addCard;
+
+/* ---------- 送信 ---------- */
+$('form').addEventListener('submit', async (ev) => {
+  ev.preventDefault(); clearMsg($('formMsg'));
+  const user = auth.currentUser; if (!user) return;
+  const handleName = $('handleName').value.trim();
+  if (!handleName) return msg($('formMsg'), 'ハンドルネームを入力してください。', 'err');
+  if (!$('consent').checked) return msg($('formMsg'), '著作権・利用権の同意にチェックしてください。', 'err');
+  const cards = [...document.querySelectorAll('#questions .qcard')];
+  if (!cards.length) return msg($('formMsg'), '問題を1問以上入力してください。', 'err');
+  if (cards.length > Math.min(MAX_PER_SEND, remaining())) return msg($('formMsg'), '一度に送信できる問題数を超えています。', 'err');
+
+  const items = [];
+  for (let i = 0; i < cards.length; i++) {
+    const c = cards[i], q = (s) => c.querySelector(s);
+    const text = q('.f-text').value.trim(), answer = q('.f-answer').value.trim(), genre = q('.f-genre').value, diff = q('.f-diff').value, url = q('.f-url').value.trim();
+    if (!text || !answer || !genre || !diff || !url) return msg($('formMsg'), `Q${i + 1}: 必須項目（問題文・正解・ジャンル・難易度・出典URL）をすべて入力してください。`, 'err');
+    if (!/^https?:\/\//i.test(url)) return msg($('formMsg'), `Q${i + 1}: 出典URLは http:// または https:// で始まる形式で入力してください。`, 'err');
+    items.push({
+      text, answer, altAnswers: q('.f-alt').value.split(/[、,，]/).map((s) => s.trim()).filter(Boolean).slice(0, 10),
+      majorGenre: genre, difficulty: diff, sourceUrl: url, sourceNote: q('.f-note').value.trim(), explanation: q('.f-exp').value.trim(),
+    });
+  }
+  const free = []; for (let n = 1; n <= 30 && free.length < items.length; n++) if (!used.has(n)) free.push(n);
+  if (free.length < items.length) return msg($('formMsg'), '投稿上限を超えています。', 'err');
+
+  $('submitBtn').disabled = true;
+  try {
+    const batch = writeBatch(db);
+    items.forEach((it, i) => batch.set(doc(db, 'submissions', `${user.uid}_${free[i]}`), {
+      ...it, submitterUid: user.uid, handleName, xAccount: $('xAccount').value.trim(), email: user.email,
+      showName: document.querySelector('input[name=showName]:checked').value === 'yes', consent: true, status: 'new', createdAt: serverTimestamp(),
+    }));
+    await batch.commit();
+    $('questions').replaceChildren(); await loadMine(user.uid); addCard();
+    msg($('formMsg'), `${items.length} 問を送信しました。ご投稿ありがとうございます！続けて投稿もできます。`, 'ok');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } catch (e) {
+    msg($('formMsg'), '送信に失敗しました。時間をおいてもう一度お試しください。(' + (e.code || 'error') + ')', 'err');
+  } finally { $('submitBtn').disabled = remaining() === 0; }
+});
+
+/* ---------- 起動 ---------- */
+await loadConfig();
+if (!isOpen) show($('closed'), true);
+await finishEmailLink();
+onAuthStateChanged(auth, async (user) => {
+  if (!isOpen) { show($('loginBox'), false); show($('app'), false); return; }
+  show($('loginBox'), !user); show($('app'), !!user);
+  if (!user) return;
+  $('whoami').textContent = user.email || '';
+  await loadMine(user.uid);
+  if (!$('questions').children.length) addCard();
+});
+</script>
+</body>
+</html>
