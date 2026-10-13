@@ -244,6 +244,7 @@
       <h1>SNS<b>the</b>App</h1>
       <p class="sub">競技クイズトレーニングギア</p>
       <p class="lead">ゲームではない。<br>選球眼と制動を極限まで磨く、<em>ストイックな自己研鑽</em>を。</p>
+      <p class="sub" style="letter-spacing:.1em;text-transform:none;margin-top:20px">問題を読んでくれる人がいなくても、早押しはひとりで始められる。</p>
       <div class="stores">
         <a href="https://apps.apple.com/jp/app/id6753719073" target="_blank" rel="noopener"><img src="btn-appstore.png" alt="App Store"></a>
         <a href="https://play.google.com/store/apps/details?id=com.ATTENTIONSEEKINGMONSTERS.SNSApp" target="_blank" rel="noopener"><img src="btn-googleplay.png" alt="Google Play"></a>
@@ -259,6 +260,16 @@
         </div></div></div>
     </div>
   </header>
+
+  <!-- WHAT'S NEW -->
+  <section style="padding:24px 0">
+    <div class="wrap">
+      <div class="panel" style="padding:24px">
+        <strong>WHAT'S NEW — Ver 3.1756</strong>
+        <p>・AI対戦で、問題集を選べるように（THE COLLECTIVE Vol.1・AtoZ問題集）<br>・購入済みの問題集に、購入バッジを表示<br>・結果・アワード画面から、Xにシェアできるように<br>・モード選択に「前回の続き」を追加<br>・同梱100問の読み上げを更新</p>
+      </div>
+    </div>
+  </section>
 
   <!-- THE COLLECTIVE Vol.2 CALL -->
   <section class="call">
@@ -291,6 +302,10 @@
           <li>
             <strong>MANUAL JUDGEMENT</strong>
             <p>機械的な自動判定に頼らず、自身の解答を声に出し、表示された正解と照らし合わせて主観的に判定。能動的な思考プロセスを重視。</p>
+          </li>
+          <li>
+            <strong>読ませ押し</strong>
+            <p>押した後の数文字で、確定を引き出す。読ませ押しを、耳で磨くトレーニングギア。</p>
           </li>
         </ul>
       </div>
@@ -358,6 +373,7 @@
         <div class="card pack"><img src="pack_q1.jpg" alt="Q1GP 2025" loading="lazy"><i class="tag collab">COLLAB</i><span>Q1GP 2025 -Singularity-</span></div>
         <div class="card pack"><img src="pack_sns1.jpg" alt="SNSthe1st" loading="lazy"><span>SNSthe1st PACK</span></div>
         <div class="card pack"><img src="pack_sns2.jpg" alt="SNSthe2nd" loading="lazy"><span>SNSthe2nd PACK</span></div>
+        <div class="card pack" id="pack-bp2" hidden><img src="pack_basicpack2.jpg" alt="BASICPACK2" loading="lazy"><i class="tag new">NEW</i><span>BASICPACK2</span></div>
         <div class="card pack"><img src="pack_sns3.jpg" alt="SNSthe3rd" loading="lazy"><span>SNSthe3rd PACK</span></div>
       </div>
       <div class="center-cta"><a class="btn" href="expansion.html"><small>ARCHIVE</small><span>すべての問題集を見る</span></a></div>
@@ -422,6 +438,9 @@ fetch('https://us-central1-q-tas-c6cc1.cloudfunctions.net/collectiveStats').then
   document.querySelectorAll('[data-cs]').forEach(function(e){ e.textContent = d.submitters; });
   document.querySelectorAll('.cstats').forEach(function(e){ e.hidden = false; });
 }).catch(function(){});
+</script>
+<script>
+(function(){var e=document.getElementById("pack-bp2");if(e&&Date.now()>=Date.parse("2026-10-15T00:00:00+09:00"))e.hidden=false;})();
 </script>
 </body>
 </html>
