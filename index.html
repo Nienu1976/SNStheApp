@@ -262,12 +262,22 @@
   </header>
 
   <!-- WHAT'S NEW -->
-  <section style="padding:24px 0">
+  <section id="wn-old" style="padding:24px 0">
     <div class="wrap">
       <div class="panel" style="padding:24px">
         <strong>WHAT'S NEW — Ver 3.1757</strong>
         <p>・リアル大会再現が、SHOQKINGにも対応（AtoZ 問題集とSHOQKINGの購入者が対象。11月1日 0:00から使えます）<br>・リアル大会再現は、実際の大会の本番で押した人が対戦相手。本番と同じタイミングで押す相手より早く押して、正解するトレーニング<br>・RTA（ロックアウト含む）の結果画面に「今回の問題を振り返る」を追加。間違い・スルーした問題と答えを確認でき、「復習に入れる」で復習に追加<br>・RTAで間違えた問題が、復習リストにも入るように</p>
         <p style="margin-top:14px;opacity:.7">これまでの更新（3.1756）：AI対戦の問題集選択／購入バッジ／Xシェア／「前回の続き」／同梱100問の読み上げ更新</p>
+      </div>
+    </div>
+  </section>
+  <!-- WHAT'S NEW (11/1 0:00 JST から表示) -->
+  <section id="wn-new" style="padding:24px 0" hidden>
+    <div class="wrap">
+      <div class="panel" style="padding:24px">
+        <strong>WHAT'S NEW — 11月1日</strong>
+        <p>・リアル大会再現が、使えるようになりました（AtoZ 問題集とSHOQKINGの購入者が対象）。実際の大会の本番で押した人が対戦相手。本番と同じタイミングで押す相手より早く押して、正解するトレーニングです<br>・AI対戦に、新しい相手「クイズ王」が登場。ロボットのキャラクター5体から、相手を選べます<br>・AI対戦で選べる問題集が増えました（SNSthe1st、SNSthe3rd解放パック、AtoZ 問題集 未使用問題）<br>・RTA（ロックアウト含む）の結果画面から、間違えた問題を振り返って、復習に入れられます</p>
+        <p style="margin-top:14px;opacity:.7">【確認待ち】AtoZ 問題集のセール: 期間・文言が確定したら、この下に1行追加（価格は書かない）</p>
       </div>
     </div>
   </section>
@@ -375,6 +385,7 @@
         <div class="card pack"><img src="pack_sns1.jpg" alt="SNSthe1st" loading="lazy"><span>SNSthe1st PACK</span></div>
         <div class="card pack"><img src="pack_sns2.jpg" alt="SNSthe2nd" loading="lazy"><span>SNSthe2nd PACK</span></div>
         <div class="card pack" id="pack-bp2" hidden><img src="pack_basicpack2.jpg" alt="BASICPACK2" loading="lazy"><i class="tag new">NEW</i><span>BASICPACK2</span></div>
+        <div class="card pack" id="pack-atoz" hidden><img src="pack_atoz.jpg" alt="AtoZ 問題集" loading="lazy"><i class="tag new">NEW</i><span>AtoZ 問題集</span></div>
         <div class="card pack"><img src="pack_sns3.jpg" alt="SNSthe3rd" loading="lazy"><span>SNSthe3rd PACK</span></div>
       </div>
       <div class="center-cta"><a class="btn" href="expansion.html"><small>ARCHIVE</small><span>すべての問題集を見る</span></a></div>
@@ -442,6 +453,11 @@ fetch('https://us-central1-q-tas-c6cc1.cloudfunctions.net/collectiveStats').then
 </script>
 <script>
 (function(){var e=document.getElementById("pack-bp2");if(e&&Date.now()>=Date.parse("2026-10-15T00:00:00+09:00"))e.hidden=false;})();
+</script>
+<script>
+(function(){if(Date.now()<Date.parse("2026-11-01T00:00:00+09:00"))return;
+var o=document.getElementById("wn-old"),n=document.getElementById("wn-new"),a=document.getElementById("pack-atoz");
+if(o)o.hidden=true;if(n)n.hidden=false;if(a)a.hidden=false;})();
 </script>
 </body>
 </html>
