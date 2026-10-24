@@ -261,6 +261,11 @@
     </div>
   </header>
 
+  <!-- 公開から1年（10/26 0:00 JST から表示） -->
+  <section id="thanks-1y" style="padding:8px 0" hidden>
+    <div class="wrap"><p style="text-align:center;font-family:var(--f-head);font-weight:700;font-size:15px;color:var(--gold)">公開から1年。ありがとうございます。</p></div>
+  </section>
+
   <!-- WHAT'S NEW -->
   <section style="padding:24px 0">
     <div class="wrap">
@@ -442,6 +447,9 @@ fetch('https://us-central1-q-tas-c6cc1.cloudfunctions.net/collectiveStats').then
 </script>
 <script>
 (function(){var e=document.getElementById("pack-bp2");if(e&&Date.now()>=Date.parse("2026-10-15T00:00:00+09:00"))e.hidden=false;})();
+</script>
+<script>
+(function(){var e=document.getElementById("thanks-1y");if(e&&Date.now()>=Date.parse("2026-10-26T00:00:00+09:00"))e.hidden=false;})();
 </script>
 </body>
 </html>
