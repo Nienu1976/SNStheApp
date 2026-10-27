@@ -261,13 +261,18 @@
     </div>
   </header>
 
+  <!-- 公開から1年（10/26 0:00 JST から表示） -->
+  <section id="thanks-1y" style="padding:8px 0" hidden>
+    <div class="wrap"><p style="text-align:center;font-family:var(--f-head);font-weight:700;font-size:15px;color:var(--gold)">公開から1年。ありがとうございます。</p></div>
+  </section>
+
   <!-- WHAT'S NEW -->
   <section id="wn-old" style="padding:24px 0">
     <div class="wrap">
       <div class="panel" style="padding:24px">
-        <strong>WHAT'S NEW — Ver 3.1757</strong>
-        <p>・リアル大会再現が、SHOQKINGにも対応（AtoZ 問題集とSHOQKINGの購入者が対象。11月1日 0:00から使えます）<br>・リアル大会再現は、実際の大会の本番で押した人が対戦相手。本番と同じタイミングで押す相手より早く押して、正解するトレーニング<br>・RTA（ロックアウト含む）の結果画面に「今回の問題を振り返る」を追加。間違い・スルーした問題と答えを確認でき、「復習に入れる」で復習に追加<br>・RTAで間違えた問題が、復習リストにも入るように</p>
-        <p style="margin-top:14px;opacity:.7">これまでの更新（3.1756）：AI対戦の問題集選択／購入バッジ／Xシェア／「前回の続き」／同梱100問の読み上げ更新</p>
+        <strong>WHAT'S NEW — Ver 3.1760</strong>
+        <p>・AI対戦に「段位認定」が登場。段位は、NOVICEからKINGまでの9段階。勝ち負けに合わせて段位が変わり、相手は段位に合わせて自動で決まります<br>・AI対戦の「クイズ王」が、さらに早く押すようになりました<br>・AI対戦の性格「標準」を、「上級者」に改名<br>・AI対戦で選べる問題集が増えました（SNSthe1st、SNSthe3rd解放パック、AtoZ 問題集 未使用問題）<br>・AI対戦の相手選択が見やすく（キャラクター画像、出題範囲のドロップダウン）</p>
+        <p style="margin-top:14px;opacity:.7">これまでの更新：リアル大会再現がSHOQKINGにも対応（11月1日から）／RTAの結果画面で「今回の問題を振り返る」／RTAの間違いが復習リストにも入る（3.1757）</p>
       </div>
     </div>
   </section>
@@ -456,7 +461,8 @@ fetch('https://us-central1-q-tas-c6cc1.cloudfunctions.net/collectiveStats').then
 <script>
 (function(){if(Date.now()<Date.parse("2026-11-01T00:00:00+09:00"))return;
 var o=document.getElementById("wn-old"),n=document.getElementById("wn-new"),a=document.getElementById("pack-atoz");
-if(o)o.hidden=true;if(n)n.hidden=false;if(a)a.hidden=false;})();
+if(n)n.hidden=false;if(a)a.hidden=false;})();
+(function(){var e=document.getElementById("thanks-1y");if(e&&Date.now()>=Date.parse("2026-10-26T00:00:00+09:00"))e.hidden=false;})();
 </script>
 </body>
 </html>
